@@ -1,4 +1,3 @@
-```python
 from z3 import *
 
 for fuck in range(1, 100):
@@ -81,4 +80,4 @@ for fuck in range(1, 100):
         print "SICE"
         print fuck
         print s.model()
-print "unlucky"```
+print "unlucky"
