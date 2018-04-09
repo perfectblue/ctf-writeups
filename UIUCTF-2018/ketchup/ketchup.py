@@ -2,7 +2,7 @@ from z3 import *
 
 for fuck in range(1, 100):
 
-    flag = BitVec("x" + str(i), fuck * 8)
+    flag = BitVec("x", fuck * 8)
 
 
 
@@ -77,7 +77,5 @@ for fuck in range(1, 100):
     for i in range(64):
         s.add(ord(target[i]) == b[i])
     if s.check() == sat:
-        print "SICE"
-        print fuck
-        print s.model()
+        print hex(s.model()[flag].as_long())[2:].strip("L").decode("hex")
 print "unlucky"
