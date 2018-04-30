@@ -63,7 +63,8 @@ Disassembly of section .text:
 0x00000000004000eb : xor esi, esi ; xor rdx, rdx ; syscall
 0x00000000004000e7 : xor rdi, rdi ; xor rsi, rsi ; xor rdx, rdx ; syscall
 0x00000000004000ed : xor rdx, rdx ; syscall
-0x00000000004000ea : xor rsi, rsi ; xor rdx, rdx ; syscall```
+0x00000000004000ea : xor rsi, rsi ; xor rdx, rdx ; syscall
+```
 
 We don't have much at our disposal, so my idea was syscall. Looking at the list of syscalls here: ```http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/``` we see that sys_execve is 0x3b. However, we don't have a pop rax gadget! :(
 
