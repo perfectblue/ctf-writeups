@@ -4,7 +4,8 @@ I did this problem at school, so I didn't have ida xD. You'll have to bear with 
 
 Objdumping the binary we get:
 
-```TinyPwn:     file format elf64-x86-64
+```
+TinyPwn:     file format elf64-x86-64
 
 
 Disassembly of section .text:
@@ -36,7 +37,8 @@ Disassembly of section .text:
   4000fc:       ba 48 01 00 00          mov    $0x148,%edx
   400101:       0f 05                   syscall 
   400103:       48 81 c4 28 01 00 00    add    $0x128,%rsp
-  40010a:       c3                      retq ```
+  40010a:       c3                      retq
+```
 
   It is a tiny binary indeed. It uses syscalls to read 0x148 bytes, then returns. Easy buffer overflow. We quickly find that the padding is 0x128 until the ret address. The problem is how do we get a shell?
 
