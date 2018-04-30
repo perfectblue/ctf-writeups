@@ -1,3 +1,5 @@
+# TinyPwn AsisCTF Quals 2018
+
 I did this problem at school, so I didn't have idea xD. You'll have to bear with objdump.
 
 Objdumping the binary we get:
