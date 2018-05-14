@@ -8,7 +8,7 @@
 
 [PDF writeup](./writeup.pdf)*.
 
-* Footnotes:galois field
+\* Footnotes:
 
 - The group `G` described is also known as the [Evil numbers](https://en.wikipedia.org/wiki/Evil_number).
 Interestingly, this group can be also reframed as the coset 1+GF(2^n), where GF(2^n) is the Galois field over 2^n elementsgalois field and `+` is xor.
