@@ -1,0 +1,2 @@
+We know that the flag is not in standard format; this indicates that the flag is encoded in some stupid side channel. Opening the pcap in wireshark we see that udp stream 1 is most interesting so we follow it. Notice that the packets come in bursts.
+So basically, the flag is encoded in morse code using packet timing as the side channel

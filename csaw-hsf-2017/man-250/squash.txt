@@ -1,0 +1,11 @@
+total 10253
+-rwxrwxrwx 1 root root   36928 Jul 28 04:00 custom-x.cramfs.img
+-rwxrwxrwx 1 root root     614 Jul 28 04:00 Install
+-rwxrwxrwx 1 root root     730 Jul 28 04:00 InstallDesc
+-rwxrwxrwx 1 root root   28736 Jul 28 04:00 logo-x.cramfs.img
+drwxrwxrwx 2 root root       0 Sep 25 17:45 logs
+-rwxrwxrwx 1 root root 3301376 Sep 10 21:41 romfs-x.cramfs.img
+-rwxrwxrwx 1 root root   60812 Jul 28 04:00 u-boot.bin.img
+-rwxrwxrwx 1 root root  262208 Jul 28 04:00 u-boot.env.img
+-rwxrwxrwx 1 root root 5386304 Jul 28 04:00 user-x.cramfs.img
+-rwxrwxrwx 1 root root 1396800 Jul 28 04:00 web-x.cramfs.img

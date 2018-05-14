@@ -1,0 +1,13 @@
+{
+    "arch": "x64",
+    "description": "Widevine Content Decryption Module",
+    "manifest_version": 2,
+    "name": "WidevineCdm",
+    "offline_enabled": false,
+    "os": "mac",
+    "version": "1.4.8.903",
+    "x-cdm-codecs": "vp8,vp9.0,avc1",
+    "x-cdm-host-versions": "8",
+    "x-cdm-interface-versions": "8",
+    "x-cdm-module-versions": "4"
+}

@@ -1,0 +1,84 @@
+dmesg  
+dmesg | less
+ls
+cd
+ls
+cd /vagrant
+ls
+cd rootkit
+ls
+cp client ~
+ls
+cd
+ls
+mv rootkit.ko /
+cd /
+ls
+mv rootkit.ko /var
+ls
+cd /var
+ls
+mv rootkit.ko lib/
+cd lib/
+ls
+mv rootkit.ko rt.ko
+ls
+modprobe
+modprobe rt.ko 
+mv rt.ko /lib/modules/4.4.0-96-generic/
+cd /lib/modules/4.4.0-96-generic/
+ls
+modprobe rt.ko
+ls
+mv rt.ko rtk
+ls
+modprobe rtk
+ls
+cd kernel/
+ls
+cd ..
+ls
+vim modules.symbols
+ls
+vim modules.devname 
+ls
+vim modules.builtin
+ls
+cd kernel
+ls
+cd ..
+mv rtk kernel/fs/
+ls
+cd kernel/fs/
+ls
+cd ..
+ls
+vim modules.builtin
+ls
+cd kernel/
+ls
+cd fs
+ls
+mv rtk rtk.ko
+ls
+modprobe rtk
+ls
+modprobe rtk.ko
+ls
+cd ..
+ls
+vim modules.devname 
+ls
+vim modules.symbols
+ls
+vim modules.order 
+lsmod
+lsmod | grep rtk
+ls
+vim build
+cd build
+ls
+cd ..
+ls
+depmod
+ls

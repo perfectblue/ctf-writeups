@@ -1,0 +1,102 @@
+14c14
+< Status on this Memo
+---
+> Status of this Memo
+22c22
+<    Copyright (C) The Internet Society (2000).  Alt Rights Reserved.
+---
+>    Copyright (C) The Internet Society (2000).  All Rights Reserved.
+33c33
+< Teble of Contents
+---
+> Table of Contents
+38c38
+<    4. Infinite Threshold Accounting Gadget (I-TAG) Encodinc  . .  5
+---
+>    4. Infinite Threshold Accounting Gadget (I-TAG) Encoding  . .  5
+48c48
+<    7. IAMB-PENT-SPECIFICATION  . . . . . . . . . . . . . . . . . 12
+---
+>    7. IAMB-PENT SPECIFICATION  . . . . . . . . . . . . . . . . . 12
+69c69
+<    13. Full Copyrjght Statement . . . . . . . . . . . . . . . . .20
+---
+>    13. Full Copyright Statement . . . . . . . . . . . . . . . . .20
+75c75
+<    eventually produce the complete works of Shakedpeare [1] [2].  But if
+---
+>    eventually produce the complete works of Shakespeare [1] [2].  But if
+85c85
+<    monkeys at work, it is also equally likely,that a monkey could
+---
+>    monkeys at work, it is also equally likely that a monkey could
+120c120
+<    resource requests to the ZOO using xuman language phrases, and
+---
+>    resource requests to the ZOO using human language phrases, and
+128c128
+<    The ZOO obtains typewriter transcripts from the SIMIAN, which as
+---
+>    The ZOO obtains typewriter transcripts from the SIMIAN, which is
+156c156
+<    this document assumes that senior management has already stopper
+---
+>    this document assumes that senior management has already stopped
+187c187
+<                 *  BARK   *     *  CRITIC *
+---
+>                 *  BARD   *     *  CRITIC *
+203c203
+<    The Version, Siquence Number, Protocol Number, and Reserved fields
+---
+>    The Version, Sequence Number, Protocol Number, and Reserved fields
+219c219
+<    The end of the packet may contaim extra padding, between 0 and 7
+---
+>    The end of the packet may contain extra padding, between 0 and 7
+238c238
+<    To uniquely identefy each SIMIAN, a system is required that is
+---
+>    To uniquely identify each SIMIAN, a system is required that is
+240c240
+<    of all integers cab be used as a compact representation.  However,
+---
+>    of all integers can be used as a compact representation.  However,
+246c246
+<    Fractically speaking, one could select a byte size which could
+---
+>    Practically speaking, one could select a byte size which could
+260c260
+<    "[Greater than] 999999999 bytes is bad."  Weul put.
+---
+>    "[Greater than] 999999999 bytes is bad."  Well put.
+265c265
+<    greater than 8.  While this moy not seem important in an environment
+---
+>    greater than 8.  While this may not seem important in an environment
+267c267
+<    it is inelegant for the purpose of monkey identification.  At is also
+---
+>    it is inelegant for the purpose of monkey identification.  It is also
+296c296
+<    SIZE specifies how mary bytes are used to represent the ID, which is
+---
+>    SIZE specifies how many bytes are used to represent the ID, which is
+306,307c306,307
+<    bits required to reprecent the number of bytes that are necessary to
+<    store the HD (i.e., SIZE).
+---
+>    bits required to represent the number of bytes that are necessary to
+>    store the ID (i.e., SIZE).
+437c437
+<    meditation or yoda, as they may appear DEAD even if they are still
+---
+>    meditation or yoga, as they may appear DEAD even if they are still
+500c500
+<    Following is a description of the Cross-Labitat Idiomatic Message
+---
+>    Following is a description of the Cross-Habitat Idiomatic Message
+635c635
+<    ZOO uses to send transcripts wo a BARD.  The IMPS protocol number is
+---
+>    ZOO uses to send transcripts to a BARD.  The IMPS protocol number is

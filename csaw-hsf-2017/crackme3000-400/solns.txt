@@ -1,0 +1,32 @@
+a-zA-Z0-9{}_ flag restrictions
+
+flag{SLtKJ9wH000H76PdiXWVEdLLca}
+flag{JJK65fQphg9GHHUPWI6RF8FzNe}
+flag{BBMJEFOrze8W4LnQpPDtBxnrfc}
+flag{CAGbM_ztvm4FLD_RP0L4b0vjgg}
+flag{Gn1FICvBVAp3S32BRiPFhDCcP}}
+flag{Er3}NpXC2qPuW74FJyHvHXGgHm}
+flag{e25_L0xSn1HeC16bKcX2NTKoXo}
+flag{a040OyiRm9XEGW0{NdS3nPObC_}
+
+32-126 flag restrictions
+flag{T0` @@_A~}'_@_[x)5T@@[z9@_}
+flag{432.``mljihW#m5d[;PJ6A>^ ]}
+flag{;$#o4. @0! D{C:hA2bYWH8Q0}}
+flag{9&%8zvvJP)(';kzHYR9g0c=}}!}
+flag{%"!<ZVV~@("!5ycX9S?Gpg9qs#}
+flag{URPD\<"^F*$#U9C(yW;Cxf:sca}
+flag{whS\T6*ZVZ45T#E,:V=sh^J{Sc}
+flag{W(Q]U7+[G:t6u3I-2ZQ3(5SDTg}
+flag{G8A:P0.RE30*]sKmR^H?*_WHZe}
+flag{M:.^pPCHQ#@+BP@GI@RA q@@C'}
+flag{EB~ZA AKIFD) @BF@ Ax'3DA9/}
+flag{eb^@Q!#+)[O?`HJN `!#,1GRD%}
+flag{u2NPHAb#9\M>VXHB`a."-W'ZX-}
+flag{5rn0(ajci<-~6B"JP!>2)|hBp=}
+flag{tJ>ph%Bky>mnvRbRpe:0.D|N:m}
+flag{h*MX $JC!8%|4LF!0A<1+'?O8o}
+flag{(jmx$D@Iaxe<t,&ABI,9/v!oP?}
+
+32-126 no trestrictions
+Nykd|8 (C2eJ WuP4(lAp8:QV6L(\@_}

