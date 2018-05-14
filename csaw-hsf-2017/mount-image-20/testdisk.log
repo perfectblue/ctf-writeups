@@ -1,0 +1,21 @@
+
+
+Fri Sep 22 13:38:07 2017
+Command line: TestDisk
+
+TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER <grenier@cgsecurity.org>
+http://www.cgsecurity.org
+OS: Linux, kernel 4.4.0-93-generic (#116-Ubuntu SMP Fri Aug 11 21:17:51 UTC 2017) x86_64
+Compiler: GCC 5.3
+ext2fs lib: 1.42.13, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.0
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/sda - 107 GB / 100 GiB - CHS 13054 255 63, sector size=512 - VMware Virtual disk, FW:2.0
+Disk /dev/mapper/csawUbuntu--vg-root - 98 GB / 91 GiB - 191930368 sectors, sector size=512 - VMware Virtual disk, FW:2.0
+Disk /dev/mapper/csawUbuntu--vg-swap_1 - 8589 MB / 8192 MiB - 16777216 sectors, sector size=512 - VMware Virtual disk, FW:2.0
+Disk /dev/dm-0 - 98 GB / 91 GiB - 191930368 sectors, sector size=512 - VMware Virtual disk, FW:2.0
+Disk /dev/dm-1 - 8589 MB / 8192 MiB - 16777216 sectors, sector size=512 - VMware Virtual disk, FW:2.0
+
+
+TestDisk exited normally.
