@@ -1,0 +1,4 @@
+{"threshold": 5, "split": ["jUEumBCZY6GRlXbB/uobM53gis/RldnMAfBAnkg=", "e3WhwYy6YUQGedMXkGnxJO6v0ov4cgteapL17wI="], "shares": 9}
+{"threshold": 5, "split": ["mrygQzFoasgDY23te4MGqTFXjpS/pMalQiN9Sks=", "XjpXSuBzyfRAbKj7hODzcf0cv0NZsXQDEQiIdtA="], "shares": 9}
+{"threshold": 5, "split": ["U64tceO4Ddtr4V6FMXSTJre4f6t4nPczWgtIkfo=", "t3hrQmsqonoBCl7T4f3bLqMShchtOtF3WesMGEs="], "shares": 9}
+{"threshold": 5, "split": ["TcOzpm1jNtwsj0cdiLfd6oVHLGMMKRt52t9kU4E=", "RqJ1WKlufadMFwFLbIjvBs82BH/yP8CAT6kyv3M="], "shares": 9}
