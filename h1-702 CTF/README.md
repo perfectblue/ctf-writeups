@@ -2,7 +2,7 @@
 
 Now this is an android CTF. All of its mobile problems are APKs. To be honest, I didn't know jack about Android before this CTF, so the first thing I did was.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic0.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic0.jpg)
 
 ## What are APKs?
 APK stands for Another Problem Kid, whose existence serves to drive you crazy. That is my conclusion after this CTF.
@@ -10,15 +10,15 @@ APK stands for Another Problem Kid, whose existence serves to drive you crazy. T
 But in reality, it's Android Package (Why not AP instead? Everyone loves [AP tests](https://ap.collegeboard.org/)). Really, it's just a bunch of files packaged together in an archive. We can use a software such as [7zip](https://7-zip.org/) to open and extract these files.
 
 Here is what we get:
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic1.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic1.png)
 
 What in the world are all these files? Really, that is a good question. I still don't know what half of them are. Visiting the [Wikipedia](https://en.wikipedia.org/wiki/Android_application_package) page for APKs, we can gain a little background on these files. However, my almighty anime-filled eyes focused on two things: the lib folder and the classes.dex file, because Wikipedia tells us that these are the places where one can find the juicy juicy code of the APK.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic2.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic2.png)
 
 Now we got our filthy hands on the juicy code, but I am lazy. You are probably also lazy. We want the source code. We want READABLE code. Our lord and savior, Wikipedia, tells us that the classes.dex file is ```classes compiled in the dex file format understandable by the Dalvik virtual machine and by the Android Runtime```.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic3.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic3.jpg)
 
 Thus, in hopes of not having to read garbage, we turn towards our second lord and savior, StackOverflow. [This](https://stackoverflow.com/questions/1249973/decompiling-dex-into-java-sourcecode) tells us how to convert classes.dex into Java source! Hooray! [This](https://github.com/Lanchon/haystack/tree/master/tools/dex2jar/dex-tools-2.1-20171001-lanchon) tool is what I used, and [this](http://jd.benow.ca/) is for viewing the resulting java jar file's source code.
 
@@ -28,13 +28,13 @@ I have done quite a bit of reversing before, so I have good background on this. 
 
 However, sorry to break it to you, but...
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic4.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic4.jpg)
 
 After we finish crying, we can use IDA to disassemble the code, and the HexRays plugin to generate pseudocode for analysis. At least it's better than nothing.
 
 Let's not be bored and read code all day right? We can install APKs through Android Studio's AVD Manager and actually see them running. Let me just warn you first though, Android Studio is disgusting. It is at least 15 Gigabytes, which I had to download on 100 Kilobyte/s internet...
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic9.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic9.jpg)
 
 Yea, computers are a conspiracy trying to prevent me from solving these challenges.
 
@@ -56,7 +56,7 @@ Lets employ our newfound knowledge and power to decompile the classes.dex file i
 
 After not having touched Java for quite a while, I took a moment to refresh myself in Java by doing what every programmer does.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic5.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic5.png)
 
 Taking a look at the classes, there are really only two that look interesting: MainActivity and FourthPart.
 
@@ -160,7 +160,7 @@ Much wow indeed.
 
 Because both the first part of the flag and the fourth had the word "part" somewhere in it, lets try grepping the files for "part."
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic6.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic6.png)
 
 Oof. I spy some sweets.
 
@@ -174,7 +174,7 @@ part 3: analysis_
 
 Next, I turned to the native library. Lets open it up in IDA. Looking for interesting functions, we see the following:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic7.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic7.png)
 
 Once again utilizing my amazing guessing skills and google-fu prowess, we learn that native libraries can be called using Java through the [Java Native Interface](https://en.wikipedia.org/wiki/Java_Native_Interface). For Android, the function name is the package name separated by underscores.
 
@@ -222,7 +222,7 @@ Too bad we already got the second part of the flag. Boohoo!
 
 Lets explore the other function:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic8.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic8.png)
 
 RIPERINOS. Being the lazy bum I am, I did not even bother to try and read the assembly. It is the first challenge after all right? So instead, lets explore the extremely irregularly named functions in between those two JNI functions:
 
@@ -264,7 +264,7 @@ From this prompt, we can deduce that the problem writer is a sadist who "locks" 
 
 Okay, but actually, we can be pretty sure that this is the "reverse the code/key" type of problem. So lets install this APK with my painstakingly installed Android Studio.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic10.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic10.png)
 
 We can see that the pin is only 6 digits. That's only 10^6 possibilities. I immediately think to myself, that's EASILY brute forcable, and brute force is the method of choice for lazy people like me. First off, we pray to the ~~sex~~ dungeon god, or the Problem Writer, that the pin is 696969, so we immediately try that pin because clearly that is the pin for intellectuals.
 
@@ -399,7 +399,7 @@ this.cipherText = new Hex().decode("9646D13EC8F8617D1CEA1CF4334940824C700ADF6A7A
 
 Being the lazy people we are, we can just copy this exact decryption routine for writing the brute force code.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic11.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic11.jpg)
 
 I created a new Android Project in Android Studio, and created a decrypt function with the decrypt code.
 
@@ -437,7 +437,7 @@ for (int i = 0; i < 1000000; i++) {
 
 But then I found that it brutes about 50 pins, hangs for a while, then continues. At first I thought this was because of my super crusty potato computer, so I smashed it a couple times to see if it would work better.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic12.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic12.jpg)
 
 Nothing changed... so then I looked back at the decompiled code and saw a godly function presented on a silver plate:
 
@@ -510,7 +510,7 @@ public class MainActivity extends AppCompatActivity {
 
 I have to say, I'm quite disappointed in the pin choice. Should've been 696969 clearly.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic13.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic13.jpg)
 
 ### Flag
 
@@ -530,7 +530,7 @@ Honestly, who in the world loses an APK file, but instead finds whatever the hec
 
 Lets turn to our best friend... Google!
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic14.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic14.png)
 
 This [link](https://forum.xda-developers.com/android/software/guide-how-to-decompile-apks-odex-files-t3325340) tells us that we can decompile these files! Decompiled files for defiled people like me? Perfect. Using the info from that link and the dex2jar tool, I converted that garbage into a .jar file and threw it into jd-gui.
 
@@ -718,29 +718,29 @@ Seems like we will have to make the program read the flag in ```/data/local/tmp/
 
 Lets run the app first and see what it does. Here is what it looks like:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic15.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic15.png)
 
 Whoops, just kidding. I played that a little too much hehe. Here is what you start with:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic16.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic16.png)
 
 We are the red square and are trying to get to the green square (exit). We can swipe to move. After each maze solved, the maze gets harder. Okay now lets dive into the code.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic17.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic17.png)
 
 Oh boy...
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic18.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic18.jpg)
 
 Luckily, the app tells us that the maze functionality was taken from [here](https://github.com/Vitaliy336/Maze).
 
 Here are the classes from the github:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic19.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic19.png)
 
 Because the Problem Writer took the code off of here, and edited it to make it into a CTF challenge, we can be pretty sure that the classes in the challenge APK that wasn't in the github one are of the most interest to us, because they must contain what allows us to solve the challenge!
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic20.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic20.jpg)
 
 So instead of reading the whole source code, I focused on BroadcastAnnouncer, GameState, MazeMover, StateControler, and StateLoader, AKA the classes that are different.
 
@@ -832,7 +832,7 @@ The app sets up a BroadcastReceiver, and passes the Intent to the onReceive func
 
 If we read the code, we can quickly discern that the get_maze extra will return to us the maze and our positions. The move extra will allow us to move our player. What's left is the cereal extra, which by process of elimination, must be our vulnerability of course!
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic21.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic21.jpg)
 
 So this is the problem child, a single line of code:
 
@@ -1285,7 +1285,7 @@ Please do not judge my variable names ;)
 
 Now we just need to get the almighty breadchris to run our app, and then collect the flag on our server.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic22.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic22.jpg)
 
 Seems like my assumption of the vulnerability being in the classes that are different was correct :)
 
@@ -1305,7 +1305,7 @@ To solve this, you need to write your exploit as an APK.
 
 Same prompt as challenge 4 >:(
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic23.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic23.jpg)
 
 Luckily this time the code is short. Here it is:
 
@@ -1471,7 +1471,7 @@ You can reverse it yourself with the knowledge [here](https://developer.android.
 
 Obviously this means the vulnerability will be in the native-lib. That means it is a binary exploitation challenge.
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic24.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic24.jpg)
 
 Lets start reversing the three functions. Here is a super easy one:
 
@@ -1591,11 +1591,11 @@ function sicedeets() {
 
 Here is what you get:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic25.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic25.png)
 
 Wow!
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic27.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic27.jpg)
 
 As you may have guessed, this returns a byte array of length 6969 from the stack. Next, lets write functions to parse this stack leak, so we can get address values. I had to use the [BigNumber](https://github.com/MikeMcl/bignumber.js/) module to handle 64 bit integers because javascript sucks just as much as java.
 
@@ -1633,7 +1633,7 @@ function strunpack(offset, array) {
 
 Here is the stack leak:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic26.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic26.png)
 
 However, even with a leak, we can't exploit this yet, so lets take a look at the censorMyCats function:
 
@@ -1671,7 +1671,7 @@ Seems like it's just memcpying 0x230 bytes of our input to the stack. However, I
 __int64 v7; // [rsp-228h] [rbp-228h]
 ```
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic28.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic28.jpg)
 
 We have ourselves a stack overflow. Wew! 8 byte overflow to be more specific, which is the return address. That's RIP control right there bois!
 
@@ -1688,13 +1688,13 @@ Now before we proceed, it is incredibly useful to be able to attach gdb to the r
 
 Stack cookie check state:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic29.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic29.png)
 
 We can see that the stack cookie is rax, which is0x2d1fdc01b526a10c. Searching for this value in the stack leak reveals that it is the 0x400th value.
 
 Here is the return state:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic30.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic30.png)
 
 We can see that we control the return address, rbx, r14, and r15. We can also see that we only overflow up to the return address. This means we can only jmp to one gadget, so we need a ROP gadget which will take advantage of rbx, r14, and r15 to land us a shell. After scrolling through libc.so for a while looking for gadgets, I came upon this one:
 
@@ -1854,7 +1854,7 @@ Reading the README, here is what we learn:
       -->
 ```
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic68.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic68.jpg)
 
 If you don't want people to use something, why not just don't tell them about it? Like an evil kid, if you tell me not to use something, I will do the opposite. Looking at an example request:
 
@@ -1877,17 +1877,17 @@ The problem states that a note contains the flag, however if we reset all the no
 
 The ID seems very fishy, what if we try setting it to 1?
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic69.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic69.png)
 
 :(
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic67.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic67.jpg)
 
 Luckily [Google](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/) saves the day. We can set the "alg" key to "None", which bypasses the authorization check.
 
 Now, when we reset the notes, and getNotes, we see:
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/pic70.png)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/pic70.png)
 
 This must be the flag! However, to read the flag note, we must know its ID. Luckily, version 2 API exists, which the problem writer generously told us about. This sorts IDs, with which we can brute force, character by character, the IDs by creating notes and seeing if the ID we created is placed before or after the flag note. We can specify the ID with an extra ```"id" : "something"``` key pair when creating a note as explained in the README. Then, we can perform a linear or binary search for the flag note's ID. Here is my code to do this:
 
@@ -1977,4 +1977,4 @@ Set JWT ID to 1, and bypass verification by setting algorithm to None. Change AP
 
 ## The End!
 
-![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702 CTF/done.jpg)
+![](https://raw.githubusercontent.com/VoidMercy/CTFs/master/h1-702%20CTF/done.jpg)
