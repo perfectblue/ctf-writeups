@@ -36,19 +36,19 @@ For the host side functions, here is what they do:
 
 Alloc memory:
 
-![](allochost.png)
+![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/allochost.PNG?raw=true)
 
 Takes a 2 byte size n where 0x80 <= n <= 0x1000. Mallocs this chunk and updates global variables. This also makes sure that we can't have more than 16 chunks. Pretty normal and boring.
 
 Update host memory:
 
-![](updatehost.png)
+![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/updatehost.PNG?raw=true)
 
 This function takes a 2 byte size n, 1 byte index s, and a buffer pointer containing our n bytes. This function is more interesting. There are two branches based on a register passed from the VCPU. One copies the contents of the buffer into the malloced chunk, the other branch does the opposite. By default, it is always the former as one might expect.
 
 Free host memory:
 
-![](freehost.png)
+![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/freehost.PNG?raw=true)
 
 This function takes a 1 byte index, the chunk we want to free. This function has 3 branches based on a value from the VCPU. The default branch does what you might expect, frees the chunk, zeroes out the pointer and other information, and decrements the chunk count. However, there's one branch of exceptional interest, which only frees the chunk without touching its pointer. This means if we can get access to this branch, then we can trigger UAF and double free vulnerabilities!
 
@@ -56,13 +56,13 @@ Now to see how to access the other branches, we need to perform static analysis 
 
 Looking at the free host implementation in the kernel we see:
 
-![](freehostkernel.png)
+![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/freehostkernel.png?raw=true)
 
 We can see that 3 being moved into the register bx, that must be the branch indicator, and we want to somehow change this to a 1. This is a hardcoded value, which means we must change the code in the mmapped section I mentioned above directly in order to change this.
 
 What does this suggest? It means that we should either be able to overwrite an ASLR-randomized memory page using either the host or kernel. It makes more sense for the bug to be in the kernel, since this is a KVM escape challenge. Turns out this hypothesis is correct. The critical bug is in the kernel implementation of alloc_guest:
 
-![](allocguest.png) 
+![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/allocguest.png?raw=true) 
 
 Remember, this is a 16 bit architecture. A pointer is created with memorysum + 0x5000, where the max of memorysum is 0xb000. 0xb000 + 0x5000 = 0x10000... and in 16 bit that's 0! This means we can create a pointer to 0x0, which is the program's code itself, and we can overwrite the code with anything we want. 
 
