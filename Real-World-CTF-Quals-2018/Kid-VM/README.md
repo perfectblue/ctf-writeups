@@ -56,13 +56,13 @@ Now to see how to access the other branches, we need to perform static analysis 
 
 Looking at the free host implementation in the kernel we see:
 
-![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/freehostkernel.png?raw=true)
+![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/freehostkernel.PNG?raw=true)
 
 We can see that 3 being moved into the register bx, that must be the branch indicator, and we want to somehow change this to a 1. This is a hardcoded value, which means we must change the code in the mmapped section I mentioned above directly in order to change this.
 
 What does this suggest? It means that we should either be able to overwrite an ASLR-randomized memory page using either the host or kernel. It makes more sense for the bug to be in the kernel, since this is a KVM escape challenge. Turns out this hypothesis is correct. The critical bug is in the kernel implementation of alloc_guest:
 
-![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/allocguest.png?raw=true) 
+![](https://github.com/VoidMercy/CTFs/blob/master/Real-World-CTF-Quals-2018/Kid-VM/allocguest.PNG?raw=true) 
 
 Remember, this is a 16 bit architecture. A pointer is created with memorysum + 0x5000, where the max of memorysum is 0xb000. 0xb000 + 0x5000 = 0x10000... and in 16 bit that's 0! This means we can create a pointer to 0x0, which is the program's code itself, and we can overwrite the code with anything we want. 
 
