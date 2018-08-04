@@ -8,7 +8,7 @@ This challenge was solved by [@j0nathanj](https://twitter.com/j0nathanj) and [@V
 
 Unfortunately we did not manage to solve this challenge by the time the CTF ended, but we kept working on it the next 2 days and managed to successfully exploit it! :)
 
-Our solution to this challenge involves a 0-day, which was also found a few days earlier by the great [@_niklasb](https://twitter.com/_niklasb) from Eat Sleep Pwn Repeat, fixed in the latest update. 
+Our solution to this challenge involves a 0-day, which was also found a few days earlier by the great [@_niklasb](https://twitter.com/_niklasb) from Eat Sleep Pwn Repeat, and was fixed in the latest update. 
 
 We decided to make this write-up as detailed as we can, to show our whole process, from finding the bug, exploiting it, and the problems that we have faced.
 
