@@ -1,0 +1,3 @@
+[submodule "defcon-2018"]
+	path = defcon-2018
+	url = https://github.com/perfectblue/defcon-2018
