@@ -4,7 +4,7 @@
 
 This was a challenge from Real World CTF Qualifiers - 2018, in which we participated as `perfect blue`
 
-This challenge was solved by [@jonathanj](https://twitter.com/j0nathanj) and [@VoidMercy_pb](https://twitter.com/VoidMercy_pb).
+This challenge was solved by [@j0nathanj](https://twitter.com/j0nathanj) and [@VoidMercy_pb](https://twitter.com/VoidMercy_pb).
 
 Unfortunately we did not manage to solve this challenge by the time the CTF ended, but we kept working on it the next 2 days and managed to successfully exploit it! :)
 
