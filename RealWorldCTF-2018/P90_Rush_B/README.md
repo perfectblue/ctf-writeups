@@ -201,7 +201,7 @@ At first, we tried to just add a lot of `A`s and hope for EIP control, but then 
 
 So we decided to overwrite everything but the return-address with zeroes, this way we don't crash due to writing/reading from an invalid address!
 
-Even overflowing with the zeroes was not enough, and we still crashed :( ...
+It turns out that even overflowing with the zeroes was not enough, and we still crashed :( ...
 
 This time, we noticed that after the `Get()` function is overflowing, even if we overwrite data with zeroes, we will crash because this functionality is inside a loop that iterates through all the files in a ZIP folder.
 
