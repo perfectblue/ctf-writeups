@@ -115,6 +115,7 @@ Giong put his helmet on, carried his sword, jumped on the back of his horse and 
 Their armies were incinerated by the flame thrown from the horse's mouth. Their generals were decapitated by Giong’s sword. When it finally broke because of so much use, Giong used the bamboo trees that he pulled up from the sides of the road and wiped away the enemies.
 Afterwards, he left his armor on the mountain Soc (Soc Son) and both man and horse flew into the sky.
 Legend holds that lakes in the area of mountain Soc were created from the footprints of Giong’s horse. At the site of the forest where he incinerated the enemy armies is now the Chay Village ("Chay" meaning burned).
-In recognition of Giong's achievement, King Hung Vuong proclaimed him Phu Dong Thien Vuong (The Heaven Sent King of Phu Dong Village). For the people of his country, he is better known as Thanh Giong ("Saint" Giong)```
+In recognition of Giong's achievement, King Hung Vuong proclaimed him Phu Dong Thien Vuong (The Heaven Sent King of Phu Dong Village). For the people of his country, he is better known as Thanh Giong ("Saint" Giong)
+```
 
 While my teammate did not know what to do with this 😂, I immediately noticed that the first letters of each line spelled out words - in particular, `WHITEHATSHWSGTALI`. The flag is WhiteHat{sha1sum(flag)} so `WhiteHat{05cc532353023d5954da9507e189a55296f6db97}` is the final flag.
