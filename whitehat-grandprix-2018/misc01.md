@@ -34,7 +34,8 @@ for block in result:
 print base64.b64encode(output)
 +++ okay decompyling ENCRYPT.PYC 
 # decompiled 1 files: 1 okay, 0 failed, 0 verify failed
-# 2018.08.17 22:49:27 EDT```
+# 2018.08.17 22:49:27 EDT
+```
 
 
 Then I went to sleep.
