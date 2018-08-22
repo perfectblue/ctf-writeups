@@ -34,7 +34,7 @@ to decode further messages until the timestamp expires.
 
 Now, looking back at the two special commands:
 
-```
+```c
     } else if (sInput == "super") {
       superMode = true;
       if (!a51Comm.send(std::string("Enter supper mode!"))) {
@@ -98,7 +98,7 @@ block1: be64e610e8e23bf8dbb4d9a47da4
 The reason for this is that, when we enter the `super` command, the server switches to a
 new secret key that we don't know about:
 
-```
+```c
 a51Comm = A51Comm(superSecretKey, COMM_TIMEOUT, fd, fd);
 ```
 
@@ -115,7 +115,7 @@ and decode the returned secret data.
 I made some changes to the chat client to print the ciphertext in hex encoded format and some extra debug
 information for better understanding of the cipher. The final solve script is:
 
-```
+```py
 from pwn import *
 
 #proc = process(["chat-client/chatclient", "0.0.0.0", "1234"])
