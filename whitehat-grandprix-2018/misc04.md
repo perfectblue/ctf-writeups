@@ -158,7 +158,7 @@ Clearly, this is an algorithm challenge. If we naively calculate `(lip point**no
 Googling this, we stumbled upon this gem: https://stackoverflow.com/questions/4223313/finding-abc-mod-m. At first, it doesn't seem like it has exactly this `(a^b)^(c^d) mod m` format. However, if you read further, you can see they calculate `(p^z)^(b^c) mod m` format, which is exactly the same as ours just with different variable names. Now, it's simply a matter of copying their modpow function and handling input from the challenge. There were a total of 5 stages, but each stage was exactly the same, so I wrapped it around a function and called it 5 times.
 
 Solve script:
-```
+```Python
 def totient(n) :          # n - unsigned int
     result = 1
     p = 2                 #prime numbers - 'iterator'
