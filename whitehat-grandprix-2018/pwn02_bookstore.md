@@ -8,7 +8,7 @@ The book structure is as follows:
 
 ```C
 typedef struct book{
-    book* nextBook;
+    struct book* nextBook;
     void* pBrief;
     char title[0x20];
     char book_idx;
