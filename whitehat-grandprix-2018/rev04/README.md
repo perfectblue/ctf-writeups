@@ -109,7 +109,7 @@ UPX 3.94w       Markus Oberhumer, Laszlo Molnar & John Reiser   May 12th 2017
 Unpacked 1 file.
 ```
 
-Nice. Now we can analyze this bin proper!
+Nice. While we're at it, let's also disable the "Can Move" bit in the PE header to make debugging easier. Now we can analyze this bin proper!
 
 ## Phase 2: Patching
 
@@ -779,7 +779,7 @@ Anyways, it expects the value passed in to be `QUQ5OThENEYxQjQxMEY4Q0VCNEFBNzRF`
 
 ## Check part 2
 
-Now let's look at `CheckFunc2`. It's essentially xor's the input against a dynamically generated key and checks the output.
+Now let's look at `CheckFunc2`. It's essentially xor's the input against a dynamically generated key and checks the output. This might be RC4 but I'm not sure.
 
 ```C
 signed int __stdcall CheckFunc2(int *checkedBuf)
@@ -831,7 +831,7 @@ signed int __stdcall CheckFunc2(int *checkedBuf)
   }
   while ( idx_1 < 13 );
   *(_BYTE *)(*(_DWORD *)checkedAgainstChars + 13) = 0;
-  xor.pvft = &CRC4::`vftable';                  // crc shit is NOT fucking used
+  xor.pvft = &CRC4::`vftable';                  // rc4 shit is NOT fucking used
   memset(xor.indexes, 0, 0x100u);
   memset(xor.checkedAgainst, 0, 0x100u);
   decodeShitXor(bufCpy, &crc, *(const char **)checkedAgainstChars);
