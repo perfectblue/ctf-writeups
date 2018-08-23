@@ -434,8 +434,7 @@ We now go back to our old magic breakpoint earlier, but now triggering it with t
 ```C
 void __thiscall massiveFUCKingCock(CWnd *this)
 {
-  CWnd *v1; // esi
-  void *v2; // eax
+  void *strMgr; // eax
   char *v3; // eax
   signed __int32 v4; // ecx
   bool v5; // zf
@@ -449,7 +448,7 @@ void __thiscall massiveFUCKingCock(CWnd *this)
   WCHAR v13; // cx
   int neededLen; // eax
   unsigned int lenOfStr; // ecx
-  unsigned int v16; // edx
+  unsigned int biglyShamWOWW69; // edx
   char *topboxBase64d; // esi
   unsigned int v18; // ecx
   unsigned int v19; // edx
@@ -459,7 +458,6 @@ void __thiscall massiveFUCKingCock(CWnd *this)
   signed int i; // eax
   signed int idx_1; // eax
   signed int idx_2; // eax
-  CWnd *v26; // esi
   char *topBoxxx; // eax
   const CHAR *motherFuckinNewBof; // esi
   signed int idx; // eax
@@ -469,34 +467,31 @@ void __thiscall massiveFUCKingCock(CWnd *this)
   char *msgTxt; // eax
   char *bototmBox; // [esp+14h] [ebp-A1Ch]
   char *pstr; // [esp+18h] [ebp-A18h]
-  char *biglyThonkk; // [esp+20h] [ebp-A10h]
+  char *HYPERthonkk; // [esp+20h] [ebp-A10h]
   int topBox; // [esp+24h] [ebp-A0Ch]
   int congratulationFlagBuff[21]; // [esp+2Ch] [ebp-A04h]
   int checkedBuf[200]; // [esp+80h] [ebp-9B0h]
   char topboxHashChecked[32]; // [esp+3A0h] [ebp-690h]
-  __int16 hashofTopbox; // [esp+3C4h] [ebp-66Ch]
-  char v44; // [esp+3C6h] [ebp-66Ah]
+  __int16 hashofTopbox[33]; // [esp+3C4h] [ebp-66Ch]
   CHAR largCockMultibyte; // [esp+408h] [ebp-628h]
-  char v46; // [esp+409h] [ebp-627h]
-  BYTE pbData; // [esp+50Ch] [ebp-524h]
-  char v48; // [esp+50Dh] [ebp-523h]
+  char v45; // [esp+409h] [ebp-627h]
+  char topBoxConverted[260]; // [esp+50Ch] [ebp-524h]
   WCHAR largCock; // [esp+610h] [ebp-420h]
-  char v50; // [esp+612h] [ebp-41Eh]
+  char v48; // [esp+612h] [ebp-41Eh]
   WCHAR Caption; // [esp+818h] [ebp-218h]
-  char v52; // [esp+81Ah] [ebp-216h]
-  int v53; // [esp+A2Ch] [ebp-4h]
+  char v50; // [esp+81Ah] [ebp-216h]
+  int mightyTHonkKkk; // [esp+A2Ch] [ebp-4h]
 
-  v1 = this;
-  v2 = CAfxStringMgr::getInst__();
-  if ( v2 == 0 )
+  strMgr = CAfxStringMgr::getInst__();
+  if ( strMgr == 0 )
     throwException(-2147467259);
-  bototmBox = (char *)((*(int (__thiscall **)(void *))(*(_DWORD *)v2 + 12))(v2) + 16);
-  v53 = 0;
-  CWnd::GetWindowTextW((int)v1 + 2220, (int)&bototmBox);
+  bototmBox = (char *)((*(int (__thiscall **)(void *))(*(_DWORD *)strMgr + 12))(strMgr) + 16);
+  mightyTHonkKkk = 0;
+  CWnd::GetWindowTextW((int)this + 2220, (int)&bototmBox);
   if ( *((_DWORD *)bototmBox - 3) != 72 || isDebuggerPresent )// it must be 72 long
   {
     v3 = bototmBox - 16;
-    v53 = -1;
+    mightyTHonkKkk = -1;
     v4 = _InterlockedDecrement((volatile signed __int32 *)bototmBox - 1);
     v5 = v4 == 0;
     v6 = v4 < 0;
@@ -506,11 +501,11 @@ void __thiscall massiveFUCKingCock(CWnd *this)
   if ( afxStr == 0 )
     throwException(-2147467259);
   pstr = (char *)((*(int (__thiscall **)(void *))(*(_DWORD *)afxStr + 12))(afxStr) + 16);
-  LOBYTE(v53) = 1;
+  LOBYTE(mightyTHonkKkk) = 1;
   largCockMultibyte = 0;
-  memset(&v46, 0, 0x103u);
+  memset(&v45, 0, 0x103u);
   largCock = 0;
-  memset(&v50, 0, 0x206u);
+  memset(&v48, 0, 0x206u);
   initBigDickStr(&pstr);
   part2_ = bototmBox;
   if ( *((_DWORD *)bototmBox - 1) > 1 )
@@ -518,12 +513,12 @@ void __thiscall massiveFUCKingCock(CWnd *this)
     initBigDickStr2(&bototmBox, *((_DWORD *)bototmBox - 3));
     part2_ = bototmBox;
   }
-  part2__wowied = getWowie((int *)&biglyThonkk, (const unsigned __int16 *)part2_);
-  LOBYTE(v53) = 2;
+  part2__wowied = getWowie((int *)&HYPERthonkk, (const unsigned __int16 *)part2_);
+  LOBYTE(mightyTHonkKkk) = 2;
   strcpyProbablyidklol(&pstr, (void **)part2__wowied);
-  LOBYTE(v53) = 1;
-  v10 = biglyThonkk - 16;
-  if ( _InterlockedDecrement((volatile signed __int32 *)biglyThonkk - 1) <= 0 )
+  LOBYTE(mightyTHonkKkk) = 1;
+  v10 = HYPERthonkk - 16;
+  if ( _InterlockedDecrement((volatile signed __int32 *)HYPERthonkk - 1) <= 0 )
     (*(void (__stdcall **)(char *))(**(_DWORD **)v10 + 4))(v10);
   largSrc = pstr;
   if ( *((_DWORD *)pstr - 1) > 1 )
@@ -542,9 +537,9 @@ void __thiscall massiveFUCKingCock(CWnd *this)
   neededLen = WideCharToMultiByte(0, 0, &largCock, -1, 0, 0, 0, 0);
   WideCharToMultiByte(0, 0, &largCock, -1, &largCockMultibyte, neededLen, 0, 0);
   lenOfStr = strlen(&largCockMultibyte);
-  v16 = 3 * (lenOfStr / 3);
-  if ( lenOfStr != v16 )
-    lenOfStr = v16 + 3;
+  biglyShamWOWW69 = 3 * (lenOfStr / 3);
+  if ( lenOfStr != biglyShamWOWW69 )
+    lenOfStr = biglyShamWOWW69 + 3;
   topboxBase64d = (char *)malloc(8 * lenOfStr / 6 + 1);
   v18 = strlen(&largCockMultibyte);
   v19 = 3 * (v18 / 3);
@@ -553,7 +548,7 @@ void __thiscall massiveFUCKingCock(CWnd *this)
   malloc(8 * v18 / 6 + 1);
   if ( !topboxBase64d )                         // check alloc success
   {
-    LOBYTE(v53) = 0;
+    LOBYTE(mightyTHonkKkk) = 0;
     if ( _InterlockedDecrement((volatile signed __int32 *)largSrc - 1) <= 0 )
       (*(void (__stdcall **)(char *))(**((_DWORD **)largSrc - 4) + 4))(largSrc - 16);
     goto fail;
@@ -561,11 +556,11 @@ void __thiscall massiveFUCKingCock(CWnd *this)
   base64ProbablyLol(topboxBase64d, (int)&largCockMultibyte, strlen(&largCockMultibyte));
   if ( strlen(topboxBase64d) != 96 )            // len must = 96
   {
-    LOBYTE(v53) = 0;
+    LOBYTE(mightyTHonkKkk) = 0;
     if ( _InterlockedDecrement((volatile signed __int32 *)largSrc - 1) <= 0 )
     {
       (*(void (__stdcall **)(char *))(**((_DWORD **)largSrc - 4) + 4))(largSrc - 16);
-      v53 = -1;
+      mightyTHonkKkk = -1;
       v3 = bototmBox - 16;
       v21 = _InterlockedDecrement((volatile signed __int32 *)bototmBox - 1);
       v5 = v21 == 0;
@@ -576,7 +571,7 @@ faillll:
       return;
     }
 fail:
-    v53 = -1;
+    mightyTHonkKkk = -1;
     v3 = bototmBox - 16;
     v20 = _InterlockedDecrement((volatile signed __int32 *)bototmBox - 1);
     v5 = v20 == 0;
@@ -605,17 +600,16 @@ fail:
       ++idx_2;
     }
     while ( idx_2 < 96 );
-    v26 = this;
     *((_DWORD *)this + 551) = 1;
     maekNewStrang(&topBox);
-    LOBYTE(v53) = 3;
-    CWnd::GetWindowTextW((int)v26 + 2304, (int)&topBox);
+    LOBYTE(mightyTHonkKkk) = 3;
+    CWnd::GetWindowTextW((int)this + 2304, (int)&topBox);
     if ( *(_DWORD *)(topBox - 12) == 8 && !NtQueryInformationProcess )// len = 8
     {
-      pbData = 0;
-      memset(&v48, 0, 0x103u);
-      hashofTopbox = 0;
-      memset(&v44, 0, 0x40u);
+      topBoxConverted[0] = 0;
+      memset(&topBoxConverted[1], 0, 0x103u);
+      hashofTopbox[0] = 0;
+      memset(&hashofTopbox[1], 0, 0x40u);
       topboxHashChecked[0] = 0;                 // init new afx string
       *(_DWORD *)&topboxHashChecked[1] = 0;
       *(_DWORD *)&topboxHashChecked[5] = 0;
@@ -626,9 +620,9 @@ fail:
       *(_DWORD *)&topboxHashChecked[25] = 0;
       *(_DWORD *)&topboxHashChecked[29] = 0;
       topBoxxx = thonk((char **)&topBox);
-      convertStringType((CHAR *)&pbData, (const WCHAR *)topBoxxx);
-      md5hashShitGetDigest(&pbData, &hashofTopbox);
-      convertStringType(topboxHashChecked, (const WCHAR *)&hashofTopbox);
+      convertStringType(topBoxConverted, (const WCHAR *)topBoxxx);
+      md5hashShitGetDigest((BYTE *)topBoxConverted, hashofTopbox);
+      convertStringType(topboxHashChecked, (const WCHAR *)hashofTopbox);
       if ( !checkDaFlagggsHash((int)topboxHashChecked) )// 3AB47284CF7E260541D810BEB54D3405 -> whitehat
         ExitProcess('\0');
       congratulationFlagBuff[0] = 'C';
@@ -654,7 +648,7 @@ fail:
       congratulationFlagBuff[20] = 'G';
       motherFuckinNewBof = (const CHAR *)operator new[](0x16u);
       Caption = 0;
-      memset(&v52, '\0', 0x206u);
+      memset(&v50, '\0', 0x206u);
       if ( motherFuckinNewBof )
       {
         idx = 0;
@@ -667,23 +661,23 @@ fail:
         *((_BYTE *)motherFuckinNewBof + 21) = '\0';
         v30 = MultiByteToWideChar('\0', '\0', motherFuckinNewBof, -1, (LPWSTR)'\0', '\0');
         MultiByteToWideChar('\0', '\0', motherFuckinNewBof, -1, &Caption, v30);
-        maekNewStrang(&biglyThonkk);
-        LOBYTE(v53) = 4;
+        maekNewStrang(&HYPERthonkk);
+        LOBYTE(mightyTHonkKkk) = 4;
         if ( !checkDebugregs() )
         {
-          initBigDickStr(&biglyThonkk);
-          strcattt((int *)&biglyThonkk, (wchar_t *)this + 320);
-          strcattt((int *)&biglyThonkk, L"+");
+          initBigDickStr(&HYPERthonkk);
+          strcattt((int *)&HYPERthonkk, (wchar_t *)this + 320);
+          strcattt((int *)&HYPERthonkk, L"+");
           fuckingAppeded = thonk((char **)&topBox);
-          strcattt((int *)&biglyThonkk, (wchar_t *)fuckingAppeded);
-          strcattt((int *)&biglyThonkk, L"+");
+          strcattt((int *)&HYPERthonkk, (wchar_t *)fuckingAppeded);
+          strcattt((int *)&HYPERthonkk, L"+");
           fuckingAppended2 = thonk(&bototmBox);
-          strcattt((int *)&biglyThonkk, (wchar_t *)fuckingAppended2);
-          msgTxt = thonk(&biglyThonkk);
+          strcattt((int *)&HYPERthonkk, (wchar_t *)fuckingAppended2);
+          msgTxt = thonk(&HYPERthonkk);
           CWnd::MessageBoxW(this, (LPCWSTR)msgTxt, &Caption, '\0');
           ExitProcess('\0');
         }
-        fuckingString::dtor(&biglyThonkk);
+        fuckingString::dtor(&HYPERthonkk);
       }
     }
     fuckingString::dtor(&topBox);
