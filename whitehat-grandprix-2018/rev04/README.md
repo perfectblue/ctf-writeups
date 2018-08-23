@@ -19,9 +19,9 @@ This challenge was a very tough multistaged Windows rev. The only thing missing 
 
 The only file we are given is `WH2018.exe`. The first thing to notice is that Windows refuses to even load it, indicating the PE header is damaged. 
 
-## Phase 1: Unpacking
-
 ![](img/1.png)
+
+## Phase 1: Unpacking
 
 Let's try to load it in IDA anyways.
 
