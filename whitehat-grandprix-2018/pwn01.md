@@ -19,7 +19,7 @@ Looking at the openat docs, we see:
        If pathname is absolute, then dirfd is ignored.
  ```
  
- The sandbox resolves the pathname with dirfd, so if we pass an invalid dirfd, then the ptrace will resolve pathname with the invalid dirfd, allowing us to bypass the check.
+ The sandbox resolves the pathname with dirfd, so if we pass an invalid dirfd, then the ptrace will resolve pathname with the invalid dirfd, allowing us to bypass the flag file path check.
  
  Then, after we have read the flag, we can just read and print it out.
  
