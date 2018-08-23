@@ -1024,6 +1024,7 @@ import numpy as np
 shits = bitch.split('&&')
 mtx = np.zeros((32,32),dtype=np.int)
 v=np.zeros((32,),dtype=np.int)
+import numpy
 for i,eqn in enumerate(shits):
     bitches=0
     for line in eqn.split('\n'):
@@ -1052,7 +1053,6 @@ racial_slur = ''
 for c in dumbass:
     racial_slur += chr(c)
 print racial_slur
-
 racial_slur = ''
 part1=[81, 85, 81, 53, 79, 84, 104, 69, 78, 69, 89, 120, 81, 106, 81, 120, 77, 69, 89, 52, 81, 48, 86, 67, 78, 69, 70, 66, 78, 122, 82, 70]
 for c in part1:
