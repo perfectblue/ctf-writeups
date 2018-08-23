@@ -4,7 +4,7 @@ This was a quite easy challenge. We're basically given a simple [Web server](web
 
 I basically had a intuition that the vulnerabilty would be a directory traversal either in the GET path handling or the POST filename.
 
-I added a bunch of debug prints to the file for the GET path and POST filename and it confirmed my suspicion, there was a directory traversal in POST filename. The following wrote a file 'lol.txt' in the root directory with the content "hacked"
+I added a bunch of debug prints to the file for the GET path and POST filename and it confirmed my suspicion, there was a directory traversal in POST filename. The following request wrote a file 'lol.txt' in the root directory with the content "hacked"
 
 ```
 POST / HTTP/1.1
