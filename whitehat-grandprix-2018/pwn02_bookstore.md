@@ -8,13 +8,13 @@ The book structure is as follows:
 
 ```C
 typedef struct book{
-    struct book* nextBook;
+    book* nextBook;
     void* pBrief;
     char title[0x20];
     char book_idx;
     char refcount;
     void* print_func;
-};
+} book;
 ```
 The `pBrief` member is a pointer to a `malloc()`d memory region (size is dependant on the user).
 
