@@ -85,7 +85,7 @@ So searching for this pattern, we can easily find the decryption stub in WH2018.
 
 ![](img/9.png)
 
-IDA reports this is at file offset 9FBC0, so to calculate the OEP we take `OEP = FO + BaseOfCode - .text[PointerToRawData] - FileAlignment = 1E28D0`. `.text[PointerToRawData]` and `FileAlignment` are usually 0x200.
+IDA reports this is at file offset 9FBC0, so to calculate the OEP we take `OEP = FO + BaseOfCode - .text[PointerToRawData] - FileAlignment = 1E28D0`. `.text[PointerToRawData]` and `FileAlignment` are [usually 0x200][4].
 
 ![](img/10.png)
 
@@ -781,12 +781,220 @@ signed int __stdcall CheckFunc1(const void *a1)
 
 It's essentially a system of 32 linear equations of 32 variables over the finite field `GF(2^32)`. Though to be fair, there is no overflow so you can just think about it in terms of `Z`. Z3 gets the job done but it's a little overkill :P
 
-Anyways, it expects the value passed in to be `QUQ5OThENEYxQjQxMEY4Q0VCNEFBNzRF`.
+Anyways, it expects the value passed in to be `QUQ5OThENEYxQjQxMEY4Q0VCNEFBNzRF`. Otherwise it hangs.
 
-## Checking part 2
+## Check part 2
 
+Now let's look at `CheckFunc2`. It's essentially xor's the input against a dynamically generated key and checks the output.
 
+```C
+signed int __stdcall CheckFunc2(int *checkedBuf)
+{
+  signed int idx; // eax
+  char checkedAgainstChars[14]; // esi
+  signed int idx_1; // eax
+  int checkedAgainstInt[13]; // [esp+8h] [ebp-278h]
+  Ccrc_t crc; // [esp+3Ch] [ebp-244h]
+  char bufCpy[32]; // [esp+258h] [ebp-28h]
+
+  idx = 0;
+  bufCpy[0] = 0;
+  *(_DWORD *)&bufCpy[1] = 0;
+  *(_DWORD *)&bufCpy[5] = 0;
+  *(_DWORD *)&bufCpy[9] = 0;
+  *(_DWORD *)&bufCpy[13] = 0;
+  *(_DWORD *)&bufCpy[17] = 0;
+  *(_DWORD *)&bufCpy[21] = 0;
+  *(_DWORD *)&bufCpy[25] = 0;
+  *(_DWORD *)&bufCpy[29] = 0;
+  do
+  {
+    bufCpy[idx] = checkedBuf[idx];              // strcpy
+    ++idx;
+  }
+  while ( idx < 32 );
+  checkedAgainstInt[0] = 'f';
+  checkedAgainstInt[1] = 'h';
+  checkedAgainstInt[2] = 'n';
+  checkedAgainstInt[3] = 'j';
+  checkedAgainstInt[4] = 'u';
+  checkedAgainstInt[5] = 'c';
+  checkedAgainstInt[6] = 'v';
+  checkedAgainstInt[7] = 'b';
+  checkedAgainstInt[8] = 'n';
+  checkedAgainstInt[9] = 'j';
+  checkedAgainstInt[10] = 'u';
+  checkedAgainstInt[11] = 't';
+  checkedAgainstInt[12] = 'r';
+  *(_DWORD *)checkedAgainstChars = operator new[](14u);
+  idx_1 = 0;
+  if ( !*(_DWORD *)checkedAgainstChars )
+    return idx_1;
+  do
+  {
+    *(_BYTE *)(idx_1 + *(_DWORD *)checkedAgainstChars) = LOBYTE(checkedAgainstInt[idx_1]) + 1;
+    ++idx_1;
+  }
+  while ( idx_1 < 13 );
+  *(_BYTE *)(*(_DWORD *)checkedAgainstChars + 13) = 0;
+  xor.pvft = &CRC4::`vftable';                  // crc shit is NOT fucking used
+  memset(xor.indexes, 0, 0x100u);
+  memset(xor.checkedAgainst, 0, 0x100u);
+  decodeShitXor(bufCpy, &crc, *(const char **)checkedAgainstChars);
+  do
+  {
+    while ( bufCpy[0] != 199 )                  // will hang if first char isn't 0xc7
+      ;
+  }
+  while ( bufCpy[1] != 0x3C
+       || bufCpy[2] != 0x12
+       || bufCpy[3] != 9
+       || bufCpy[4] != 7
+       || bufCpy[5] != 0x8Eu
+       || bufCpy[6] != 0x88u
+       || bufCpy[7] != 0xB9u
+       || bufCpy[8] != 0x18
+       || bufCpy[9] != 0x94u
+       || bufCpy[10] != 0x4B
+       || bufCpy[11] != 0x6D
+       || bufCpy[12] != 0x13
+       || bufCpy[13] != 0x15
+       || bufCpy[14] != 0x81u
+       || bufCpy[15] != 0x5C
+       || bufCpy[16] != 0xA5u
+       || bufCpy[17] != 0xC7u
+       || bufCpy[18] != 0xD
+       || bufCpy[19] != 0x23
+       || bufCpy[20] != 0xEFu
+       || bufCpy[21] != 0x45
+       || bufCpy[22] != 0xECu
+       || bufCpy[23] != 0xC9u
+       || bufCpy[24] != 0xB1u
+       || bufCpy[25] != 5
+       || bufCpy[26] != 0xB6u
+       || bufCpy[27] != 132
+       || bufCpy[28] != 0x37
+       || bufCpy[29] != 0x63
+       || bufCpy[30] != 0xDEu
+       || bufCpy[31] != 0xA5u );
+  idx_1 = 1;
+  return idx_1;
+}
+```
+
+The key here is `decodeShitXor`. Take a look:
+
+```C
+// note: there is 
+struct __declspec(align(4)) Xor_t
+{
+  void *pvft;
+  char indexes[256];
+  char checkedAgainst[256];
+  int xorKey;
+  int idx;
+  int idx0;
+  int idx1;
+  int idx2;
+  int length;
+};
+
+const char *__userpurge decodeShitXor@<eax>(const char *inout@<ebx>, Xor_t *xor@<esi>, const char *checkedAgainst)
+{
+  int v3; // eax
+  char *v4; // ecx
+  int v5; // eax
+  int inoutLen; // eax
+  int nextXorKey; // eax
+  int v8; // ecx
+  const char *curInoutChar; // ecx
+
+  xor->idx1 = 0;
+  xor->idx2 = 0;
+  xor->idx0 = 0;
+  xor->idx = 0;
+  xor->length = strlen(checkedAgainst);
+  do
+  {
+    xor->checkedAgainst[xor->idx] = checkedAgainst[xor->idx % xor->length];
+    xor->indexes[xor->idx] = xor->idx;
+    ++xor->idx;
+  }
+  while ( xor->idx < 256 );
+  xor->idx = 0;
+  do
+  {
+    v3 = xor->idx;
+    v4 = (char *)xor + v3;
+    v5 = (xor->idx0 + (unsigned __int8)xor->indexes[v3] + (unsigned __int8)xor->checkedAgainst[v3]) & 0xFF;
+    xor->idx0 = v5;
+    v4[4] ^= xor->indexes[v5];
+    xor->indexes[xor->idx0] ^= xor->indexes[xor->idx];
+    xor->indexes[xor->idx++] ^= xor->indexes[xor->idx0];
+  }
+  while ( xor->idx < 256 );
+  inoutLen = strlen(inout);
+  xor->idx = 0;
+  for ( xor->length = inoutLen; xor->idx < xor->length; inout[xor->idx++] ^= LOBYTE(xor->xorKey) )
+  {
+    nextXorKey = (unsigned __int8)(xor->idx1 + 1);
+    xor->idx1 = nextXorKey;
+    v8 = (xor->idx2 + (unsigned __int8)xor->indexes[nextXorKey]) & 0xFF;
+    xor->idx2 = v8;
+    xor->indexes[nextXorKey] ^= xor->indexes[v8];
+    xor->indexes[xor->idx2] ^= xor->indexes[xor->idx1];
+    xor->indexes[xor->idx1] ^= xor->indexes[xor->idx2];
+    LOBYTE(nextXorKey) = xor->indexes[(unsigned __int8)(xor->indexes[xor->idx1] + xor->indexes[xor->idx2])];
+    curInoutChar = &inout[xor->idx];
+    LOBYTE(xor->xorKey) = nextXorKey;
+    if ( (unsigned __int8)nextXorKey == *curInoutChar )
+      LOBYTE(xor->xorKey) = 0;
+    if ( !isalnum(*curInoutChar) )
+      break;
+  }
+  return inout;
+}
+```
+
+Now, the astute reader ma-- screw that, nobody is going to actually read this crap anyways. The key observation is that the rolling xor key doesn't depend whatsoever on the input value, so we can just dump the key from the debugger and decrypt it "checked against" value to get the correct input. To do that, I used x64dbg's great "breakpoint logging" feature.
+
+![](img/20.png)
+
+And it nicely prints out the key for us:
+
+![](img/21.png)
+
+It's trivial to get the correct input, which happens to be `MTQ0RDIxOUVGNUI5NDU5REE4RTFEMDNC`.
+
+## Check part 3
+
+Part 3 is more of the linear equations from Part 1. As promised earlier, the better way of solving this is to recognize that since it's just a system of 32 linear equations of 32 variables, we can represent this using a 32x32 square matrix, and do some basic linear algebra to solve the system. To do that, I just parsed the decompiled code and used Numpy:
+
+```python
+mtx = ... # parsed stuff
+v = ... # parsed stuff
+imtx=np.linalg.inv(mtx)
+dumbass=imtx.dot(v)
+dumbass = np.rint(dumbass).astype(np.int)
+asdgasdgasd = ''
+for c in dumbass:
+    asdgasdgasd += chr(c)
+print asdgasdgasd
+```
+
+The correct input was `MjY4RTI1QTE0RkIxRENDOTIzODcwQzA1`.
+
+## Putting it all together
+
+*Finally* we can assemble all the parts of our puzzle: the cmdline, the patches, the top box, and the 3 parts of the bottom box. Recalling that the bottom box's value was base64ed before checking, we need to base64decode our respective check functions' correct inputs to get the real required input for the bottom box. It is `144D219EF5B9459DA8E1D03B144D219EF5B9459DA8E1D03B268E25A14FB1DCC923870C05`. The top box was `whitehat`, and the commandline was `WH2018.exe 1 9B819EC15B4EB8A1C5CA2390AE14E28987A 3 4`.
+
+![](img/22.png)
+
+![](img/23.png)
+
+Hooray.
 
 [1]: https://ntcore.com/?page_id=388
 [2]: https://github.com/ThunderCls/xHotSpots
 [3]: https://github.com/igogo-x86/HexRaysPyTools
+[4]: http://en.redinskala.com/finding-the-ep/
