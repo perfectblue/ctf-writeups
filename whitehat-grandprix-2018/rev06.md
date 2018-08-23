@@ -4,7 +4,7 @@ So we are provided with a reverse.exe binary. Running `strings` on it, we see th
 
 Running it in our windows VM, we're presented with a screen which asks for our "key".
 
-![](rev06.png)
+![](rev06_app.png)
 
 Since it's .NET, we can easily decompile it to the source (pretty accurate).
 
