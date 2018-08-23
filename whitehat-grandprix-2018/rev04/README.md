@@ -164,7 +164,12 @@ struct AfxString::vtable
 
 Using a plugin called [HexRaysPyTools][3] you can make the negative offset code look nice, but since I was in a hurry to sleep I didn't bother this time. I've also included a ripped C++ source code for the headers too.
 
-Also, since this is Win32, there's the constant headache of Unicode vs. Multibyte vs. ASCII strings. The key fact to understand is that Unicode strings are WCHAR (16bit) strings, so each character is actually 2 bytes wide.
+Also, since this is Win32, there's the constant headache of Unicode vs. Multibyte vs. ASCII strings. The key fact to understand is that Unicode strings are WCHAR (16bit) strings, so each character is actually 2 bytes wide. This is an example of converting between the two types:
+
+```C
+int requiredSize = WideCharToMultiByte(0, 0, &src, -1, 0, 0, 0, 0);
+WideCharToMultiByte(0, 0, &src, -1, &dst, requiredSize, 0, 0);
+```
 
 ## Check 1: "Check" button
 Anyways, back to the challenge. After decompiling and some cleanup, the code for the "Check" button callback looks like:
@@ -416,7 +421,7 @@ wrongPw2:
 }
 ```
 
-In other words, it's checking if the program is passed 4 arguments (not counting argv\[0\]) and the second one must be `9B819EC15B4EB8A1C5CA2390AE14E28987A`. There are really two approaches here: you can either patch the check and bypass it or reverse the argument's required value. I chose the second option since it could be used later for printing the flag, etc.
+In other words, it's checking if the program is passed 4 arguments (not counting argv\[0\]) and the second one must be `9B819EC15B4EB8A1C5CA2390AE14E28987A`. Notice that they create the `checkedAgainst` buffer on the fly so you can't dump it easily...lol. This startegy is used everywhere in this challenge. There are really two approaches here: you can either patch the check and bypass it or reverse the argument's required value. I chose the second option since it could be used later for printing the flag, etc.
 
 ![](img/16.png)
 
@@ -687,6 +692,100 @@ fail:
   fuckingString::dtor(&bototmBox);
 }
 ```
+
+This function checks both the upper and lower input textfields, and it does three separate checks on the bottom field. There's also several anti-debugging mechanisms. I'll discuss each of these below.
+
+### Anti-debug
+
+The anti-debug is actually coded wrong so it's impossible to solve this "legitimately" without patching the bin...lol
+
+- **Check 1**: Line 179, `.. && !NtQueryInformationProcess)` This is wrong; it's just checking that the function pointer is nonnull...which it always is. This check must be patched.
+- **Check 2**: Line 238, `if ( !checkDebugregs() )` This is actually correct. It only passes if all of the DRX registers are zero using `GetThreadContext`. Easily bypassed using ScyllaHide plugin, though: ![](img/18.png)
+- **Check 3**: Line 62, `... || isDebuggerPresent )` Another broken check a la Check #1 above. The function actually works (using `CheckRemoteDebuggerPresent`), however it's bypassable easily by hiding from PEB anyways.
+- **Check 4**: `checkDaFlagggsHash`, `IsDebuggerPresent()` This is a standard `IsDebuggerPresent` check and you can bypass it by hiding from PEB.
+
+To deal with these, I just used x64dbg's *excellent* built-in patching functionality:
+
+![](img/19.png)
+
+### Upper textfield
+
+The checking code for the upper textfield boils down to:
+
+```C
+maekNewStrang(&topBox);
+CWnd::GetWindowTextW(this + 2304, (int)&topBox);
+memset(topBoxConverted, 0, 0x104);
+memset(hashofTopbox, 0, 0x42u);
+memset(topboxHashChecked, 0x20)
+topBoxxx = thonk(&topBox);
+convertStringType(topBoxConverted, topBoxxx);
+md5hashShitGetDigest(topBoxConverted, hashofTopbox);
+convertStringType(topboxHashChecked, hashofTopbox);
+if ( !checkDaFlagggsHash(topboxHashChecked) )// 3AB47284CF7E260541D810BEB54D3405 -> whitehat
+    ExitProcess('\0');
+```
+
+`checkDaFlagggsHash` checks if the hash is `3AB47284CF7E260541D810BEB54D3405`, which is easily cracked at CrackStation to be `whitehat`.
+
+### Lower textfield, part 1
+
+Before the lower textfield's value is passed into any of the checking subroutines, it base64 encodes it. With that in mind, let's look at `CheckFunc1`. sampriti solved this section using z3, but I'll discuss a better way later in part 3. If you look at the function, it looks basically like:
+
+```C
+signed int __stdcall CheckFunc1(const void *a1)
+{
+  qmemcpy(&v3, a1, 0x80u);
+  int v1, v3, v4, v5, /* ... */ v34;
+  v1 = 0;
+  while ( 1467 * v4
+        + 1464 * v12
+        + 1491 * v18
+        + 1961 * v17
+        + 2169 * v7
+        + 2145 * v14
+        + 3358 * v10
+        + 3281 * v15
+        + 3500 * v6
+        + 3478 * v9
+        + 3391 * v23
+        + 3436 * v22
+        + 3705 * v13
+        + 3604 * v24
+        + 1153 * v26
+        + 3962 * v11
+        + 3942 * v20
+        + 1292 * v27
+        + 3995 * v19
+        + 1382 * v28
+        + 1716 * v30
+        + 1726 * v34
+        + 1902 * v25
+        + 2718 * v31
+        + 2895 * v32
+        + 3421 * v29
+        + 3447 * v33
+        + 2827 * (v21 + v16)
+        + 1724 * v8
+        + 1334 * v5
+        + 1041 * v3 == 6528434
+       && 1644 * v22
+// .. 31 more of these checks
+{
+    if ( ++v1 >= 10 )
+      return 1;
+  }
+  return 0;
+}
+```
+
+It's essentially a system of 32 linear equations of 32 variables over the finite field `GF(2^32)`. Though to be fair, there is no overflow so you can just think about it in terms of `Z`. Z3 gets the job done but it's a little overkill :P
+
+Anyways, it expects the value passed in to be `QUQ5OThENEYxQjQxMEY4Q0VCNEFBNzRF`.
+
+## Checking part 2
+
+
 
 [1]: https://ntcore.com/?page_id=388
 [2]: https://github.com/ThunderCls/xHotSpots
