@@ -203,7 +203,7 @@ func main() {
   }
   for i := range xorChainKeyslices {
     idx := (orderPadSlice[i] ^ input[i]) % len(xorChainKeyslices)
-    go xorBullshit(chans[i], chans[i+1], xorChainKeyslices[i])
+    go xorBullshit(chans[i], chans[i+1], xorChainKeyslices[idx])
   }
   results := make(chan int)
   go sha512Shit(chans[len(chans) - 1], results)
