@@ -185,6 +185,8 @@ void __usercall main_main()
 }
 ```
 
+*that feel when you rename all the locals, setup all the structs, and setup all the calling conventions*
+
 Since nobody is actually going to read that, here is a rough summary.
 
 ```go
