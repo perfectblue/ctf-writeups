@@ -300,7 +300,7 @@ void __usercall main_sha512Shit(__int64 inChan, __int64 outChan)
 }
 ```
 
-Not rocket science, just doe a sha512sum and compares it against a hash, `26B7F8B7DD2E2EBFD41785C6E0B0329DD539933C3540FBB0F63271C2EA6AE1A0E1668C5746182FBE03065109FFC762DDE896B14A1AC6D1B19D60F971F19198D6`.
+Not rocket science, just does a sha512sum and compares it against a hash, `26B7F8B7DD2E2EBFD41785C6E0B0329DD539933C3540FBB0F63271C2EA6AE1A0E1668C5746182FBE03065109FFC762DDE896B14A1AC6D1B19D60F971F19198D6`.
 The hash isn't crackable obviously, it's probably the flag.
 
 
