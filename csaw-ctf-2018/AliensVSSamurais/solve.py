@@ -98,7 +98,7 @@ createalien(0x98, "FFFFF") #20
 createalien(0x98, "GGGGG") #21
 createalien(0x98, "HHHHH") #22
 
-heap = u64(renamealien(18, "NIGGER").ljust(8, "\x00"))
+heap = u64(renamealien(18, "PUSSYS").ljust(8, "\x00"))
 
 bssaddrlocation = heap - 0x2390 + 0x20
 
