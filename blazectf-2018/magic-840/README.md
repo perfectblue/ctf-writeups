@@ -1,4 +1,5 @@
 # blazectf
+### writeup by slenderestman
 I only solved the two magic challenges during this competition.
 ## magic-re
 This was a pretty straightforward challenge that you don't need to understand the binary to do. IDA decompiler threw a weird error but let me see the code after decompiling the scanf function, although the decompiled code was faulty. I noticed it waslooping through your input string and doing a magic function and strcatting the output to a string at 0x31338000, and after several loops of this it compared the value there to some static values at a buffer at 0x3133a000. I didn't even look at the magic function and just decided to bruteforce the flag char by char, as since it was looping through your input in order you could just compare the string at 0x31338000 to the first few chars at 0x3133a000, breaking in gdb every time it did a strcat. 
