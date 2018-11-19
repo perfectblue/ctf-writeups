@@ -1,0 +1,3 @@
+$ ./p
+so0per_cool
+hi! flag is: flag{LlvM_Passes_4nD_9atCh1ng_8inaryies_4r3_c0ol}
