@@ -582,8 +582,6 @@ To crack the check function, I opted to use z3. Encoding all of the semantics ex
 ```
 keyIdx_next = field2_current & 0x3f
 field2_next = key_current[keyIdx_next]
-rhs = getreg('key')
-lhs = makereg_k()
 Or (
   And ( field2_next != 0 , key_next = Store(key_current, keyIdx_next, key_current[keyIdx_next] ^ (pc & 0x1f) )
   And ( field2_next == 0 , key_next = key_current )
