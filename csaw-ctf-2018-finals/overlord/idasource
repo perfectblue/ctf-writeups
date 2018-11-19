@@ -1,0 +1,104 @@
+// write access to const memory has been detected, the output may be wrong!
+int __cdecl __noreturn main(int argc, const char **argv, const char **envp)
+{
+  unsigned __int8 v3; // al
+  unsigned __int8 v4; // al
+  unsigned __int8 *v5; // ecx
+  unsigned __int8 v6; // al
+  int v7; // ecx
+  unsigned int v8; // eax
+  int v9; // ecx
+  unsigned __int8 *v10; // esi
+  unsigned __int8 v11; // al
+  unsigned __int8 v12; // al
+  int v13; // esi
+  unsigned __int8 v14; // al
+  unsigned __int8 v15; // al
+  int v16; // [esp-24h] [ebp-2Ch]
+  unsigned int v17; // [esp-4h] [ebp-Ch]
+  unsigned int retaddr; // [esp+8h] [ebp+0h]
+
+  v17 = retaddr ^ _cookie;
+  while ( 1 )
+  {
+    puts(&_base);
+    do
+    {
+      v3 = __inbyte(0);
+      if ( v3 == 'r' || v3 == 'R' )
+      {
+        is_random = 1;
+        puts("\\nCreating random robots");
+        goto main_select_quantity;
+      }
+    }
+    while ( v3 < 'a' || v3 > 'p' );
+    is_random = 0;
+    robot_type = v3 - 'a';
+    puts("\\nCreating ");
+    puts(&factory_item_table[*(_DWORD *)&factory_item_table[4 * (unsigned __int8)robot_type]]);
+main_select_quantity:
+    puts("\\n\\nQuantity (1-8):\\n");
+    do
+    {
+      do
+        v4 = __inbyte(0);
+      while ( v4 < 0x31u );
+    }
+    while ( v4 > 0x38u );
+    robot_quantity = v4 - 48;
+    puts("\\nQA employee name:\\n");
+    input((int)&v16);
+    __outbyte(3u, robot_type);
+    __outbyte(3u, robot_quantity);
+    v5 = (unsigned __int8 *)&v16;
+    do
+    {
+      v6 = *v5;
+      __outbyte(3u, *v5++);
+    }
+    while ( v6 );
+    if ( is_random )
+    {
+      v8 = rand();
+      v9 = 0;
+      do
+      {
+        robot_array[v9] = v8 & 0xF;
+        v8 >>= 4;
+        ++v9;
+      }
+      while ( (unsigned __int8)v9 < (unsigned __int8)robot_quantity );
+      robot_array[v9] = -1;
+    }
+    else
+    {
+      v7 = 0;
+      do
+        robot_array[v7++] = robot_type;
+      while ( (unsigned __int8)v7 < (unsigned __int8)robot_quantity );
+      robot_array[v7] = -1;
+    }
+    v10 = (unsigned __int8 *)robot_array;
+    do
+    {
+      v11 = *v10;
+      __outbyte(2u, *v10++);
+    }
+    while ( v11 != -1 );
+    do
+    {
+      puts("\\fWaiting for factory output to reach\\ninspection station...");
+      v12 = __inbyte(2u);
+      v13 = v12;
+      puts(
+        "\\fFactory output has reached the\\ninspection station.\\n\\nPlease inspect the factory output\\nfor flaws. If y"
+        "ou see any, please\\nlog the issue in the logbook along\\nwith the serial number.\\n\\nPress any key once complete.\\n");
+      v14 = __inbyte(0);
+      __outbyte(2u, 0xFFu);
+    }
+    while ( v13 );
+    puts("\\fProduction is complete. Waiting for\\nthe factory output to proceed into the\\nstorage area...");
+    v15 = __inbyte(2u);
+  }
+}
