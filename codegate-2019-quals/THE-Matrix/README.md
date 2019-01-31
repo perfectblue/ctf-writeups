@@ -25,6 +25,8 @@ Anyways to solve... the game had setup some tile data at $c230.
 If you copy this data to $8000 and view it in VRAM, there are actually letters.
 And the previous data was the tile indices.
 
+![](matrix.png)
+
 - `CONGRAT_`
 - `FLAG`
 - `{THERE_IS_NO_SPON}`
