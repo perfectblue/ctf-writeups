@@ -133,19 +133,12 @@ f = lambda x: crc_linear('\0\0\0\0\0' + num2str(x) + '\0')
 A = matrix(GF(2), 128, 128)
 for i in range(128):
     A.set_column(i, bits(f(1 << i)))
-
-# 0x446bd393bf042a36a64ef9faa34ac91cL
-# 0x3d4268bbf378da4c2a48b63a3a6846c1L
-# 0x7929bb284c7cf07a8c064fc099228fddL
-# 0x7929bb284c7cf07a8c064fc099228fddL
-# print hex(bits2num(A*vector(GF(2), bits(1))))
-# print hex(bits2num(A*vector(GF(2), bits(2))))
-# print hex(bits2num(A*vector(GF(2), bits(3))))
-# print hex(bits2num(A*vector(GF(2), bits(1))) ^ bits2num(A*vector(GF(2), bits(2))))
+assert f(1234) == bits2num(A*vector(GF(2), bits(1234)))
 
 # We wanted (A^I), rememeber?
 for i in range(128):
     A[i,i] -= 1
+
 # Now solve :)
 x = A.solve_right(b)
 
