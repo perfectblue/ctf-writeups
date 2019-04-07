@@ -1,8 +1,18 @@
 # Bigspin
 
-```
+**Category**: Web
+
+424 Points
+
+26 Solves
+
+**Problem description**:
 This app got hacked due to admin and uberadmin directories being open. Was just about to wget -r it, but then they fixed it :( Can you help me get the files again? 
-```
+
+---
+
+This app got hacked due to admin and uberadmin directories being open. Was just about to wget -r it, but then they fixed it :( Can you help me get the files again? 
+
 
 And we are provided with a link to a site. Opening it, it shows a simple HTML page with the following text.
 
