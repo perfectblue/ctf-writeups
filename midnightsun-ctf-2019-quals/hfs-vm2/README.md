@@ -81,7 +81,7 @@ store_cookie    proc near
 store_cookie    endp
 ```
 
-So we don't know the cookie in the child process, so we can't overflow the parent process without triggering stack_chk_fail.
+So we don't know the cookie in the parent process, so we can't overflow the parent process without triggering stack_chk_fail.
 
 The solution to this is a race condition bug in the parent process. The parent process first reads data from the shared memory based on its length onto its stack, performs syscalls, then writes data from its stack into the shared memory. If we have a small length in the beginning, the stack won't be smashed, then if the child process changes the length before the parent process finishes its syscall, then the parent process copies its entire stack, including the stack cookie, over to us! Luckily there is a syscall in the parent that essentially does a sleep(4), allowing us to exploit the race condition easily.
 
