@@ -80,7 +80,6 @@ assert crc_linear('\x03\x01') == crc_linear('\x01\x03')^crc_linear('\x02\x02')
 # Rearranging:
 # CRC'(\0\0\0\0\0 | x | \0) ^ x = CRC("flag{" | \x00*len(x) | "}")
 # The right side is constant. We will denote it as b.
-# b = crc128('flag{' + '\x00'*16 + '}')
 b = crc128('flag{' + '\x00'*16 + '}')
 # CRC'(\0\0\0\0\0 | x | \0) ^ x = b
 # Using our earlier lemma, CRC'(\0\0\0\0\0 | x | \0) has a linear action on x,
