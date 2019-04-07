@@ -11,7 +11,7 @@ Third time's the charm. This time I got a security lib too.
 
 ---
 
-This is apparently one of the least solved challenges, but our solution for this is such a meme.
+This was apparently one of the least solved challenges, but our solution was such a meme.
 
 Same as the other Marco challenges, we have to XSS a page and submit a URL which pops alert(1) to get the flag. Here is the relevant source code:
 
