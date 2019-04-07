@@ -63,7 +63,7 @@ The script snippet is actually using JQuery's html() method to add our HTML and 
 
 So where do we start constructing our payload? I started looking at the unit tests for the `SAFE_FOR_JQUERY` flag and [here](https://github.com/cure53/DOMPurify/blob/2724763e41313b1a54724dfda5573e8b63116962/test/test-suite.js#L53) they test a bunch of payloads which would otherwise cause XSS in DOMPurify if used with JQuery's html() method.
 
-As a base, I tried copying a couple of the payloads from there and BEHOLD, the 3rd one popped an alert() for me.. WTF? was that it?
+As a base, we tried copying a couple of the payloads from there and BEHOLD, the 3rd one popped an alert()... WTF? was that it?
 
 This is what I used
 
