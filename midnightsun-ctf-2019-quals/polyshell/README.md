@@ -59,8 +59,8 @@ e9 d5 03 00 00 # 0x26  x86 jump to final payload (0x400)
 e9 d0 04 00 00 # 0x2b  x64 jump to final payload (0x500)
 ```
 
-To aid in writing this we used [an online diassembler/assembler](https://disasm.ninja) written by Jazzy.
-
+To aid in writing this, we used a web based multi architecture assembler/disasssembler written by Jazzy. It is not online as of this moment, but will be available at http://disasm.ninja/ soon.
+ 
 The hardest part was to find a branch that worked for MIPS while being a nop for ARM and ARM64.
 I also had to insert another nop for MIPS due to the "branch delay slot" problem where
 the instruction immediately following a branch will get executed unconditionally, regardless
