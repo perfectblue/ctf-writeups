@@ -23,7 +23,7 @@ Appending anything after the `pleb` directory (like `/pleb/whatever`) also retur
 
 After some more recon, I noticed changing `/pleb` to `/pleb.` worked the same way as before, `/pleb~` returned a 404 while `/pleb{anythingElse}` retuslted in a 502.
 
-The `pleb` and `pleb.` are working just like domain TLDs, any time we visit `example.com`, we are actually sending a DNS request to `example.com.` because a full qualified domain needs to have a trailing dot at the end. That's why visiting `example.com` and `example.com.` produce the same result.
+The `pleb` and `pleb.` are working just like domain TLDs, any time we visit `example.com`, we are actually sending a DNS request to `example.com.` because a fully qualified domain needs to have a trailing dot at the end. That's why visiting `example.com` and `example.com.` produce the same result.
 
 To confirm my supicions, I set up a wildcard DNS listener at dnsbin.zhack.ca and sent a request to `/pleb.mysub.dnsbin.zhack.ca` and sure enough, I received a DNS query for example.com. 
 
@@ -114,5 +114,5 @@ This was my final payload
 <?php header("X-Accel-Redirect: /admin../uberadmin/flag.txt"); ?>
 ```
 
-Overall, this was an awesome challenge.
+Overall, this was an awesome challenge and I loved every part of it
 
