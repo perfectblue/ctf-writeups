@@ -11,10 +11,7 @@ This app got hacked due to admin and uberadmin directories being open. Was just 
 
 ---
 
-This app got hacked due to admin and uberadmin directories being open. Was just about to wget -r it, but then they fixed it :( Can you help me get the files again? 
-
-
-And we are provided with a link to a site. Opening it, it shows a simple HTML page with the following text.
+We are provided with a link to a site. Opening it, it shows a simple HTML page with the following text.
 
 ```
 What's it gonna be? Are you an uberadmin, an admin, a user, or (most likely) just a pleb? 
