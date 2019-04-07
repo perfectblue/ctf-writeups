@@ -17,7 +17,7 @@ We are provided with a link to a site. Opening it, it shows a simple HTML page w
 What's it gonna be? Are you an uberadmin, an admin, a user, or (most likely) just a pleb? 
 ```
 
-The `uberadmin`, `admin`, `user` and `pleb` are hyperlinks to their respective directories. The `uberadmin` and `user` directories returned 403 forbidden while `admin` returned 404. The `pleb` directory returned the page from example.com domain
+The `uberadmin`, `admin`, `user` and `pleb` are hyperlinks to their respective directories. The `uberadmin` and `user` directories returned 403 forbidden while `admin` returned 404. The `pleb` directory returned the same page example.com domain
 
 Appending anything after the `pleb` directory (like `/pleb/whatever`) also returned the same page, acting just like example.com, weird huh?
 
