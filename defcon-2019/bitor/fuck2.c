@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main(){
+    #define _DWORD unsigned int
+     int key; // ecx
+  char *v4; // edi
+  signed int cnt; // edx
+  _DWORD *v6; // eax
+  signed int v7; // edx
+  _DWORD *v8; // eax
+  signed int v9; // edx
+    key=0x13331842;
+int shit[] = {0x133318FA,0x0D3B0DB42,0x9AF0DB46,0x15B8DBB2,0x0D03D2981,0x0D037DEC1,0x0D037F3C1,0x4BF0193C,0x0BDF9B81,0x133AA081,0x0ABF01842,0x13300B75,0x0D0EB9181,0x9AF0D3CB,0x0D2F2DB8A,0x0DA02DB4A,0x77C2B81,0x3B7C2B81,0x83A38881,0x83A388D2,0x83A388D2,0x83A388D2,0x83A388D2,0x83A388D2,0x83A388D2,0x13331944,0x1333194B,0x1333194F,0x1333189B,0x1333189E,0x13331940,0x133318A2,0x133318A6,0x133318AB,0x133318B1,0x133318C9,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842,0x13331842};
+ v7 = 50;
+ v6=shit;
+  do
+  {
+    *v6 ^= key;
+    ++v6;
+    --v7;
+  }
+  while ( v7 );
+  for (int i = 0; i < sizeof(shit); i++){
+    printf("%02x",((unsigned char*)shit)[i]);
+  }
+  printf("\n");
+}
