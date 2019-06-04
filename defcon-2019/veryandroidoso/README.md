@@ -21,3 +21,5 @@ true
 true
 OOO{fab43416484944beba}
 ```
+
+**Update: apparently, the author wrote this intending for it to be solveable with angr. Read his writeup here:** http://antoniobianchi.me/posts/ctf-defconquals2019-veryandroidoso/
