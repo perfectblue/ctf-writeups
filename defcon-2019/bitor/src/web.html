@@ -1,0 +1,29 @@
+<html>
+<head>
+<script type='text/javascript'>
+
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+
+var _0x2d96=['c2V0RmxhZ0FzVmFsaWQ=','ZmxhZw==','c3Vic3Ry','ID0+IHBIZF8xd19lNHJMMTNyOyl9','SlNJbnRlcmZhY2U='];(function(_0xff65eb,_0x34f845){var _0x36edd3=function(_0x4ed2aa){while(--_0x4ed2aa){_0xff65eb['push'](_0xff65eb['shift']());}};_0x36edd3(++_0x34f845);}(_0x2d96,0x18c));var _0x5983=function(_0x4f7167,_0x597d76){_0x4f7167=_0x4f7167-0x0;var _0x467db9=_0x2d96[_0x4f7167];if(_0x5983['AteqUi']===undefined){(function(){var _0x1e3a59=function(){var _0xb32e9b;try{_0xb32e9b=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x28a8a9){_0xb32e9b=window;}return _0xb32e9b;};var _0x79e00a=_0x1e3a59();var _0x1081d6='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x79e00a['atob']||(_0x79e00a['atob']=function(_0x5c0d69){var _0x2e5671=String(_0x5c0d69)['replace'](/=+$/,'');for(var _0x5b28bf=0x0,_0x540b09,_0x32967a,_0x5bb6b3=0x0,_0x1b1ba3='';_0x32967a=_0x2e5671['charAt'](_0x5bb6b3++);~_0x32967a&&(_0x540b09=_0x5b28bf%0x4?_0x540b09*0x40+_0x32967a:_0x32967a,_0x5b28bf++%0x4)?_0x1b1ba3+=String['fromCharCode'](0xff&_0x540b09>>(-0x2*_0x5b28bf&0x6)):0x0){_0x32967a=_0x1081d6['indexOf'](_0x32967a);}return _0x1b1ba3;});}());_0x5983['AAZHzw']=function(_0x5f0357){var _0x404b9e=atob(_0x5f0357);var _0x4001de=[];for(var _0x488e18=0x0,_0x25edcb=_0x404b9e['length'];_0x488e18<_0x25edcb;_0x488e18++){_0x4001de+='%'+('00'+_0x404b9e['charCodeAt'](_0x488e18)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x4001de);};_0x5983['ttOyRt']={};_0x5983['AteqUi']=!![];}var _0x9b6309=_0x5983['ttOyRt'][_0x4f7167];if(_0x9b6309===undefined){_0x467db9=_0x5983['AAZHzw'](_0x467db9);_0x5983['ttOyRt'][_0x4f7167]=_0x467db9;}else{_0x467db9=_0x9b6309;}return _0x467db9;};theflag=findGetParameter(_0x5983('0x0'));if(theflag[_0x5983('0x1')](0x18)==_0x5983('0x2')){window[_0x5983('0x3')][_0x5983('0x4')]();}
+
+</script>
+</head>
+
+<body>
+
+Argh, forgot to add a "web" tag to this chall? ;-)
+  - @reyammer
+
+</body>
+</html>
