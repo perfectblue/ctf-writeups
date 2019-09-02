@@ -1,4 +1,3 @@
-```python
 from pwn import *
 import random
 
@@ -162,4 +161,3 @@ while True:
     except Exception as e:
         print e
         r.close()
-```
