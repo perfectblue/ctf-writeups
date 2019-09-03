@@ -1,4 +1,4 @@
-# Behemoth
+# EBC
 
 This is an UEFI Bytecode reverse engineering challenge. It's a typical flag checker binary, except it runs in UEFI.
 
@@ -13,25 +13,25 @@ The first challenge was simply getting the challenge to run. To do this I used q
 
 We are greeted by a nice splash screen and a shell. Then we can switch to our mapped filesystem and run the challenge.
 
-![pics/qemu1.png]()
+![](pics/qemu1.png)
 
 It's pretty clear this is a flag checker binary. In that case let's load into IDA and begin static analysis. There is a processor module that ships with IDA but unfortunately it has a few bugs :-( Luckily the processor module is written in Python so we are easily able to modify it.
 
-![pics/idabugs.png]()
+![](pics/idabugs.png)
 
 Also, the processor module doesn't support the type system which is extremely annoying.
 
-![pics/typesystem.png]()
+![](pics/typesystem.png)
 
 I fixed the bugs in the processor module including one where MOVIxx instructions were not decoding 64-bit operands correctly. I've included the fixed module code in `ebc-ida-proc-module.py`, you can locate the edited regions by searching for `PATCH:`.
 
 The challenge is made of 5 main stages: reading a key from keyboard, then 4 encrypted stages decrypted with xor. Each stage checks 8 bytes of the flag, and the flag is 32 bytes total. For all stages but the first stage, the decryption key is the CRC32 of the previous stage's solution. The first stage's decryption key is just hardcoded. I wrote a small C program (`fuck.c`) to do this decryption.
 
-![pics/cfg.png]
+![](pics/cfg.png)
 
 Let's dig into the code. The main function has the 5 stages I described. Notice all of the i/o is done using EFI system services. Luckily we can load all of the EFI structs so it is quite easy to understand the code. For an example let's look at the simple function that simply just reads a character of input from the keyboard.
 
-![pics/codenz.png]
+![](pics/codenz.png)
 
 The code should be pretty self explanatory but it's a good example of what the code in this VM looks like. Back in the main function, we're passed the image handle and EFI system table as arguments, and the system table is stored for use in the program. Notice the calling convention is cdecl so arguments are passed right to left on stack.
 
@@ -117,4 +117,8 @@ def crc32(data,size,polynomial=0xEDB88320):
     return crc ^ 0xFFFFFFFF
 ```
 
-The final flag is `# TWCTF{EBC_1n7erpret3r_1s_m4d3_opt10n4l}`. It was fun challenge.
+The final flag is `# TWCTF{EBC_1n7erpret3r_1s_m4d3_opt10n4l}`.
+
+![](pics/solved.png)
+
+It was fun challenge.
