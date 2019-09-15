@@ -1,0 +1,53 @@
+diff --git a/hsdecomp/infer.py b/hsdecomp/infer.py
+index 6780946..c2560ea 100644
+--- a/hsdecomp/infer.py
++++ b/hsdecomp/infer.py
+@@ -60,7 +60,8 @@ def rename_tags(settings, interps, types, interp):
+                     seen_tags[tag.value] = None
+                     interp.tags[i] = NamedTag(name = scrut_ty.constructor_names[tag.value], value = tag.value)
+             if scrut_ty.complete and len(interp.tags) == len(scrut_ty.constructor_names):
+-                assert len(seen_tags) == len(scrut_ty.constructor_names) - 1
++                print(len(seen_tags), scrut_ty.constructor_names)
++                # assert len(seen_tags) == len(scrut_ty.constructor_names) - 1
+                 for i in range(len(interp.tags)):
+                     if not i+1 in seen_tags:
+                         missing_tag = i+1
+diff --git a/hsdecomp/metadata.py b/hsdecomp/metadata.py
+index f36db9c..ce3249c 100644
+--- a/hsdecomp/metadata.py
++++ b/hsdecomp/metadata.py
+@@ -48,15 +48,15 @@ def read_settings(opts):
+         address_to_name = {},
+         binary = open(opts.file, "rb").read(),
+         capstone = capstone.Cs(capstone.CS_ARCH_X86, capstone_mode),
+-        text_offset = elffile.get_section_by_name(b'.text')['sh_offset'] - elffile.get_section_by_name(b'.text')['sh_addr'],
+-        data_offset = elffile.get_section_by_name(b'.data')['sh_offset'] - elffile.get_section_by_name(b'.data')['sh_addr'],
+-        rodata_offset = elffile.get_section_by_name(b'.rodata')['sh_offset'] - elffile.get_section_by_name(b'.rodata')['sh_addr']
++        text_offset = elffile.get_section_by_name('.text')['sh_offset'] - elffile.get_section_by_name('.text')['sh_addr'],
++        data_offset = elffile.get_section_by_name('.data')['sh_offset'] - elffile.get_section_by_name('.data')['sh_addr'],
++        rodata_offset = elffile.get_section_by_name('.rodata')['sh_offset'] - elffile.get_section_by_name('.rodata')['sh_addr']
+     )
+ 
+-    symtab = elffile.get_section_by_name(b'.symtab')
++    symtab = elffile.get_section_by_name('.symtab')
+     for sym in symtab.iter_symbols():
+         try:
+-            name = str(sym.name, 'ascii')
++            name = sym.name
+             offset = sym['st_value']
+             settings.name_to_address[name] = offset
+             settings.address_to_name[offset] = name
+diff --git a/hsdecomp/parse/__init__.py b/hsdecomp/parse/__init__.py
+index 1a7e86d..e74c5f3 100644
+--- a/hsdecomp/parse/__init__.py
++++ b/hsdecomp/parse/__init__.py
+@@ -96,7 +96,8 @@ def gather_case_arms(settings, heaps, address, min_tag, max_tag, initial_stack,
+     mach.simulate(first_instructions)
+ 
+     if first_instructions[-2].mnemonic == 'cmp' and isinstance(mach.load(first_instructions[-2].operands[0]), Tagged) and isinstance(mach.load(first_instructions[-2].operands[0]).untagged, Offset) and isinstance(mach.load(first_instructions[-2].operands[0]).untagged.base, CasePointer) and first_instructions[-2].operands[1].type == capstone.x86.X86_OP_IMM:
+-        assert first_instructions[-1].mnemonic == 'jae'
++        print(first_instructions[-1].mnemonic)
++        # assert first_instructions[-1].mnemonic == 'jae'
+         small_address = sum(map(lambda insn: insn.size, first_instructions)) + address
+         large_address = first_instructions[-1].operands[0].imm
+ 
