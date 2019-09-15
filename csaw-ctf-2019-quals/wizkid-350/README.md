@@ -59,7 +59,7 @@ On the other side of the program we can see the logic for stages2-4 which are pr
 
 ![callgraph4.png](callgraph4.png)
 
-There was a Haskell decompiler by the same guy who did the earlier writeup. At this point I decided to take a look at decompilation output to see if I could make any sense of it. There were a lot of assertion errors in the Haskell decompiler, but I simply just commented out the assertions 😎 I provide my patches in the diff.
+There was a [Haskell decompiler](https://github.com/gereeter/hsdecomp) by the same guy who did the earlier writeup. At this point I decided to take a look at decompilation output to see if I could make any sense of it. There were a lot of assertion errors in the Haskell decompiler, but I simply just commented out the assertions 😎 I provide my patches in the diff.
 
 The decompilation output was pretty messed up but still intelligible. I had written a small amount of Haskell before since I used Xmonad for a long time, but my proficiency is still at the stage where I just copy-paste from StackOverflow. Nevertheless at least I grasp the syntax more or less.
 
