@@ -1,4 +1,6 @@
-#unagi - 200
+# unagi
+
+200 points
 
 - Typical XXE in the upload, WAF blocks "Entity"
 - Use UTF-16 to bypass (`iconv -f UTF-8 -t UTF-16BE`)
