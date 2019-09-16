@@ -1,0 +1,1 @@
+We do stupid music xml parsing to obtain shares of a sharmir secret sharing scheme. Recover enough shares, and we get the flag.
