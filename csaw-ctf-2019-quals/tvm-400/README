@@ -1,0 +1,1 @@
+Decrypt null bytes to obtain AES GCM xor keystream. Xor encrypted flag with keystream.
