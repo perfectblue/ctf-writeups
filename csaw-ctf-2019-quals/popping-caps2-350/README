@@ -1,0 +1,1 @@
+We arbitrary free a chunk in ld to perform arbitrary tcache write in 7 ops. Then, we overwrite a hook in ld that's called in dl_fini to a one gadget.
