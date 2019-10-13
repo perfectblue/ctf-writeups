@@ -1,0 +1,1 @@
+Krazy Note was a kernel note module. The bug was the lack of mutexes, so it was vulnerable to race conditions. To make the race condition more reliable, I used userfaultfd to "pause" copy_from_user, and do the race during this pause, then resume copy_from_user.
