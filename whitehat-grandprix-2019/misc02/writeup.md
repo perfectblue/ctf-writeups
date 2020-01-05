@@ -32,13 +32,21 @@ track0.iso
 Initially, we had no clue on what to do for this challenge. So we tried a huge variety of things! The track0.iso was a password-protected zip file, so we figured the first step was finding the password for it. This was corroborated by the first hint, that mentioned finding a password and permuting it. Here is a list of (a few) things we tried:
 
 1. Finding steganography in audio.wav
+
 	Since the audio and video were separated when given to us, we figured that must be by design, and that there was some sort of steganography in the audio. We downloaded and tried many wav steg tools (DeepSound, steghide, stego_lsb, etc). and none worked. We also viewed spectrograms; that didn't work either. I combined the stereo audio to mono after inverting one track, and found that it canceled out the voice lines, but there was nothing there either. Eventually I gave up and concluded there was no steg in the audio here.
+	
 2. Finding steganography in the mp4
+
 	Same concept. Teammate thought that certain frames of the video would have steg in them, but I thought that would be too much work (for both us and the problem writers) and didn't even try.
+
 3. Brute forcing the password to the zip
+
 	A teammate used a 3 gigabyte wordlist to try to crack the zip. It didn't work.
+
 4. Trying permutations of random strings.
+
 	We tried cracking the zip with leetspeak and scrambled versions of "fsociety" "password" "superman" and song lyrics (we searched up the song that was playing in the audio and tried lyrics from it).
+
 5. Trying to operate directly on the EED2.iso and junk.DAT.
 	This did not work.
 
@@ -84,7 +92,8 @@ b4,r,msb,xy         .. text: "ywwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
 b4,g,msb,xy         .. text: "pwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 b4,rgb,msb,xy       .. text: " wzgwpww"
 b4,bgr,msb,xy       .. text: "w'wzgwpww"
-b8,r,lsb,xy         .. text: "def notrand(n):notrand.i +=1return PBKDF2(master, str(notrand.i), dkLen=n, count =1)notrand.i=0key = RSA.generate(2048, randfunc=notrand)print key.exportKey()"```
+b8,r,lsb,xy         .. text: "def notrand(n):notrand.i +=1return PBKDF2(master, str(notrand.i), dkLen=n, count =1)notrand.i=0key = RSA.generate(2048, randfunc=notrand)print key.exportKey()"
+```
 
 This was the same script as Elliot used in the clip from Mr. Robot to generate a RSA key, with only the key size changed from 4096 to 2048. We combined the code to make this script:
 
