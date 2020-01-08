@@ -66,7 +66,7 @@ Extracted message: Here is your colors:
 187,43
 341,280
 27,477
-```.
+```
 
 It seems that the colors at these coordinates in the image will give us the flag.
 
