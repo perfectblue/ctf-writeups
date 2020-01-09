@@ -100,7 +100,7 @@ require_once('footer.php');
 ?>
 ```
 
-The interesting functionality here is we can rotate an image. The bug lies in that function:
+The interesting functionality here is we can rotate an image. The bug lies in the function:
 
 ```php
 function rotate_feature_img($post_id, $degrees) {
@@ -158,4 +158,4 @@ Now just load the theme jazzyhack and you have arbitrary php code execution.
 
 ![img3](./img3.png)
 
-- Jazzy
+\- Jazzy
