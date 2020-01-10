@@ -1,4 +1,4 @@
-# Crypto 02
+# Crypto 01
 
 This problem provides you with some generated message that you have to decrypt,
 and an encrypt oracle. At some point you can provide the message and decrypt it,
