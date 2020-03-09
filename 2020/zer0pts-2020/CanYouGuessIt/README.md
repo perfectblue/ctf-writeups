@@ -23,7 +23,7 @@ if (isset($_POST['guess'])) {
   }
 }
 ?>
-``
+```
 
 - basename() ignores invalid bytes at the end of path (`/config.php/%ff` returns `config.php`)
 - Invalid chars at the end of the path bypasses the regex.
