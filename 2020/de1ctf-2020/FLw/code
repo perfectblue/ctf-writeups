@@ -1,0 +1,361 @@
+; Send in 28 bytes
+000: READ 
+001: QUE 0x1c
+003: SUB 
+004: EXIT_IFNE 
+
+; Copy into heap[0x19..0x34]
+005: COPY 
+006: REM [0x19]
+008: REM [0x1a]
+00a: REM [0x1b]
+00c: REM [0x1c]
+00e: REM [0x1d]
+010: REM [0x1e]
+012: REM [0x1f]
+014: REM [0x20]
+016: REM [0x21]
+018: REM [0x22]
+01a: REM [0x23]
+01c: REM [0x24]
+01e: REM [0x25]
+020: REM [0x26]
+022: REM [0x27]
+024: REM [0x28]
+026: REM [0x29]
+028: REM [0x2a]
+02a: REM [0x2b]
+02c: REM [0x2c]
+02e: REM [0x2d]
+030: REM [0x2e]
+032: REM [0x2f]
+034: REM [0x30]
+036: REM [0x31]
+038: REM [0x32]
+03a: REM [0x33]
+03c: REM [0x34]
+
+; flag[0] = 'D'
+03e: QUE [0x19]
+040: QUE 0x44
+042: SUB 
+043: EXIT_IFNE 
+
+; i = 0
+044: QUE 0x0
+046: REM [0xff]
+
+; flag[1] = 'e'
+048: QUE [0x1a]
+04a: QUE 0x65
+04c: SUB 
+04d: EXIT_IFNE 
+
+; Q = 0
+;q2 = heap[0x20 + i * 2] << 8 + heap[0x21 + i * 2]
+04e: QUE 0x20
+050: QUE [0xff]
+052: QUE [0xff]
+054: ADD 
+055: ADD 
+056: QUE [bot]
+057: REM q2
+058: QUE 0x21
+05a: QUE [0xff]
+05c: QUE [0xff]
+05e: ADD 
+05f: ADD 
+060: QUE [bot]
+061: REM q2
+
+; j = 3
+062: QUE 0x3
+064: REM [0xfe]
+
+; push i * 3 + j + 0x3f
+066: QUE [0xff]
+068: QUE 0x3
+06a: MULT 
+06b: QUE [0xfe]
+06d: QUE 0x3f
+06f: ADD 
+070: ADD 
+
+; heap[i * 3 + j] = q2 % 0x3a; q2 /= 0x3a;
+071: DIVMOD q2,0x3a
+073: REM [REM]
+074: QUE 0x1
+076: QUE [0xfe]
+078: SUB 
+079: REM [0xfe]
+07b: QUE [0xfe]
+07d: JNE 0x66
+
+07f: QUE [0xff]
+081: QUE 0x1
+083: ADD 
+084: REM [0xff]
+086: QUE [0xff]
+088: QUE 0xa
+08a: SUB 
+08b: JNE 0x4e
+
+; flag[4] = 'T'
+08d: QUE [0x1d]
+08f: QUE 0x54
+091: SUB 
+092: EXIT_IFNE 
+
+; flag[5] = 'F'
+093: QUE [0x1e]
+095: QUE 0x46
+097: SUB 
+098: EXIT_IFNE 
+
+; flag[6] = '{'
+099: QUE [0x1f]
+09b: QUE 0x7b
+09d: SUB 
+09e: EXIT_IFNE 
+
+; i = 0
+09f: QUE 0x0
+0a1: REM [0xff]
+
+; q2 = 0
+0a3: QUE q2
+0a4: REM 
+; i + 0x40
+0a5: QUE [0xff]
+0a7: QUE 0x40
+0a9: ADD 
+0aa: QUE [bot]
+0ab: QUE b64[bot]
+0ac: REM q2
+0ad: QUE [0xff]
+0af: QUE 0x40
+0b1: ADD 
+0b2: QUE q2
+0b3: REM [REM]
+0b4: QUE [0xff]
+0b6: QUE 0x1
+0b8: ADD 
+0b9: REM [0xff]
+0bb: QUE [0xff]
+0bd: QUE 0x1e
+0bf: SUB 
+0c0: JNE 0xa3
+
+; flag[3] = 'C'
+0c2: QUE [0x1c]
+0c4: QUE 0x43
+0c6: SUB 
+0c7: EXIT_IFNE 
+
+; flag[2] = '1'
+0c8: QUE [0x1b]
+0ca: QUE 0x31
+0cc: SUB 
+0cd: EXIT_IFNE 
+
+; i = 0
+0ce: QUE 0x0
+0d0: REM [0xff]
+
+; q2 = 0
+0d2: QUE 0x0
+0d4: QUE 0x0
+0d6: REM q2
+0d7: REM q2
+
+; heap[i + 0x41] -= heap[0x40 + i]
+0d8: QUE [0xff]
+0da: QUE 0x40
+0dc: QUE [0xff]
+0de: QUE 0x41
+0e0: ADD 
+0e1: ADD 
+0e2: QUE [bot]
+0e3: QUE [bot]
+0e4: SUB 
+0e5: REM q2
+0e6: QUE [0xff]
+0e8: QUE 0x41
+0ea: ADD 
+0eb: QUE q2
+0ec: REM [REM]
+
+; heap[i + 0x42] += heap[i + 0x41]
+0ed: QUE [0xff]
+0ef: QUE 0x41
+0f1: QUE [0xff]
+0f3: QUE 0x42
+0f5: ADD 
+0f6: ADD 
+0f7: QUE [bot]
+0f8: QUE [bot]
+0f9: ADD 
+0fa: REM q2
+0fb: QUE [0xff]
+0fd: QUE 0x42
+0ff: ADD 
+100: QUE q2
+101: REM [REM]
+
+; heap[i + 0x40] ^= heap[i + 0x42]
+102: QUE [0xff]
+104: QUE 0x40
+106: QUE [0xff]
+108: QUE 0x42
+10a: ADD 
+10b: ADD 
+10c: QUE [bot]
+10d: QUE [bot]
+10e: XOR 
+10f: REM q2
+110: QUE [0xff]
+112: QUE 0x40
+114: ADD 
+115: QUE q2
+116: REM [REM]
+
+; i += 3
+117: QUE [0xff]
+119: QUE 0x3
+11b: ADD 
+11c: REM [0xff]
+
+; if i != 30 goto 0xd2
+11e: QUE [0xff]
+120: QUE 0x1e
+122: SUB 
+123: JNE 0xd2
+
+; flag[-1] = '}'
+125: QUE [0x34]
+127: QUE 0x7d
+129: SUB 
+12a: EXIT_IFNE 
+
+; Some encoded, probably base64?
+12b: QUE [0x40]
+12d: QUE 0x7a
+12f: SUB 
+130: EXIT_IFNE 
+131: QUE [0x41]
+133: QUE 0x19
+135: SUB 
+136: EXIT_IFNE 
+137: QUE [0x42]
+139: QUE 0x4f
+13b: SUB 
+13c: EXIT_IFNE 
+13d: QUE [0x43]
+13f: QUE 0x6e
+141: SUB 
+142: EXIT_IFNE 
+143: QUE [0x44]
+145: QUE 0xe
+147: SUB 
+148: EXIT_IFNE 
+149: QUE [0x45]
+14b: QUE 0x56
+14d: SUB 
+14e: EXIT_IFNE 
+14f: QUE [0x46]
+151: QUE 0xaf
+153: SUB 
+154: EXIT_IFNE 
+155: QUE [0x47]
+157: QUE 0x1f
+159: SUB 
+15a: EXIT_IFNE 
+15b: QUE [0x48]
+15d: QUE 0x98
+15f: SUB 
+160: EXIT_IFNE 
+161: QUE [0x49]
+163: QUE 0x58
+165: SUB 
+166: EXIT_IFNE 
+167: QUE [0x4a]
+169: QUE 0xe
+16b: SUB 
+16c: EXIT_IFNE 
+16d: QUE [0x4b]
+16f: QUE 0x60
+171: SUB 
+172: EXIT_IFNE 
+173: QUE [0x4c]
+175: QUE 0xbd
+177: SUB 
+178: EXIT_IFNE 
+179: QUE [0x4d]
+17b: QUE 0x42
+17d: SUB 
+17e: EXIT_IFNE 
+17f: QUE [0x4e]
+181: QUE 0x8a
+183: SUB 
+184: EXIT_IFNE 
+185: QUE [0x4f]
+187: QUE 0xa2
+189: SUB 
+18a: EXIT_IFNE 
+18b: QUE [0x50]
+18d: QUE 0x20
+18f: SUB 
+190: EXIT_IFNE 
+191: QUE [0x51]
+193: QUE 0x97
+195: SUB 
+196: EXIT_IFNE 
+197: QUE [0x52]
+199: QUE 0xb0
+19b: SUB 
+19c: EXIT_IFNE 
+19d: QUE [0x53]
+19f: QUE 0x3d
+1a1: SUB 
+1a2: EXIT_IFNE 
+1a3: QUE [0x54]
+1a5: QUE 0x87
+1a7: SUB 
+1a8: EXIT_IFNE 
+1a9: QUE [0x55]
+1ab: QUE 0xa0
+1ad: SUB 
+1ae: EXIT_IFNE 
+1af: QUE [0x56]
+1b1: QUE 0x22
+1b3: SUB 
+1b4: EXIT_IFNE 
+1b5: QUE [0x57]
+1b7: QUE 0x95
+1b9: SUB 
+1ba: EXIT_IFNE 
+1bb: QUE [0x58]
+1bd: QUE 0x79
+1bf: SUB 
+1c0: EXIT_IFNE 
+1c1: QUE [0x59]
+1c3: QUE 0xf9
+1c5: SUB 
+1c6: EXIT_IFNE 
+1c7: QUE [0x5a]
+1c9: QUE 0x41
+1cb: SUB 
+1cc: EXIT_IFNE 
+1cd: QUE [0x5b]
+1cf: QUE 0x54
+1d1: SUB 
+1d2: EXIT_IFNE 
+1d3: QUE [0x5c]
+1d5: QUE 0xc
+1d7: SUB 
+1d8: EXIT_IFNE 
+1d9: QUE [0x5d]
+1db: QUE 0x6d
+1dd: SUB 
+1de: EXIT_IFNE 
+1df: EXIT_0 
