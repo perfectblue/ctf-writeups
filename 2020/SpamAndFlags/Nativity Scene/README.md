@@ -19,3 +19,5 @@ z[196] = 0x91;
 
 %TypedArrayCopyElements(w,z,198);
 ```
+
+P.S fun fact, you could abuse another function  - `%TypedArraySet` for OOB if only it didn't have mismatched amount of arguments in declaration and in implementation
