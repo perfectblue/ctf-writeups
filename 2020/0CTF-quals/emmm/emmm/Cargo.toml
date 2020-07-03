@@ -1,0 +1,13 @@
+[package]
+name = "emmm"
+version = "0.1.0"
+authors = ["braindead <braindeaded@protonmail.com>"]
+edition = "2018"
+
+[dependencies]
+rand = "0.7"
+rand_pcg = "0.2"
+rayon = "*"
+
+[features]
+lite = []
