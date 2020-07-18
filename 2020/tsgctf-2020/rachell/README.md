@@ -1,0 +1,1 @@
+This was a heap challenge disguised in a filesystem. We can UAF the buffer of a file by deleting it through an indirect path. Using the UAF, it turns into a leakless heap challenge. We can simply overlap tcache fd and unsorted bin pointer, partial overwrite to stdout, leak with stdout, then trigger system. See solve script.

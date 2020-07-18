@@ -1,0 +1,1 @@
+This challenge was a really broken implementation that tries to match ptmalloc. As a result we can easily obtain overlapping chunks, clobber tcache fds, and use a single ptmalloc allocation to dup over malloc/freehook and trigger one gadget. See solve script.

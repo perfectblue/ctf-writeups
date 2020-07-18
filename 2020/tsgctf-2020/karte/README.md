@@ -1,0 +1,1 @@
+This challenge uses realloc and had UAF. Our goal is to write an arbitrary value into BSS. This can be done with tcache stashing attack, with 8 chunks in the same smallbin and overwriting the bk of the smallbin freelist fd. See solve script.

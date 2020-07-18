@@ -1,0 +1,1 @@
+This challenge uses calloc, and we can introduce a oob write with a flag byte. We can leak flag byte using fastbin dup side channel by overwriting fastbin freelist's fd and dup-ing into a controlled chunk. See solve script.

@@ -1,0 +1,1 @@
+Obnoxious binary with interleaved instructions through copying two different sections every instruction. Single step, find two lookup tables used for addition and xor, result of operation must be 0 => get flag. See solve script.
