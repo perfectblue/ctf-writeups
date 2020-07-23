@@ -1,4 +1,4 @@
-#Note 1
+# Note 1
 
 - ReDOS in the search to hang the event loop
 - SetTimeout would only execute when the Regex didn't match
