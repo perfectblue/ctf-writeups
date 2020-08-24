@@ -1,0 +1,40 @@
+#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+unsigned char State[256];
+HKL layout;
+int shift = 0;
+static int scan2ascii(DWORD scancode, unsigned short* result)
+{
+	unsigned int vk =MapVirtualKeyEx(scancode,MAPVK_VSC_TO_VK,layout);
+	printf("vk %x\n", vk);
+	// need to update keyboard state lol
+	return ToAsciiEx(vk,scancode,State,result,0,layout);
+}
+
+char scancodes[] = {
+	/* 0000 */  0x2A, 0x2E, 0xAE, 0x14, 0x94, 0x21, 0xA1, 0x1A,  // *....!..
+	/* 0008 */  0x9A, 0xAA, 0x1E, 0x9E, 0x2E, 0xAE, 0x19, 0x99,  // ........
+	/* 0010 */  0x17, 0x97, 0x2A, 0x0C, 0x8C, 0xAA, 0x32, 0xB2,  // ..*...2.
+	/* 0018 */  0x1E, 0x9E, 0x2E, 0xAE, 0x23, 0xA3, 0x17, 0x97,  // ....#...
+	/* 0020 */  0x31, 0xB1, 0x12, 0x92, 0x2A, 0x0C, 0x8C, 0xAA,  // 1...*...
+	/* 0028 */  0x26, 0xA6, 0x1E, 0x9E, 0x31, 0xB1, 0x22, 0xA2,  // &...1.".
+	/* 0030 */  0x16, 0x96, 0x1E, 0x9E, 0x22, 0xA2, 0x12, 0x92,  // ...."...
+	/* 0038 */  0x2A, 0x1B, 0x9B, 0xAA, 0x1C, 0x9C 
+};
+
+int main() {
+	layout = GetKeyboardLayout(0);
+	if (GetKeyboardState(State)==FALSE) {
+		printf("WTF\n");
+		return 0;
+	}
+
+	for (int i = 0; i < sizeof(scancodes); i++) {
+		unsigned short ascii = 0;
+		scan2ascii(scancodes[i], &ascii);
+		// printf("%c", ascii);
+	}
+	printf("\n");
+}

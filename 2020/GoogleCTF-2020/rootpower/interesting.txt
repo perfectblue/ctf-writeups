@@ -1,0 +1,20 @@
+# cat interesting.txt
+mnt/root/.bash_history
+mnt/boot/initramfs-linux.img
+mnt/var/log/lastlog
+mnt/var/log/tallylog
+mnt/var/log/journal/945803b84fa14418a278b692b8a0491f/system.journal
+mnt/var/log/journal/945803b84fa14418a278b692b8a0491f/system@0005a977037924f9-83222249a728a54f.journal~
+mnt/var/log/journal/945803b84fa14418a278b692b8a0491f/system@0005a976001f6986-2c4eac47a355dd58.journal~
+mnt/var/log/journal/945803b84fa14418a278b692b8a0491f/system@0005a9772cb3906c-d72b29266e01a825.journal~
+mnt/var/log/journal/945803b84fa14418a278b692b8a0491f/system@0005a976bbe32de9-d33d9be4e7663d4a.journal~
+mnt/var/log/journal/945803b84fa14418a278b692b8a0491f/system@0005a975ef51106d-c1d860aee42dc081.journal~
+mnt/var/log/wtmp
+mnt/var/log/btmp
+mnt/var/lib/systemd/coredump/core.login.0.8dba7463cc1743f9afc1f975403e161c.265.1593703531000000000000.lz4
+mnt/var/lib/systemd/timers/stamp-shadow.timer
+mnt/var/lib/systemd/random-seed
+mnt/etc/motd
+mnt/etc/pam.d/passwd
+mnt/etc/shadow
+mnt/etc/issue

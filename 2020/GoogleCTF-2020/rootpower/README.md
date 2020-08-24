@@ -1,0 +1,251 @@
+# Rootpower
+
+Solved by cts
+
+They give you a vm image and you need to figure out the root login. First thing I did was mount the fs image.
+
+**A REALLY USEFUL CTF TRICK WHENEVER YOU HAVE A VM IMAGE IS TO LOOK FOR THE MOST RECENTLY MODIFIED FILES, THIS IS USUALLY THE PART OF THE OS THAT THE CHALLENGE AUTHOR CHANGED TO MAKE THE CHALLENGE.** Obviously this stupid trick is totally useless in "real life" but in ctfs this has solved me dozens of challenges Megajoy.
+
+`find mnt/ -newermt $(date +%Y-%m-%d -d 'July 1') -type f -print > interesting.txt`
+
+Basically none of these files are interesting except `mnt/boot/initramfs-linux.img`
+
+So they fucked with the kernel image, let's see what's up with that?
+
+```
+# file initramfs-linux.img
+initramfs-linux.img: ASCII cpio archive (SVR4 with no CRC)
+# cpio -id < ../_initramfs-linux.img
+# ls kernel/firmware/acpi/ssdt.aml
+kernel/firmware/acpi/ssdt.aml
+```
+
+So we have ssdt.aml, at this point, i ask my roommate who is a OSdev nerd what is this? Basically ssdt.aml is this apci shit that lets you do some overrides for the acpi device tree, you can declare your own devices. Essentially this acpi shit is a virtual machine bytecode, and the operating system must implement the interpreter for this vm to properly do the acpi thing when enumerating the devices or whatever? We were joking about making this into a horrible ctf challenge a few weeks ago, then these mad lads  actually did it. absolutely kino.
+
+Anyways he told me to use thi tool "maciASL" to decompile this.
+
+Basically the code is self explanatory after i annotated it. It just checks the keyboard input against a hardcoded sequence of scan codes
+
+```
+// https://wiki.osdev.org/PS/2_Keyboard
+// https://wiki.osdev.org/%228042%22_PS/2_Controller
+// https://www.kernel.org/doc/html/latest/admin-guide/acpi/ssdt-overlays.html
+// https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
+// https://www.blackhat.com/presentations/bh-federal-06/BH-Fed-06-Heasman.pdf
+/*
+root@hax:~/vm/mnt# cat /proc/ioports
+0000-0cf7 : PCI Bus 0000:00
+  0000-001f : dma1
+  0020-0021 : pic1
+  0040-0043 : timer0
+  0050-0053 : timer1
+  0060-0060 : keyboard
+  0064-0064 : keyboard
+*/
+
+/*
+ * Intel ACPI Component Architecture
+ * AML/ASL+ Disassembler version 20200110 (64-bit version)
+ * Copyright (c) 2000 - 2020 Intel Corporation
+ * 
+ * Disassembling to symbolic ASL+ operators
+ *
+ * Disassembly of iASLxaMYbT.aml, Sat Aug 22 21:54:49 2020
+ *
+ * Original Table Header:
+ *     Signature        "SSDT"
+ *     Length           0x000001FD (509)
+ *     Revision         0x02
+ *     Checksum         0xF6
+ *     OEM ID           ""
+ *     OEM Table ID     ""
+ *     OEM Revision     0x00000000 (0)
+ *     Compiler ID      "INTL"
+ *     Compiler Version 0x20190509 (538510601)
+ */
+DefinitionBlock ("", "SSDT", 2, "", "", 0x00000000)
+{
+    Device (CHCK)
+    {
+        Name (_HID, "CHCK0001")  // _HID: Hardware ID
+        Name (_CID, Package (0x02)  // _CID: Compatible ID
+        {
+            "CHCK0001", 
+            "CHCK"
+        })
+
+        // OperationRegion (RegionName, RegionSpace, Offset, Length)
+        OperationRegion (KBDD, SystemIO, 0x60, One) // I/O port 0x60 (keyboard data)
+        OperationRegion (KBDC, SystemIO, 0x64, One) // I/O port 0x64 (keyboard control)
+        Field (KBDD, ByteAcc, NoLock, Preserve) // keyboard data register
+        {
+            DTAR,   8
+        }
+
+        Field (KBDC, ByteAcc, NoLock, Preserve) // keyboard command/status register
+        {
+            CSTR,   8
+        }
+
+        // "goal" buffer
+        Name (KBDA, Buffer (0x3E)
+        {
+            /* 0000 */  0x2A, 0x2E, 0xAE, 0x14, 0x94, 0x21, 0xA1, 0x1A,  // *....!..
+            /* 0008 */  0x9A, 0xAA, 0x1E, 0x9E, 0x2E, 0xAE, 0x19, 0x99,  // ........
+            /* 0010 */  0x17, 0x97, 0x2A, 0x0C, 0x8C, 0xAA, 0x32, 0xB2,  // ..*...2.
+            /* 0018 */  0x1E, 0x9E, 0x2E, 0xAE, 0x23, 0xA3, 0x17, 0x97,  // ....#...
+            /* 0020 */  0x31, 0xB1, 0x12, 0x92, 0x2A, 0x0C, 0x8C, 0xAA,  // 1...*...
+            /* 0028 */  0x26, 0xA6, 0x1E, 0x9E, 0x31, 0xB1, 0x22, 0xA2,  // &...1.".
+            /* 0030 */  0x16, 0x96, 0x1E, 0x9E, 0x22, 0xA2, 0x12, 0x92,  // ...."...
+            /* 0038 */  0x2A, 0x1B, 0x9B, 0xAA, 0x1C, 0x9C               // *.....
+        })
+
+        // input buffer
+        Name (KBDB, Buffer (0x3E){})
+
+        // Status Register Bit 1
+        // Input buffer status (0 = empty, 1 = full) 
+        // (must be clear before attempting to write data to IO port 0x60 or IO port 0x64) 
+        // Basically wait until input buffer not full
+        // wait for cmd?
+        Method (WCMD, 0, NotSerialized)
+        {
+            Local0 = One
+            While ((Local0 == One))
+            {
+                Local0 = CSTR /* \CHCK.CSTR */
+                Local0 >>= One
+                Local0 &= One
+            }
+        }
+
+        // Status Register Bit 0
+        // wait for data
+        // Output buffer status (0 = empty, 1 = full)
+        // (must be set before attempting to read data from IO port 0x60) 
+        Method (WDTA, 0, NotSerialized)
+        {
+            Local0 = Zero
+            While ((Local0 == Zero))
+            {
+                Local0 = CSTR /* \CHCK.CSTR */
+                Local0 &= One
+            }
+        }
+
+        // flush data
+        Method (CLRD, 0, NotSerialized)
+        {
+            // while there is data, read from data
+            Local0 = CSTR /* \CHCK.CSTR */
+            Local0 &= One
+            While ((Local0 == One))
+            {
+                Local1 = DTAR /* \CHCK.DTAR */
+                Local0 = CSTR /* \CHCK.CSTR */
+                Local0 &= One
+            }
+        }
+
+        // disable interrupt
+        Method (DINT, 0, NotSerialized)
+        {
+            // bit 2 and bit 6
+            // System Flag (1 = system passed POST, 0 = your OS shouldn't be running) 
+            // First PS/2 port translation (1 = enabled, 0 = disabled) 
+            Local0 = 0x44
+            WCMD ()
+            CSTR = 0x60 // Write next byte to "byte 0" of internal RAM (Controller Configuration Byte, see below) 
+            WCMD ()
+            DTAR = Local0
+        }
+
+        // enable interrupt
+        Method (EINT, 0, NotSerialized)
+        {
+            // bit 0,1,2 and bit 6 and bit 
+            //  First PS/2 port interrupt (1 = enabled, 0 = disabled) 
+            //  Second PS/2 port interrupt (1 = enabled, 0 = disabled, only if 2 PS/2 ports supported) 
+            //  System Flag (1 = system passed POST, 0 = your OS shouldn't be running) 
+            Local0 = 0x47
+            WCMD ()
+            CSTR = 0x60
+            WCMD ()
+            DTAR = Local0
+        }
+
+        // Check?
+        Method (CHCK, 0, NotSerialized)
+        {
+            DINT () // disable PS/2 interrupts
+            CLRD () // flush keyboard data buffer
+
+            // To poll, wait until bit 0 of the Status Register becomes set, then read the received byte of data from IO Port 0x60. 
+            WDTA () // wait for data
+            Local0 = DTAR /* \CHCK.DTAR */
+
+            // 0x9C enter released 
+            If ((Local0 == 0x9C))
+            {
+                // Read again
+                WDTA ()
+                Local0 = DTAR /* \CHCK.DTAR */
+            }
+
+            Local1 = Zero
+
+            // Translate right shift to left shift
+            // 0x36     right shift pressed 
+            If ((Local0 == 0x36))
+            {
+                // 0x2A     left shift pressed 
+                Local0 = 0x2A
+            }
+
+            // write into input buffer
+            KBDB [Local1] = Local0
+            Local1 += One
+
+            // read until return
+            While ((Local0 != 0x9C))
+            {
+                WDTA ()
+                Local0 = DTAR /* \CHCK.DTAR */
+                If ((Local0 == 0x36))
+                {
+                    // translate right to left shift press
+                    Local0 = 0x2A
+                }
+
+                If ((Local0 == 0xB6))
+                {
+                    // translate right to left shift release
+                    Local0 = 0xAA
+                }
+
+                If ((Local1 < 0x3E))
+                {
+                    KBDB [Local1] = Local0
+                    Local1 += One
+                }
+            }
+
+            // enable interrupt
+            EINT ()
+
+            // compare buffers
+            If ((KBDA == KBDB))
+            {
+                Return (One)
+            }
+
+            Return (Zero)
+        }
+    }
+}
+
+```
+
+Then i wrote a quick win32 c program to turn the scan codes into the flag chars (`based.c`) since i was too lazy to manually read the table on osdev wiki
+
+`CTF{acpi_machine_language}`
