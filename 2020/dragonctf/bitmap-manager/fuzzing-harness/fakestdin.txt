@@ -1,0 +1,20 @@
+list_builtins
+load_builtin
+1.bmp
+load_builtin
+2.bmp
+list
+merge
+0
+1
+lmao
+list
+dump 2
+exit
+exit
+exit
+exit
+exit
+exit
+exit
+exit

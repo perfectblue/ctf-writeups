@@ -1,0 +1,1 @@
+winnie-fuzz -i in -o out -t 100 -F basicblock.bb -f bitmaps\1.bmp -- -fork -debug -harness HarnessWrap.dll -- BitmapManager.exe
