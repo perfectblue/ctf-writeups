@@ -2,7 +2,7 @@
 
 Another The Watness challenge! The goal is to solve line-drawing puzzles, like in the game "The Witness". I recommend you to play The Witness first :D
 
-The answer-checking logic is hiddne in the shader code.
+The answer-checking logic is hidden in the shader code.
 
 ```js
 96: e => {
