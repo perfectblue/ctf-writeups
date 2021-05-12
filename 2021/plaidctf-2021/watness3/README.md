@@ -158,9 +158,11 @@ bool Bj(int AU) {
 ```
 
 It checks the alpha value of the intro image. Let's see.
+
 ![The alpha 0 layer of the intro image](canvas.png)
 
 The answer is here.
+
 ![The answer of the stage 1](1.png)
 
 ## Stage 2
@@ -208,6 +210,7 @@ int AP(float R, float AQ) {
 `AK` is same as `pow`. So this will check `pow(1021, i + 12, 4093) * 2 / 4093` is 1.
 
 The answer is here.
+
 ![The answer of the stage 2](2.png)
 
 ## Stage 3
