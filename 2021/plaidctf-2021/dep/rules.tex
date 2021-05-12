@@ -1,0 +1,124 @@
+\documentclass[12pt]{scrartcl}
+
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage{trfrac}
+\usepackage{fancyhdr}
+
+\DeclarePairedDelimiter\set\{\}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) --
+cycle;}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\pp}[1]{\left( #1 \right)}
+\newcommand{\makeinline}[0]{\quad \\ \vspace{-2.4\baselineskip}}
+\newcommand{\makeinliner}[0]{\quad \\ \vspace{-2.75\baselineskip}}
+\newcommand{\E}[0]{\mathbf{E}}
+\newcommand{\SD}[0]{\mathbf{SD}}
+\newcommand{\Var}[0]{\mathbf{Var}}
+\newcommand{\vblank}[0]{$ $ \vspace{15mm}}
+\newcommand{\dfn}[1]{\quad \text{\textit{#1}}}
+\renewcommand{\thead}[1]{\bfseries #1}
+\newenvironment{equstep}{\def\arraystretch{1.4}\begin{array}{ll}}{\end{array}\vspace{3mm}}
+\newcommand{\used}{$\checkmark$}
+\newcommand{\pstate}[2]{\langle #1, #2\rangle}
+\newcommand{\pcstate}[2]{\langle\texttt{#1}, #2\rangle}
+\newcommand{\step}[0]{\rightarrow_1}
+\newcommand{\converge}[3]{\pcstate{#1}{#2} \Downarrow #3}
+\newcommand{\convergev}[3]{\pstate{#1}{#2} \Downarrow #3}
+\newcommand{\axiom}[2]{\trfrac[#1]{$ $}{#2}}
+\newcommand{\prove}[2]{\Gamma \vdash #1 : #2 }
+\newcommand{\bprove}[2]{\prove{#1}{\beta(#2, \Gamma)}}
+
+\let\titleoriginal\title     
+\renewcommand{\title}[1]{   
+    \titleoriginal{#1}%
+    \newcommand{\thetitle}{#1}
+}
+\newcommand{\name}[1]{\newcommand{\thename}{#1}}
+\newcommand{\email}[1]{\newcommand{\theemail}{#1}}
+
+\title{DEP Typing Rules}
+\name{theKidOfArcrania}
+\email{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\thetitle}
+\chead{\theemail}
+\rhead{\thename}
+\cfoot{Page \thepage}
+
+\begin{document}
+
+\setkomafont{disposition}{\normalfont\bfseries}
+
+\author{\thename \\ \small{\theemail}}
+\maketitle
+
+\lstset{basicstyle=\linespread{0.8}\ttfamily}
+
+\noindent
+
+These are the typing judgement rules as implemented in type derivation.
+
+\begin{minipage}[c]{.35\linewidth}
+\begin{equation}
+  \frac{
+    \Gamma(v).type = \tau
+  }{\bprove{v}{\tau}}
+\end{equation}
+
+\begin{equation}
+  \frac{
+  }{\bprove{\#s}{\#(s+1)}}
+\end{equation}
+
+\begin{equation}
+  \frac{
+  }{\bprove{\mathtt{flag}}{\#0}}
+\end{equation}
+\end{minipage} \begin{minipage}[c]{0.6\linewidth}
+\begin{equation}
+  \frac{
+    \prove{e_1}{\mathtt{(} x \mathtt{:} \tau_1 \mathtt{) => \:} \tau_2}{} \quad
+    \prove{e_2}{\tau_1'} \quad
+    \tau_1 \equiv_\alpha \tau_1'
+  }{\bprove{(e_1 e_2)}{\tau_2[e_2/x]}}
+\end{equation}
+
+\begin{equation}
+  \frac{
+    \begin{array}{cc}
+      (x', e') = rescope(x, e, \Gamma) \quad
+      \Gamma' = \Gamma[x' \mapsto (\beta(a, \Gamma, None))] \\
+      \Gamma' \vdash e' : \tau_2 \quad
+      \prove{\tau_1}{\#s_1} \quad
+      \Gamma' \vdash \tau_2 : \#s_2 \quad
+    \end{array}
+  }{\bprove{(x:\tau_1) \mathtt{\:->\:} e}{(x':\tau_1) \mathtt{\:=>\:}\tau_2}}
+\end{equation}
+
+\begin{equation}
+  \frac{
+    \begin{array}{cc}
+      (x', \tau_2') = rescope(x, \tau_2, \Gamma) \quad
+      \Gamma' = \Gamma[x' \mapsto (\beta(a, \Gamma, None))] \\
+      \prove{\tau_1}{\#s_1} \quad
+      \Gamma' \vdash \tau_2' : \#s_2 \quad
+    \end{array}
+  }{\bprove{(x:\tau_1) \mathtt{\:=>\:} \tau_2}{\#s_2}}
+\end{equation}
+
+
+\end{minipage}
+
+
+\end{document}
