@@ -1,0 +1,136 @@
+/dts-v1/;
+
+// cpio: 0x48000000
+
+/ {
+	interrupt-parent = <0x8001>;
+	#size-cells = <0x01>;
+	#address-cells = <0x01>;
+	compatible = "mti,sead-3";
+
+	pl011@9000000 {
+		clock-names = "uartclk\0apb_pclk";
+		clocks = <0x8000 0x8000>;
+		interrupts = <0x00 0x01 0x04>;
+		reg = <0x9000000 0x1000>;
+		compatible = "arm,pl011\0arm,primecell";
+	};
+
+	intc@8000000 {
+		phandle = <0x8001>;
+		reg = <0x8000000 0x10000 0x8010000 0x10000>;
+		compatible = "arm,cortex-a15-gic";
+		ranges;
+		interrupt-controller;
+		#interrupt-cells = <0x03>;
+	};
+
+	cpus {
+		#size-cells = <0x00>;
+		#address-cells = <0x02>;
+
+		cpu@0 {
+			reg = <0 0>;
+			compatible = "arm,cortex-a72";
+			device_type = "cpu";
+		};
+
+		cpu@1 {
+			reg = <0 1>;
+			compatible = "arm,cortex-a72";
+			enable-method = "spin-table";
+			cpu-release-addr = <0 0x41df0f88>;
+		};
+	};
+
+	timer {
+		interrupts = <0x01 0x0d 0x104 0x01 0x0e 0x104 0x01 0x0b 0x104 0x01 0x0a 0x104>;
+		always-on;
+		compatible = "arm,armv8-timer\0arm,armv7-timer";
+	};
+
+	apb-pclk {
+		phandle = <0x8000>;
+		clock-output-names = "clk24mhz";
+		clock-frequency = <0x16e3600>;
+		#clock-cells = <0x00>;
+		compatible = "fixed-clock";
+	};
+
+	system-controller@1f000200 {
+		compatible = "mti,sead3-cpld", "syscon", "simple-mfd";
+		reg = <0x40ea9460 0x300>;
+
+
+    led_4294967295_0_off {
+        compatible = "register-bit-led";
+        offset = <0>;
+        mask = <4294967295>;
+        default-state = "off";
+        label = "hey";
+    };
+
+
+    led_3531893763_0_on {
+        compatible = "register-bit-led";
+        offset = <0>;
+        mask = <3531893763>;
+        default-state = "on";
+        label = "hey";
+    };
+
+
+    led_4294967295_4_off {
+        compatible = "register-bit-led";
+        offset = <4>;
+        mask = <4294967295>;
+        default-state = "off";
+        label = "hey";
+    };
+
+
+    led_4070589987_4_on {
+        compatible = "register-bit-led";
+        offset = <4>;
+        mask = <4070589987>;
+        default-state = "on";
+        label = "hey";
+    };
+
+
+    led_4294967295_8_off {
+        compatible = "register-bit-led";
+        offset = <8>;
+        mask = <4294967295>;
+        default-state = "off";
+        label = "hey";
+    };
+
+
+    led_4076863459_8_on {
+        compatible = "register-bit-led";
+        offset = <8>;
+        mask = <4076863459>;
+        default-state = "on";
+        label = "hey";
+    };
+
+        led@1 {
+            compatible = "register-bit-led";
+            offset = <0x10>;
+            mask = <0x1>;
+            color = <1>;
+            function = "led";
+        };
+
+        led@2 {
+            compatible = "register-bit-led";
+            offset = <0x11>;
+            mask = <0x1>;
+            color = <1>;
+            function = "led";
+        };
+
+	};
+
+};
