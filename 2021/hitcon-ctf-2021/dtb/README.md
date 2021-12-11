@@ -93,4 +93,4 @@ if (state) {
 
 Regmap overlapping doesn't work by default because of `memblock_is_memory` which scans `memblock.memory`, but overwriting `memblock.memory.regions[0].base` (`0x41df0f88`) with the spin table primitive allows us to bypass the check. With the overlapping regmap, we could flip arbitrary bit in the kernel code, and patching the kernel to make an LED device loads its color name from the flag location was straightforward.
 
-[This is our final exploit (example.dts).](./example.dts) and [generator](./xor-patcher.py)
+[This is our final exploit (example.dts).](./example.dts) and [generator](./xor_patcher.py)
