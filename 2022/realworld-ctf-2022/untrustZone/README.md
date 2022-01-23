@@ -10,6 +10,18 @@ Points: 500
 
 ---
 
+# introduction
+
+hello!! I recommend you read the [prequel](https://github.com/perfectblue/ctf-writeups/tree/master/2022/realworld-ctf-2022/trust%20or%20not) in this series. to understand what is going on here.
+
+# level up!!!
+
+this time they actually change the signing keys or something, since i can't upload and run my own TA on the remote anymore. and the remote is different from the local this time and the local has dummy flags only.
+
+so we gotta exploit the TA to read out our objects.
+
+# the vulnerability
+
 TA runs in secure world, it has a simple stack BOF bug
 
 ```c
@@ -156,6 +168,48 @@ gdb> b *0x400276c # breakpoint in TEE_OpenPersistentObject
 
 now you should be able to have breakpoint in optee kernel and also even the TA.
 
+**but really i just enabled serial uart for secure world in qemu and log to file serial2.txt, this works quite good.**
+
+```
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode data-abort at address 0x1234567 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  aaaaaaaaaaaaaaaa x1  0000000000000001
+E/TC:? 0  x2  2121212121212121 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 1919191919191919
+E/TC:? 0  x20 2020202020202020 x21 2121212121212121
+E/TC:? 0  x22 0000000000000001 x23 aaaaaaaaaaaaaaaa
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 0000000001234567
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 00000000400182d4 elr 0000000001234567
+E/TC:? 0  sp_el0 0000000040032110
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7c4612b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7f36d848 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+```
+
+i debug many exploit before with only dump like this. this is my curse. i am alone on this barren earth. i am empty. and yet. i fish
+
 # exploit detail
 
 Go read `gucci_chain.c` for exploit
@@ -171,3 +225,7 @@ Go read `gucci_chain.c` for exploit
 this chain was fucking hard to write. At least the panic message give me registers and mappings.
 
 `rwctf{Pwn_Ta_fr0m_c4_1s_Fun!!!}`
+
+# acknowledgements
+
+shout out to the challenge author for enabling internet and wget inside the vm on the remote because that shit totally sucks when you have to echo-load a 50KB exploit binary with base64.
