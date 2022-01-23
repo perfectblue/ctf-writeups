@@ -1,0 +1,1493 @@
+D/TC:0   get_aslr_seed:1393 Cannot find valid kaslr-seed
+D/TC:0   plat_get_aslr_seed:109 Warning: no ASLR seed
+D/TC:0   add_phys_mem:571 TEE_SHMEM_START type NSEC_SHM 0x42000000 size 0x00200000
+D/TC:0   add_phys_mem:571 TA_RAM_START type TA_RAM 0x0e300000 size 0x00d00000
+D/TC:0   add_phys_mem:571 VCORE_UNPG_RW_PA type TEE_RAM_RW 0x0e162000 size 0x0019e000
+D/TC:0   add_phys_mem:571 VCORE_UNPG_RX_PA type TEE_RAM_RX 0x0e100000 size 0x00062000
+D/TC:0   add_phys_mem:571 ROUNDDOWN((0x08000000 + 0x10000), CORE_MMU_PGDIR_SIZE) type IO_SEC 0x08000000 size 0x00200000
+D/TC:0   add_phys_mem:571 ROUNDDOWN((0x08000000 + 0), CORE_MMU_PGDIR_SIZE) type IO_SEC 0x08000000 size 0x00200000
+D/TC:0   add_phys_mem:585 Physical mem map overlaps 0x8000000
+D/TC:0   add_phys_mem:571 ROUNDDOWN(0x09040000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x09000000 size 0x00200000
+D/TC:0   add_va_space:611 type RES_VASPACE size 0x00a00000
+D/TC:0   add_va_space:611 type SHM_VASPACE size 0x02000000
+D/TC:0   dump_mmap_table:724 type TEE_RAM_RX   va 0x0e100000..0x0e161fff pa 0x0e100000..0x0e161fff size 0x00062000 (smallpg)
+D/TC:0   dump_mmap_table:724 type TEE_RAM_RW   va 0x0e162000..0x0e2fffff pa 0x0e162000..0x0e2fffff size 0x0019e000 (smallpg)
+D/TC:0   dump_mmap_table:724 type TA_RAM       va 0x0e300000..0x0effffff pa 0x0e300000..0x0effffff size 0x00d00000 (smallpg)
+D/TC:0   dump_mmap_table:724 type SHM_VASPACE  va 0x0f000000..0x10ffffff pa 0x00000000..0x01ffffff size 0x02000000 (pgdir)
+D/TC:0   dump_mmap_table:724 type RES_VASPACE  va 0x11000000..0x119fffff pa 0x00000000..0x009fffff size 0x00a00000 (pgdir)
+D/TC:0   dump_mmap_table:724 type IO_SEC       va 0x11a00000..0x11bfffff pa 0x08000000..0x081fffff size 0x00200000 (pgdir)
+D/TC:0   dump_mmap_table:724 type IO_SEC       va 0x11c00000..0x11dfffff pa 0x09000000..0x091fffff size 0x00200000 (pgdir)
+D/TC:0   dump_mmap_table:724 type NSEC_SHM     va 0x11e00000..0x11ffffff pa 0x42000000..0x421fffff size 0x00200000 (pgdir)
+D/TC:0   core_mmu_xlat_table_alloc:503 xlat tables used 1 / 8
+D/TC:0   core_mmu_xlat_table_alloc:503 xlat tables used 2 / 8
+D/TC:0   core_mmu_xlat_table_alloc:503 xlat tables used 3 / 8
+I/TC: 
+D/TC:0 0 select_vector:1148 SMCCC_ARCH_WORKAROUND_1 (0x80008000) available
+D/TC:0 0 select_vector:1150 SMC Workaround for CVE-2017-5715 used
+I/TC: Non-secure external DT found
+D/TC:0 0 carve_out_phys_mem:299 No need to carve out 0xe100000 size 0x200000
+D/TC:0 0 carve_out_phys_mem:299 No need to carve out 0xe300000 size 0xd00000
+I/TC: Switching console to device: /pl011@9040000
+I/TC: OP-TEE version: 3.15.0-203-g2452979f-dev (gcc version 10.2.1 20201103 (GNU Toolchain for the A-profile Architecture 10.2-2020.11 (arm-10.16))) #15 2022年 01月 04日 星期二 03:09:35 UTC aarch64
+I/TC: WARNING: This OP-TEE configuration might be insecure!
+I/TC: WARNING: Please check https://optee.readthedocs.io/en/latest/architecture/porting_guidelines.html
+I/TC: Primary CPU initializing
+D/TC:0 0 boot_init_primary_late:1262 Executing at offset 0 with virtual load address 0xe100000
+D/TC:0 0 call_preinitcalls:21 level 2 mobj_mapped_shm_init()
+D/TC:0 0 mobj_mapped_shm_init:449 Shared memory address range: f000000, 11000000
+D/TC:0 0 call_initcalls:40 level 1 register_time_source()
+D/TC:0 0 call_initcalls:40 level 1 teecore_init_pub_ram()
+D/TC:0 0 call_initcalls:40 level 2 probe_dt_drivers_early()
+D/TC:0 0 call_initcalls:40 level 3 check_ta_store()
+D/TC:0 0 check_ta_store:408 TA store: "Secure Storage TA"
+D/TC:0 0 check_ta_store:408 TA store: "REE"
+D/TC:0 0 call_initcalls:40 level 3 verify_pseudo_tas_conformance()
+D/TC:0 0 call_initcalls:40 level 3 tee_cryp_init()
+D/TC:0 0 call_initcalls:40 level 4 tee_fs_init_key_manager()
+D/TC:0 0 call_initcalls:40 level 5 probe_dt_drivers()
+D/TC:0 0 call_initcalls:40 level 6 mobj_init()
+D/TC:0 0 call_initcalls:40 level 6 default_mobj_init()
+D/TC:0 0 call_initcalls:40 level 7 release_probe_lists()
+D/TC:0 0 call_finalcalls:59 level 1 release_external_dt()
+I/TC: Primary CPU switching to normal world boot
+I/TC: Secondary CPU 1 initializing
+D/TC:1   select_vector:1148 SMCCC_ARCH_WORKAROUND_1 (0x80008000) available
+D/TC:1   select_vector:1150 SMC Workaround for CVE-2017-5715 used
+I/TC: Secondary CPU 1 switching to normal world boot
+D/TC:1   tee_entry_exchange_capabilities:102 Dynamic shared memory is enabled
+D/TC:1 0 core_mmu_xlat_table_alloc:503 xlat tables used 4 / 8
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_init_pseudo_ta_session:312 Open device.pta
+D/TC:? 0 tee_ta_init_pseudo_ta_session:329 device.pta : 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17f9a0 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17f7f0 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0xffff0007
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x789622b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x76cab0c8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x400167e0
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xffff0007
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17f7a8)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17f790)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17f7f0 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:0 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x0 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191000   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #0          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040034070
+E/TC:? 0  x2  0000000000000000 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000000
+E/TC:? 0  x20 0000000000000000 x21 6969696969696969
+E/TC:? 0  x22 0000000000123456 x23 1919191919191919
+E/TC:? 0  x24 2020202020202020 x25 0000000000000000
+E/TC:? 0  x26 0000000000000000 x27 0000000000000000
+E/TC:? 0  x28 0000000000000000 x29 0000000000000000
+E/TC:? 0  x30 0000000000000000 elr 0000000000000000
+E/TC:? 0  sp_el0 00000000400320f0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7bd462b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x79a6dc28 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00000000
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x0 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040034070
+E/TC:? 0  x2  0000000000000000 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000000
+E/TC:? 0  x20 0000000000000000 x21 6969696969696969
+E/TC:? 0  x22 0000000000123456 x23 1919191919191919
+E/TC:? 0  x24 2020202020202020 x25 0000000000000000
+E/TC:? 0  x26 0000000000000000 x27 0000000000000000
+E/TC:? 0  x28 0000000000000000 x29 0000000000000000
+E/TC:? 0  x30 0000000000000000 elr 0000000000000000
+E/TC:? 0  sp_el0 00000000400320f0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x788fb2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7c465c48 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00000000
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x123456 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040034070
+E/TC:? 0  x2  0000000000000000 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 000000000007d2c0
+E/TC:? 0  x20 2020202020202020 x21 2121212121212121
+E/TC:? 0  x22 2222222222222222 x23 2323232323232323
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 000000004001f580
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000123456 elr 0000000000123456
+E/TC:? 0  sp_el0 00000000400320b0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7c4652b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7fc21e78 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00123456
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:0 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x1234567 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191000   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #0          cpsr 0x40000100
+E/TC:? 0  x0  0000000040032000 x1  0000000040033070
+E/TC:? 0  x2  2121212121212121 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 000000000007d2c0
+E/TC:? 0  x20 2020202020202020 x21 2121212121212121
+E/TC:? 0  x22 0000000040033070 x23 0000000040032000
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 0000000001234567
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 00000000400182d4 elr 0000000001234567
+E/TC:? 0  sp_el0 0000000040032110
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7890c2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7c4619c8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x01234567
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x1234567 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  aaaaaaaaaaaaaaaa x1  0000000000000001
+E/TC:? 0  x2  2121212121212121 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 1919191919191919
+E/TC:? 0  x20 2020202020202020 x21 2121212121212121
+E/TC:? 0  x22 0000000000000001 x23 aaaaaaaaaaaaaaaa
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 0000000001234567
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 00000000400182d4 elr 0000000001234567
+E/TC:? 0  sp_el0 0000000040032110
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7c4612b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7f36d848 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x01234567
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:0 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x1234567 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191000   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #0          cpsr 0x40000100
+E/TC:? 0  x0  aaaaaaaaaaaaaaaa x1  0000000000000001
+E/TC:? 0  x2  000000000007d2c0 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 1919191919191919
+E/TC:? 0  x20 2020202020202020 x21 000000000007d2c0
+E/TC:? 0  x22 0000000000000001 x23 aaaaaaaaaaaaaaaa
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 0000000001234567
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 00000000400182d4 elr 0000000001234567
+E/TC:? 0  sp_el0 0000000040032110
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x76ca22b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x788f8888 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x01234567
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:0 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x1234567 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191000   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #0          cpsr 0x40000100
+E/TC:? 0  x0  aaaaaaaaaaaaaaaa x1  0000000000000001
+E/TC:? 0  x2  000000000007d2c0 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 1919191919191919
+E/TC:? 0  x20 2020202020202020 x21 000000000007d2c0
+E/TC:? 0  x22 0000000000000001 x23 aaaaaaaaaaaaaaaa
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 0000000001234567
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 00000000400182d4 elr 0000000001234567
+E/TC:? 0  sp_el0 0000000040032110
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x788f82b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x76ca9948 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x01234567
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:0 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x1234567 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191000   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #0          cpsr 0x40000100
+E/TC:? 0  x0  000000000007d2c0 x1  0000000000000001
+E/TC:? 0  x2  2121212121212121 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  000000000000002d x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e126100 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 1919191919191919
+E/TC:? 0  x20 2020202020202020 x21 2121212121212121
+E/TC:? 0  x22 0000000000000001 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 0000000001234567
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 00000000400182d4 elr 0000000001234567
+E/TC:? 0  sp_el0 0000000040032110
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x788d72b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x789092d8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x01234567
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x1234567 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  00000000ffff0008
+E/TC:? 0  x2  2121212121212121 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000030 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e10ef44 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 1919191919191919
+E/TC:? 0  x20 2020202020202020 x21 2121212121212121
+E/TC:? 0  x22 0000000000000001 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 0000000040016670
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000001234567 elr 0000000001234567
+E/TC:? 0  sp_el0 0000000040032130
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x788fc2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7c46dd28 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x01234567
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x54321 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  000000000007d2c0 x1  0000000000000000
+E/TC:? 0  x2  0000000040032008 x3  0000000000000000
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000030 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e10ef44 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 1919191919191919
+E/TC:? 0  x20 0000000040032000 x21 0000000040032008
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 0000000000054321
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 00000000400182d4 elr 0000000000054321
+E/TC:? 0  sp_el0 00000000400321e0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7f5332b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x76ca2b88 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00054321
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0xffff0001
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7f36c2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7fc21ca8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x4001674c
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xffff0001
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0xffff0001
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x788c32b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x76ca29d8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x4001674c
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xffff0001
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0xffff0001
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x788d52b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7f5350c8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x4001674c
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xffff0001
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0x0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x788d62b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x788c37d8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x400166e0
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0x0
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0x0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7c4762b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x78909d58 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x400166e0
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0x0
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0x0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7c46d2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x788c4488 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x400166e0
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0x0
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0x0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7f3632b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x788beb78 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x400166e0
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0x0
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x666666 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000000
+E/TC:? 0  x20 0000000000000000 x21 0000000000000000
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 00000000400166c8
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000666666 elr 0000000000666666
+E/TC:? 0  sp_el0 0000000040032240
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x76c892b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x76caa558 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00666666
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x666666 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000000
+E/TC:? 0  x20 0000000000000000 x21 0000000000000000
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 00000000400166c8
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000666666 elr 0000000000666666
+E/TC:? 0  sp_el0 0000000040032240
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x76ca92b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7f404cc8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00666666
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:0 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x666666 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191000   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #0          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000000
+E/TC:? 0  x20 0000000000000000 x21 0000000000000000
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 00000000400166c8
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000666666 elr 0000000000666666
+E/TC:? 0  sp_el0 0000000040032240
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x79a492b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x76c92448 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00666666
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x666666 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000000
+E/TC:? 0  x20 0000000000000000 x21 0000000000000000
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 00000000400166c8
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000666666 elr 0000000000666666
+E/TC:? 0  sp_el0 0000000040032240
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x76c902b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x78962d58 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00666666
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:0 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x666666 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191000   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #0          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000000
+E/TC:? 0  x20 0000000000000000 x21 0000000000000000
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 00000000400166c8
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000666666 elr 0000000000666666
+E/TC:? 0  sp_el0 0000000040032240
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x79a5e2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x76c92628 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00666666
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x666666 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000000
+E/TC:? 0  x20 0000000000000000 x21 0000000000000000
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 00000000400166c8
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000666666 elr 0000000000666666
+E/TC:? 0  sp_el0 0000000040032240
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x76c932b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x79a41a18 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00666666
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 20202020 of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 20202020 of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 20202020 of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: cccccccc of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 20202020 of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 20202020 of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 20202020 of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0xffff0006
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x79a452b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7f53d338 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x400163c0
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xffff0006
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x12345 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000040032008
+E/TC:? 0  x20 0000000000000000 x21 0000000000000000
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 00000000400166c8
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000012345 elr 0000000000012345
+E/TC:? 0  sp_el0 0000000040032260
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7aceb2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x79a4b2b8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00012345
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+E/TC:? 0 
+E/TC:? 0 TA panicked with code 0xffff0006
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7f53d2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x76c968e8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x400163c0
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xffff0006
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:0 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0x54321 (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191000   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #0          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000040032008
+E/TC:? 0  x20 0000000000000000 x21 0000000000000000
+E/TC:? 0  x22 0000000000000000 x23 000000000007d2c0
+E/TC:? 0  x24 2424242424242424 x25 2525252525252525
+E/TC:? 0  x26 2626262626262626 x27 00000000400166c8
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969
+E/TC:? 0  x30 0000000000054321 elr 0000000000054321
+E/TC:? 0  sp_el0 0000000040032260
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x788e22b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x7f5349f8 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x00054321
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
+E/TC:? 0 
+E/TC:? 0 User mode prefetch-abort at address 0xc (translation fault)
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
+E/TC:? 0  cpu #1          cpsr 0x40000100
+E/TC:? 0  x0  0000000000000000 x1  0000000040032220
+E/TC:? 0  x2  0000000040032008 x3  0000000040032218
+E/TC:? 0  x4  0000000040033000 x5  0000000000000000
+E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
+E/TC:? 0  x8  0000000000000031 x9  0000000040029540
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
+E/TC:? 0  x14 0000000000000000 x15 0000000000000000
+E/TC:? 0  x16 000000000e195cd0 x17 0000000000000000
+E/TC:? 0  x18 0000000000000000 x19 0000000000000011
+E/TC:? 0  x20 2424242424242424 x21 2525252525252525
+E/TC:? 0  x22 2626262626262626 x23 2727272727272727
+E/TC:? 0  x24 2828282828282828 x25 6969696969696969
+E/TC:? 0  x26 0000000040016798 x27 1919191919191919
+E/TC:? 0  x28 0000000040032360 x29 0000000000000001
+E/TC:? 0  x30 000000000000000c elr 000000000000000c
+E/TC:? 0  sp_el0 00000000400322c0
+E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
+E/LD:   arch: aarch64
+E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
+E/LD:  region  1: va 0x40006000 pa 0x0e302000 size 0x008000 flags r-xs (ldelf)
+E/LD:  region  2: va 0x4000e000 pa 0x0e30a000 size 0x001000 flags rw-s (ldelf)
+E/LD:  region  3: va 0x4000f000 pa 0x0e30b000 size 0x004000 flags rw-s (ldelf)
+E/LD:  region  4: va 0x40013000 pa 0x0e30f000 size 0x001000 flags r--s
+E/LD:  region  5: va 0x40014000 pa 0x00001000 size 0x012000 flags r-xs [0]
+E/LD:  region  6: va 0x40026000 pa 0x00013000 size 0x00c000 flags rw-s [0]
+E/LD:  region  7: va 0x40032000 pa 0x0e32e000 size 0x001000 flags rw-s (stack)
+E/LD:  region  8: va 0x40033000 pa 0x7f53d2b0 size 0x005000 flags rw-- (param)
+E/LD:  region  9: va 0x40038000 pa 0x79a40f98 size 0x001000 flags rw-- (param)
+E/LD:   [0] b6c53aba-9669-4668-a7f2-205629d00f86 @ 0x40014000
+E/LD:  Call stack:
+E/LD:   0x0000000c
+D/TC:? 0 user_ta_enter:176 tee_user_ta_enter: TA panicked with code 0xdeadbeef
+D/TC:? 0 destroy_ta_ctx_from_session:324 Remove references to context (0xe17ec48)
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 7d67616c of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 7d67616c of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 7d67616c of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 7d67616c of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x40006000
+D/LD:  ldelf:134 Loading TS b6c53aba-9669-4668-a7f2-205629d00f86
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF b6c53aba-9669-4668-a7f2-205629d00f86 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+D/LD:  ldelf:168 ELF (b6c53aba-9669-4668-a7f2-205629d00f86) at 0x40014000
+D/TC:? 0 tee_ta_invoke_command:823 Error: 7d67616c of 4
+D/TC:? 0 tee_ta_close_session:512 csess 0xe17ec90 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0xe17ec30)
