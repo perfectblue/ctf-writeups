@@ -168,31 +168,33 @@ gdb> b *0x400276c # breakpoint in TEE_OpenPersistentObject
 
 now you should be able to have breakpoint in optee kernel and also even the TA.
 
-**but really i just enabled serial uart for secure world in qemu and log to file serial2.txt, this works quite good.**
+**but really i just enabled serial uart for secure world in qemu and log to file serial2.txt, this works quite good.** for any aarch64 noobs i also annotated what all this shit means
 
 ```
 D/TC:1 0 abort_handler:531 [abort] abort in User mode (TA will panic)
 E/TC:? 0 
 E/TC:? 0 User mode data-abort at address 0x1234567 (translation fault)
-E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0
-E/TC:? 0  cpu #1          cpsr 0x40000100
-E/TC:? 0  x0  aaaaaaaaaaaaaaaa x1  0000000000000001
+E/TC:? 0  esr 0x82000005  ttbr0 0x200000e191020   ttbr1 0x00000000   cidr 0x0 <-- esr = exception syndrome register (basically what kind of exception was it)
+                                                                              <-- ttbr0 = user page table base (for low addresses. depending on value of TTBCR)
+                                                                              <-- ttbr1 = kernel pagetable base (for high addresses)
+E/TC:? 0  cpu #1          cpsr 0x40000100                                     <-- cpsr = flags register
+E/TC:? 0  x0  aaaaaaaaaaaaaaaa x1  0000000000000001 <-- x0,x1,x2... = args . x0 = retval
 E/TC:? 0  x2  2121212121212121 x3  0000000000000000
 E/TC:? 0  x4  0000000040033000 x5  0000000000000000
 E/TC:? 0  x6  ffffffffffffffff x7  0000000040033000
 E/TC:? 0  x8  000000000000002d x9  0000000040029540
-E/TC:? 0  x10 0000000000000000 x11 0000000000000000
+E/TC:? 0  x10 0000000000000000 x11 0000000000000000 <-- gpr's
 E/TC:? 0  x12 0000000000000000 x13 0000000040032f80
 E/TC:? 0  x14 0000000000000000 x15 0000000000000000
 E/TC:? 0  x16 000000000e126100 x17 0000000000000000
-E/TC:? 0  x18 0000000000000000 x19 1919191919191919
-E/TC:? 0  x20 2020202020202020 x21 2121212121212121
+E/TC:? 0  x18 0000000000000000 x19 1919191919191919 <-- callee-saved (nonvolatile) registers
+E/TC:? 0  x20 2020202020202020 x21 2121212121212121 <-- the compiler likes to spill x0,x1,x2... to these at the start of the func and use them
 E/TC:? 0  x22 0000000000000001 x23 aaaaaaaaaaaaaaaa
 E/TC:? 0  x24 2424242424242424 x25 2525252525252525
 E/TC:? 0  x26 2626262626262626 x27 0000000001234567
-E/TC:? 0  x28 2828282828282828 x29 6969696969696969
-E/TC:? 0  x30 00000000400182d4 elr 0000000001234567
-E/TC:? 0  sp_el0 0000000040032110
+E/TC:? 0  x28 2828282828282828 x29 6969696969696969 <-- x29 = frame pointer, x30 = link register (retaddr)
+E/TC:? 0  x30 00000000400182d4 elr 0000000001234567 <-- exception link register = faulting (next) PC
+E/TC:? 0  sp_el0 0000000040032110                   <-- stack pointer in EL0 (usermode)
 E/LD:  Status of TA b6c53aba-9669-4668-a7f2-205629d00f86
 E/LD:   arch: aarch64
 E/LD:  region  0: va 0x40004000 pa 0x0e300000 size 0x002000 flags rw-s (ldelf)
@@ -212,9 +214,13 @@ i debug many exploit before with only dump like this. this is my curse. i am alo
 
 # exploit detail
 
-Go read `gucci_chain.c` for exploit
+Go read [`gucci_chain.c`](https://github.com/perfectblue/ctf-writeups/blob/master/2022/realworld-ctf-2022/untrustZone/gucci_chain.c) for exploit
 
-1. aarch64 rop is tough, author says we could have used gadgets in ldelf but i did not notice this during ctf
+1. aarch64 rop is tough, author says we could have used gadgets in ldelf but i did not notice this during ctf. Also [this blog post](https://blog.perfect.blue/ROPing-on-Aarch64) by voido❤️ is a great intro. things to note:
+
+- on aarch64, saved fp/ra is at the TOP of the stack frame, i.e. your function locals and spilled regs come after where sp points to. layout from low to high addrs is like sp points here -> [saved x29] [saved ra] [saved regs] [locals] [caller frame]
+- **Also when we are ropping on aarch64, it is a total bitch to find gadgets for loading the calling convention argument registers x0,x1,x2,x3,x4...**. But since the higher registers like x19,x20,x21,x22,... seem callee-saved, it's really easy to find gadgets for popping those. Actually, the good meme here is to NOT call the function directly in the rop chain. Instead just jump into the middle of the function after the function prologue has spilled all the arguments x0,x1,x2,x3... to nonvolatile registers x20,x21,x22,... . The compiler's register allocator will be actually using those registers for the argument values after the initial spilling near the start of the function. And those regs are easy to load with rop as the gadgets are plentiful. The function will also use the stack space after `sp` for its stack frame, meaning that it is simple to allocate space in your ropchain for the function to have a stack frame and avoid corrupting any of your future gadgets. The function typically returns with an epilogue that looks like `ldp x19,x20 [sp+0] ; ... ; ldp x29,x30, [sp], #0x50`, for example 0x50 here is the size of the function's frame.
+- your gadgets will all pretty much end with `ldp x29,x30, [sp], #0x30 ; ret` or `br x21` or similar. everything else is essentially not workable. gadget that ends with `ret` by itself is likely useless (`ret` == `b x30`).
 
 2. optee syscall will not like pointer arguments outside of secure pages, so param pages past end of stack won't work. so just pivot the entire chain up to stack_base (0x40032000) at the start
 

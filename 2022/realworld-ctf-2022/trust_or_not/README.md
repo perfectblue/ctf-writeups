@@ -172,7 +172,7 @@ But this is bad because now we corrupted the data and it's fail the hashing and 
 
 # memes part 2
 
-read the code for 6 hours, and dig through a lot of bullshit code and abstraction to finally figure out where the checks are. dig through syscall handler tables, way too many goddamn function pointers, and some context switches (yes, as in like swapping the vbar ie pagetable) too. then finally we can find what we are looking for.
+read the code for 6 hours, and dig through a lot of bullshit code and abstraction to finally figure out where the checks are. dig through syscall handler tables, way too many goddamn function pointers, and some context switches (yes, as in like swapping the pagetable) too. then finally we can find what we are looking for.
 
 then go in gdb and patch that shit up by poking the memory lol.
 
