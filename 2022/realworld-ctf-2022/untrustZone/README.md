@@ -12,7 +12,7 @@ Points: 500
 
 # introduction
 
-hello!! I recommend you read the [prequel](https://github.com/perfectblue/ctf-writeups/tree/master/2022/realworld-ctf-2022/trust%20or%20not) in this series. to understand what is going on here.
+hello!! I recommend you read the [prequel](https://github.com/perfectblue/ctf-writeups/tree/master/2022/realworld-ctf-2022/trust_or_not) in this series. to understand what is going on here.
 
 # level up!!!
 
