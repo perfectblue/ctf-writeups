@@ -1,0 +1,30 @@
+qemu-system-arm -m 64 -nographic -machine vexpress-a9 -net user,hostfwd=tcp::5555-:80 -net nic -kernel flag.bin
+
+
+qemu-system-arm -m 64 -nographic -monitor telnet:127.0.0.1:55555,server -machine vexpress-a9 -net user,hostfwd=tcp::5555-:80 -net nic -kernel flag.bin
+telnet localhost 55555
+
+qemu-system-arm -m 64 -nographic -s -S -machine vexpress-a9 -net user,hostfwd=tcp::5555-:80 -net nic -kernel flag.bin
+
+gdb-multiarch flag.bin
+target extended-remote localhost:1234
+
+detach
+
+# memcpy backdoor
+hbreak *0x6001B298
+
+# addOption call in websLoad
+hbreak *0x60064578
+# valueString in addOption
+hbreak *0x6006418C
+
+# websAddRoute in websLoad
+hbreak *0x60064618
+
+# after hashLookup in actionHandler
+hbreak *0x6004D200
+
+# hashLookup in websRedirectByStatus
+# r3 = route at this point
+hbreak *0x600580F8
