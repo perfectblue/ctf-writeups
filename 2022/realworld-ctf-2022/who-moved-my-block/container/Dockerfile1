@@ -1,0 +1,27 @@
+FROM ubuntu:20.04
+
+RUN sed -i "s/http:\/\/archive.ubuntu.com/http:\/\/mirrors.aliyun.com/g" /etc/apt/sources.list && \
+        sed -i "s/http:\/\/security.ubuntu.com/http:\/\/mirrors.aliyun.com/g" /etc/apt/sources.list
+
+RUN  apt-get update && \
+        apt-get -y dist-upgrade
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install ca-certificates gcc make bison wget libglib2.0-dev -y 
+
+WORKDIR /tmp
+
+# I cloned ndb-3.23 for local modification
+COPY nbd-3.23 /nbd-3.23
+
+RUN	cd /nbd-3.23 && \
+	./configure --enable-debug && \
+	make && \
+	make install
+
+
+COPY rootfs.ext2 /
+COPY start.sh /
+
+EXPOSE 10809
+
+CMD ["/start.sh"]

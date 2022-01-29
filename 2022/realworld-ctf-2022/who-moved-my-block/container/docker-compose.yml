@@ -1,0 +1,18 @@
+version: '3'
+services:
+    nbd:
+        build:
+            context: ./
+            dockerfile: Dockerfile1
+        ports:
+            - "10809:10809"
+        volumes:
+            - "./flag.txt:/mnt/flag.txt:ro"
+    nbd-orig:
+        build:
+            context: ./
+            dockerfile: Dockerfile2
+        ports:
+            - "10809:10809"
+        volumes:
+            - "./flag.txt:/mnt/flag.txt:ro"

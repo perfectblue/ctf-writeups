@@ -12,13 +12,15 @@ Write-up author: Qwaz
 
 ---
 
-# Challenge Description
+## Challenge Description
 
 > FreeRTOS+LwIP+ARM+GoAhead
 >
 > I don't want another backdoor ctf. So I have to say: "There is a backdoor in challange"
 >
 > The default account in attachment is admin:admin
+
+## Write-up
 
 We are given an embedded ARM binary that implements a web server with
 [GoAhead](https://www.embedthis.com/goahead/).
