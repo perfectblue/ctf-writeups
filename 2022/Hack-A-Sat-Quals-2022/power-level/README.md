@@ -1,3 +1,11 @@
+# Power-Level
+
+## Background
+
+This was a signal analysis challenge in which we are given IQ samples. The task was to compute the signal and noise power from this data.
+
+## Solution
+
 Load the 32bit little-endian IQ samples (format was learned by eye-balling the data file in a hex editor):
 
 ```
