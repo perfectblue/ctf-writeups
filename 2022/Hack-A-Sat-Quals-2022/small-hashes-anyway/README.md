@@ -12,4 +12,4 @@ The binary calculates `crc32(flag[:i])` and compare the result with a fixed valu
 
 ## Solution
 
-The full solver is in `solver.py`. The flag is `flag{whiskey358896oscar3:GDtWITSqyj4LFka9AN7F3DkF_OMe_X7MMoSBri8a_CKVSAHSyNykaknqJ7k3BcnV7YB26fBKyEfZzXOigh5PALU}`.
+The full solver is in `solver.py`. Run with `python solver.py`. The flag is `flag{whiskey358896oscar3:GDtWITSqyj4LFka9AN7F3DkF_OMe_X7MMoSBri8a_CKVSAHSyNykaknqJ7k3BcnV7YB26fBKyEfZzXOigh5PALU}`.
