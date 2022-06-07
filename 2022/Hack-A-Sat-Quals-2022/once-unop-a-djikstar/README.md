@@ -16,5 +16,7 @@ The reimplementation is shown in solve.py.
 
 ## Final Solution
 
+Run with `python solve.py`
+
 > 63-6, 58-7, 53-8, 24-15
 > flag{alpha649436romeo3:GEax4LUzhsj1H3hQcGAgzuReWQc05ZzUC0Rw3oSIErKylPsCizy8SzjMoyOmpekaqRjpQcnid9KpoGw5N9e6KhQ}
