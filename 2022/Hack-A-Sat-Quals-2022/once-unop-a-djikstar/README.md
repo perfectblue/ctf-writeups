@@ -1,6 +1,12 @@
 # Once unop a Dijkstar
 
-We are given a binary that is broken. Upon inspecting the binary, we can see multiple instructions that are nopped out.
+## Background
+
+We are given a rust binary that is broken.
+
+## Analysis
+
+Upon inspecting the binary, we can see multiple instructions that are nopped out.
 
 The intent of this challenge is the "fix" the original buggy binary. However, we found it easier to reverse the code and reimplement it in python.
 
