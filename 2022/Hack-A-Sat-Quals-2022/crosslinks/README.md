@@ -12,4 +12,4 @@ To compute range, we can use the skyfield python library to get each satellie's 
 
 To compute range rate, we note that range rate is computed as the projection of the difference in velocities onto the displacement vector. The skyfield python library can get us both position and velocity data as a given time. using these values, we can compute the range rate. Again, we use least squares error as the computed error.
 
-The final script is in solve.py.
+The final script is in solve.py. Run with `python solve.py`
