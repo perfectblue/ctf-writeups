@@ -1,4 +1,4 @@
-# Sevens Game: High
+# Seven's Game - High
 
 The free game combinations of A has five settings for the bonus game, and
 The combinations of B has three settings. The bug is here, if we pick the 

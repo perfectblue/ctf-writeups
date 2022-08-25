@@ -1,4 +1,4 @@
-# Dr. Strange
+# Dr.Strange
 
 ```py
 def do_crypt(plain_text):
