@@ -1,0 +1,5 @@
+- the email allows any characters to be injected so long as the start is a valid email
+- when updating the status the `rate` can be negative to skip the duration check
+- this allows for arbitrary html to be injected which is then rendered by pdfkit/wkhtmltopdf
+- can then inject an iframe with the src pointing to local files to leak the secret key `19eb794c831f30f099a31b1c095a17d6` from the `config.py`
+- this can then be used to fake an `is_admin` session and read the flag
