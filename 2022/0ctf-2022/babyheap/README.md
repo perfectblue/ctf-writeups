@@ -1,0 +1,1 @@
+Enter size of -1 during update to obtain infinite linear overflow from heap chunk. Heap massage to get overlapping chunks to get libc and heap leak, and tcache dupe. Tcache dupe onto stdout and FSOP to get environ leaks. Tcache dupe onto stack and ORW ropchain to read flag.
