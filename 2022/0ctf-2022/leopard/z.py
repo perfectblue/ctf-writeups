@@ -1,7 +1,6 @@
 from os import urandom
 from pysmt.shortcuts import *
 from cipher import AEAD, dump
-import subprocess
 from braindead import *
 log.enable()
 args = Args()
@@ -50,20 +49,12 @@ msg = b'The quick brown fox jumps over the lazy dog.'
 
 assertions = []
 
-r = io.connect((args.RHOST, 31337))
-pw = r.rla('sha256').decode().strip().split()
-suff = pw[2][:-1]
-h = pw[-1]
-sol = subprocess.check_output(['./pow', '4', suff, h])
-r.sla('Give me XXXX:\n', sol[:4])
-
-ct_normal = bytes.fromhex(r.rl().decode())
-ct_fault = bytes.fromhex(r.rl().decode())
-
 ad = b'0CTF2022'
-
+key = urandom(16)
+iv = urandom(16)
 for do_fault in [ False, True ]:
-    ct = ct_fault if do_fault else ct_normal
+    aead = AEAD(key, iv, do_fault)
+    ct, _ = aead.encrypt(msg, ad)
     state = list(initial)
     for bi, b in enumerate(blocks(pad(msg)[:-8], 8)):
         for i in range(8):
@@ -96,7 +87,7 @@ for _ in range(36):
 
 log.success('recovered state: %s', dump(recovered))
 
-c = AEAD(bytes(16), bytes(16))
+c = AEAD(key, iv)
 c.state[:] = recovered
 for b in reversed(list(blocks(pad(ad), 8))):
     c.inv_update(4)
@@ -106,11 +97,8 @@ recov_key = bytes(c.state[:16])
 recov_iv = bytes(c.state[16:32])
 
 log.success('recovered key: %s', recov_key.hex())
+log.success('actual key:    %s', key.hex())
 log.success('recovered iv: %s', recov_iv.hex())
-
-r.sl(recov_key.hex())
-r.sl(recov_iv.hex())
-
-io.interactive(r)
+log.success('actual iv:    %s', iv.hex())
 
 #subprocess.check_output(['boolector',
