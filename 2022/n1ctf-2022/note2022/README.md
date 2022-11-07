@@ -1,0 +1,1 @@
+The bug is in oob idx, so we can overlap a std::string structure. To get a leak, we replace on a null std::string structure and read out the pointer. We can overwrite the pointer to obtain arbitrary read/write. Get libc leak from heap arena pointer. Get stack leak from environ. Write ropchain to stack to RCE.
