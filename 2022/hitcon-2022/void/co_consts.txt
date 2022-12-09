@@ -1,0 +1,181 @@
+0 >>>
+4 >>> <class 'tuple'>
+6 >>> <class 'object'>
+42 >>> <class 'int'>
+52 >>> <class 'staticmethod'>
+53 >>> <built-in method maketrans of type object at 0x7ff7e4d44a40>
+65 >>> <built-in method maketrans of type object at 0x7f15df745920>
+150 >>> <class 'dict'>
+156 >>> <class 'dict_keys'>
+162 >>> <class 'dict_items'>
+168 >>> <class 'dict_values'>
+191 >>> <built-in method maketrans of type object at 0x7fa1eef5e920>
+288 >>> <class 'builtin_function_or_method'>
+456 >>> <class 'BaseException'>
+462 >>> <class 'Exception'>
+508 >>> <class 'str'>
+620 >>> <class 'bytes'>
+759 >>> <% object at 0x7fd4eba37630>
+762 >>> <class 'frozenset'>
+773 >>> 2
+775 >>> 3
+792 >>> 'sys'
+793 >>> 'implementation'
+794 >>> 'cache_tag'
+795 >>> 'NotImplementedError'
+796 >>> '_os'
+797 >>> 'fspath'
+798 >>> '_path_split'
+799 >>> 'pycache_prefix'
+800 >>> 'rstrip'
+801 >>> 'path_separators'
+802 >>> 'startswith'
+803 >>> 'path_sep'
+804 >>> 'len'
+805 >>> '_PYCACHE'
+806 >>> 'ValueError'
+807 >>> 'count'
+808 >>> 'rsplit'
+809 >>> '_OPT'
+810 >>> 'isalnum'
+811 >>> 'partition'
+812 >>> '_path_join'
+813 >>> 'SOURCE_SUFFIXES'
+844 >>> < object at 0x7eff9d5f2030>
+846 >>> <class 'set'>
+853 >>> ':/'
+932 >>> 'rpartition'
+933 >>> '_path_stat'
+934 >>> 'path'
+936 >>> 'getcwd'
+937 >>> 'st_mtime'
+938 >>> 'OSError'
+939 >>> '_path_mtime'
+940 >>> '_fill_cache'
+941 >>> '_relax_case'
+942 >>> '_relaxed_path_cache'
+943 >>> 'lower'
+944 >>> '_path_cache'
+946 >>> '_loaders'
+947 >>> '_path_isfile'
+948 >>> '_get_spec'
+949 >>> '_path_isdir'
+951 >>> '_bootstrap'
+952 >>> '_verbose_message'
+953 >>> 'ModuleSpec'
+954 >>> 'submodule_search_locations'
+988 >>> 'Setup the path-based importers for importlib by importing needed\n    built-in modules and injecting them into the global namespace.\n\n    Other components are extracted from the core bootstrap module.\n\n    '
+989 >>> 'posix'
+990 >>> '/'
+991 >>> 'nt'
+992 >>> '\\'
+993 >>> <code object <genexpr> at 0x7fb225dc80e0, file "<frozen importlib._bootstrap_external>", line 1672>
+994 >>> '_setup.<locals>.<genexpr>'
+995 >>> 0
+996 >>> 'importlib requires posix or nt'
+1000 >>> ''
+1001 >>> '_pathseps_with_colon'
+1002 >>> <code object <setcomp> at 0x7f2eb0247190, file "<frozen importlib._bootstrap_external>", line 1689>
+1003 >>> '_setup.<locals>.<setcomp>'
+1004 >>> ('_io', '_warnings', 'marshal')
+1005 >>> 'winreg'
+1007 >>> '.pyw'
+1008 >>> '_d.pyd'
+1009 >>> True
+1010 >>> None
+1015 >>> < object at 0x7f4d783585e0>
+1016 >>> < object at 0x7fcd7c9585e0>
+1527 >>> <' object at 0x7f8bbdf58600>
+1528 >>> <' object at 0x7efd02b58600>
+1544 >>> <class 'weakcallableproxy'>
+1576 >>> <class 'weakproxy'>
+1662 >>> <class 'getset_descriptor'>
+1664 >>> 'real'
+1680 >>> 'imag'
+1696 >>> 'numerator'
+1712 >>> 'denominator'
+1744 >>> <class 'bool'>
+2039 >>> < object at 0x7f369f758610>
+2040 >>> < object at 0x7f655af58610>
+2046 >>> <class 'wrapper_descriptor'>
+2047 >>> <class 'weakref'>
+2048 >>> '__ne__'
+2054 >>> <
+           object at 0x7f8ba145a030>
+2058 >>> '__gt__'
+2068 >>> '__ge__'
+2078 >>> '__init__'
+2096 >>> <class 'classmethod_descriptor'>
+2098 >>> '__class_getitem__'
+2128 >>> '__repr__'
+2138 >>> '__call__'
+2148 >>> '__str__'
+2158 >>> '__getattribute__'
+2168 >>> '__setattr__'
+2178 >>> '__delattr__'
+2188 >>> '__lt__'
+2198 >>> '__le__'
+2208 >>> '__eq__'
+2248 >>> '__iter__'
+2258 >>> '__next__'
+2268 >>> '__add__'
+2278 >>> '__radd__'
+2288 >>> '__sub__'
+2298 >>> '__rsub__'
+2308 >>> '__mul__'
+2318 >>> '__rmul__'
+2328 >>> '__mod__'
+2338 >>> '__rmod__'
+2348 >>> '__divmod__'
+2358 >>> '__rdivmod__'
+2368 >>> '__pow__'
+2378 >>> '__rpow__'
+2388 >>> '__neg__'
+2398 >>> '__pos__'
+2408 >>> '__abs__'
+2418 >>> '__bool__'
+2428 >>> '__invert__'
+2438 >>> '__lshift__'
+2448 >>> '__rlshift__'
+2458 >>> '__rshift__'
+2468 >>> '__rrshift__'
+2478 >>> '__and__'
+2488 >>> '__rand__'
+2498 >>> '__xor__'
+2508 >>> '__rxor__'
+2518 >>> '__or__'
+2528 >>> '__ror__'
+2533 >>> <
+           object at 0x7f04c8611030>
+2538 >>> '__int__'
+2551 >>> < object at 0x7fb5e7158610>
+2552 >>> < object at 0x7f8c5c958610>
+2560 >>> '__float__'
+2564 >>> <slot wrapper '__repr__' of 'weakcallableproxy' objects>
+2566 >>> <
+           object at 0x7fa9752c0030>
+2570 >>> '__iadd__'
+2580 >>> '__isub__'
+2590 >>> '__imul__'
+2600 >>> '__imod__'
+2610 >>> '__ipow__'
+2620 >>> '__ilshift__'
+2630 >>> '__irshift__'
+2640 >>> '__iand__'
+2650 >>> '__ixor__'
+2660 >>> '__ior__'
+2670 >>> '__floordiv__'
+2680 >>> '__rfloordiv__'
+2690 >>> '__truediv__'
+2700 >>> '__rtruediv__'
+2710 >>> '__ifloordiv__'
+2720 >>> '__itruediv__'
+2730 >>> '__index__'
+2740 >>> '__matmul__'
+2750 >>> '__rmatmul__'
+2760 >>> '__imatmul__'
+2770 >>> '__len__'
+2780 >>> '__getitem__'
+2790 >>> '__setitem__'
+2800 >>> '__delitem__'
+2810 >>> '__contains__'
