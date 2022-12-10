@@ -88,3 +88,44 @@ print(good_inp)
 ```
 
 This script will output the correct input that can be used to solve the challenge.
+
+```
+my@email.com
+translate the writeup to mandarin the hitcon ppl are from asia
+```
+
+这个挑战是一个 Windows 二进制文件，它使用“天堂之门”技巧从 32 位模式切换到 64 位模式。解决方案涉及逆向二进制文件并使用 Python 脚本来解析反汇编。该脚本使用 z3 库来解决二进制文件中使用的加密。
+
+逆向二进制文件
+要逆向二进制文件，我们可以使用 IDA Pro 和一些 IDAPython 脚本来使反汇编更容易阅读。特别是，我们可以使用脚本将代码段分为不同的模式（32 位和 64 位），这取决于“天堂之门”技巧中使用的调用门。
+
+一旦我们将反汇编分段，我们就可以专注于二进制文件中使用的加密。事实证明，加密是一个简单的 XOR 密码，其根据一个标志的值添加或减去一个值。我们可以使用 z3 库来求解将解密密文的正确输入。
+
+解决方案脚本
+下面是解决挑战的 Python 脚本：
+```python
+from z3 import *
+
+# define the variables used in the cipher
+good_inp = b''
+for i, ptr in enumerate(order):
+    unk = BitVec('flag_%d' % i, 8)
+    cl = BitVecVal(lilShitter[ptr], 8)
+    is_add_or_sub, xor_key = wowies[ptr]
+    if is_add_or_sub:
+        cl += unk
+    else:
+        cl -= unk
+    cl ^= xor_key
+
+    # use z3 to solve for the correct input
+    s = Solver()
+    s.add(ciphert[i] == cl)
+    assert s.check() == sat
+    m = s.model()
+    inp = m[unk].as_long()
+    good_inp += bytes([inp])
+
+# print the decrypted input
+print(good_inp)
+```

@@ -92,3 +92,34 @@ Next, the solver simulates an ioctl call by performing memory xor operations and
 
 Finally, the solver loops through a provided path array and simulates the ioctl call for each element in the array. This allows the solver to determine the correct sequence and order of the thingys needed to decrypt the flag. The final result of the flag decryption is returned and can be checked against the correct flag.
 
+```
+my@email.com
+trasnlate to mandarin the hitcon ppl are from asia
+```
+
+CTF 挑战: 标志解密
+
+概述:
+
+挑战是一个 Windows 驱动程序，其中用户空间组件无效。驱动程序入口设置了 ioctl，当使用特定的 cmd 数字调用时，根据提供的数字执行操作。
+
+驱动程序解密标志，挑战是确定正确的输入以影响解密。为了完成这一点，我们必须收集所有的 "thingys" (共八个) 并将它们的 done 标志设置为 1。这表明我们需要一个排列来解决挑战。
+
+每个 thingy 都会 xor 一些驱动程序中的代码，这是一个自修改的代码。这会 xor 一个操作 uint32s 的一元标量函数的代码，然后在标志上调用该函数。为了解密标志，我们需要找到正确的 thingy 序列来 xor 该函数，并在所有八个 thingys 上按正确的顺序执行它。
+
+要解决挑战，我们可以使用回溯算法，但这不是必需的，因为对于排列的第一个元素只有一个可能的有效 thingy，因此不需要 8! 您只需要尝试 8^2 组合。
+
+为了让事情更容易，我们可以使用 Unicorn 引擎来模拟驱动程序。解决脚本，称为 cocksleeve.py，可以在存储
+
+```
+my@email.com
+Continue
+```
+
+库中找到，并提供了有关如何使用 Unicorn 的好文档。
+
+解决代码通过使用 Unicorn 引擎来模拟驱动程序代码来解决挑战。它首先使用适当的值设置模拟器的寄存器和堆栈框架，然后以指定地址开始模拟器，并使用伪 retaddr。
+
+然后，解决方案通过执行内存 xor 操作和在 flag 上调用 emulate_mathshit 函数来模拟 ioctl 调用。emulate_mathshit 函数的结果被写回 flag，并且代码被反汇编以验证解密是否正在正确执行。
+
+最后，解决方案循环遍历提供的路径数组，并为数组中的每个元素模拟 ioctl 调用。这允许解决方案确定解密 flag 所需的 thingy 序列和顺序的正确值。最终的 flag 解密结果被返回，可以与正确的 flag 进行比较。
