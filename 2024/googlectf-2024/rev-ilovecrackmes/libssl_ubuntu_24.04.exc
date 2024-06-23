@@ -1,0 +1,19 @@
++conn_read.cold                                    	00 0000 8B04250C0000000F0B..............................................
+sock_read.cold                                    	00 0000 8B04250C0000000F0B..............................................
+
+X509_EXTENSION_it                                 	1B 49C2 F30F1EFA488D05........C30F1F4000F30F1EFA488D05........C30F1F4000
+
+TLS_method                                        	07 165B F30F1EFA488D05........C30F1F4000F30F1EFA488D05........C30F1F4000
+
+X509_SIG_it                                       	0B 387E F30F1EFA488D05........C30F1F4000F30F1EFA554889E541554989D5415449
+NETSCAPE_SPKAC_it                                 	0B 387E F30F1EFA488D05........C30F1F4000F30F1EFA554889E541554989D5415449
+PROXY_POLICY_it                                   	0B 387E F30F1EFA488D05........C30F1F4000F30F1EFA554889E541554989D5415449
+AUTHORITY_KEYID_it                                	0B 387E F30F1EFA488D05........C30F1F4000F30F1EFA554889E541554989D5415449
+X509_VAL_it                                       	0B 387E F30F1EFA488D05........C30F1F4000F30F1EFA554889E541554989D5415449
+
+SSL_test_functions                                	00 0000 F30F1EFA488D05........C3........................................
+UI_null                                           	00 0000 F30F1EFA488D05........C3........................................
+ossl_prov_cipher_hw_tdes_wrap_cbc                 	00 0000 F30F1EFA488D05........C3........................................
+
+ossl_DER_w_algorithmIdentifier_EC                 	11 53DB F30F1EFA554889E541544189F4534889FBE8........85C075165B31C0415C5D
+ossl_DER_w_algorithmIdentifier_SM2                	11 53DB F30F1EFA554889E541544189F4534889FBE8........85C075165B31C0415C5D
