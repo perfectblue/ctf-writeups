@@ -4,6 +4,10 @@ Solved by: Riatre, cts
 
 Remote gives you a ciphertext and public key under Paillier cryptosystem, you need to send back a new ciphertext that has "ilovecrackmes" added to it
 
+Annoying part is it's static linked against openssl with no symbols 👎👎👎
+
+Can use FLAIR to help here in IDA but not doing very well (custom build?). But also can use IDAPython to rename funcs based on SSL_SET_Err. Overall reading the code is effective as the chal is simple
+
 ![image](https://github.com/perfectblue/ctf-writeups/assets/14918218/9d0a3782-9bd6-40dc-9e91-799451cf0865)
 
 ![image](https://github.com/perfectblue/ctf-writeups/assets/14918218/b2c2204d-e586-4df1-b0d5-5aa64ea1808e)
