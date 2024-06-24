@@ -18,11 +18,11 @@ But first, a quick digression.
 
 ## The absolute state of reverse engineering in 2024
 
-Unfortunately, the year is 2024 and there is yet to be a high-quality Rust decompiler on the market. We have become really good at decompiling C, and Hex-Rays is a gold standard for native decompilation. However, the pseudo-C it produces is extremely verbose for non-C languages. This is especially true considering the large amount of syntactic sugar Rust provides. Unfortunately, Rust pushes programmers to *actually consider errors and handle them*, much to the detriment of us reverse engineers. A single-character `?` operator can produce dozens of lines of boilerplate in pseudo-C.
+Unfortunately, the year is 2024 and there is yet to be a high-quality Rust decompiler on the market. We have become really good at decompiling C, and Hex-Rays is a gold standard for native decompilation. However, the pseudo-C it produces is extremely verbose for non-C languages. This is especially true considering the large amount of syntactic sugar Rust provides. Unfortunately, Rust pushes programmers to *actually consider errors and handle them* (booo!), much to the detriment of reverse engineers. A single-character `?` operator can produce dozens of lines of boilerplate in pseudo-C.
 
 ![image](https://github.com/perfectblue/ctf-writeups/assets/14918218/7f1f0d26-2f2b-411e-845f-e17f3d9b0612)
 
-Combine that with proc macros, a powerful type system, differences in calling convention, and modern compiler optimizations and inlining, and you have a truly awful time. Even allocation failures are handled by the compiler, a fact I find deeply distressing.
+Even allocation failures are handled by the compiler (instead of the Chad move of simply ignoring them), a fact I find deeply distressing. Combine that with proc macros, a powerful type system, differences in calling convention, and modern compiler optimizations and inlining, and you have a truly awful time.
 
 ![image](https://github.com/perfectblue/ctf-writeups/assets/14918218/c991faca-bc65-43db-87c9-682380e4f751)
 
