@@ -207,3 +207,5 @@ So finally, we can wrap the whole thing up and decrypt all of the blocks in the 
 # Obligatory reversing bingo card
 
 ![image](https://github.com/perfectblue/ctf-writeups/assets/14918218/9b173cca-d104-49e7-8ce0-f8035cb631e4)
+
+Template: [Link](https://twitter.com/gf_256/status/1805137873466716315)
