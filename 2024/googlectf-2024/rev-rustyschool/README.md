@@ -198,7 +198,7 @@ So now we're done right? NO! There is one final snag.
 
 There can be more than 1 solution to the system! So we need to consider all possible solutions per round recursively. An optimization we can do is that for all rounds we're trying to invert except the final round, we have both rv0 and rv1, and we can further specify the equations from the `m=1` in the ideal. (See solve.py in this repo.)
 
-So finally, we can wrap the whole thing up and decrypt all of the blocks in the encrypted flag:
+So finally, we can wrap the whole thing up and decrypt all of the blocks in the encrypted flag. Because the blocks are independent, it can be parallelized across many cores (though be careful to use `spawn` not `fork` as I think Sage uses libsingular as a subprocess and forking will make all the workers try to use the same child process, breaking things) Here's the final result:
 
 ![image](https://github.com/perfectblue/ctf-writeups/assets/14918218/c50517e5-cfb6-4d42-8910-45a44efcfd02)
 
